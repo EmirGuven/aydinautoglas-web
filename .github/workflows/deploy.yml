@@ -23,8 +23,8 @@ jobs:
           script: |
             set -e
 
-            APP_DIR="/srv/docker/apps/aydin-autoglas-web"
-            REPO="git@github.com:EmirGuven/aydin-autoglas-web.git"
+            APP_DIR="/srv/docker/apps/aydinautoglas-web"
+            REPO="git@github.com:EmirGuven/aydinautoglas-web.git"
 
             echo "📁 Preparing application directory..."
             mkdir -p "$APP_DIR"
