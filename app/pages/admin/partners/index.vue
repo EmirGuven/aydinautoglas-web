@@ -97,7 +97,7 @@ async function onDrop(target: PartnerRow) {
   <div>
     <div class="mb-4 flex items-center justify-between">
       <h1 class="text-2xl font-bold text-slate-900 dark:text-slate-100">{{ t('partners.title') }}</h1>
-      <button type="button" class="min-h-11 rounded-md bg-primary px-4 text-sm font-medium text-white" @click="openCreate">
+      <button type="button" class="min-h-11 rounded-md bg-indigo-600 px-4 text-sm font-medium text-white" @click="openCreate">
         {{ t('partners.newPartner') }}
       </button>
     </div>
@@ -117,11 +117,11 @@ async function onDrop(target: PartnerRow) {
           <span class="font-medium">{{ row.name }}</span>
         </div>
         <div class="flex gap-3 text-xs">
-          <button type="button" class="text-primary underline" @click="openEdit(row)">{{ t('common.edit') }}</button>
+          <button type="button" class="text-indigo-600 underline" @click="openEdit(row)">{{ t('common.edit') }}</button>
           <button type="button" class="text-red-600 underline" @click="deleteTarget = row">{{ t('common.delete') }}</button>
         </div>
       </div>
-      <p v-if="!rows?.length" class="px-4 py-6 text-center text-sm text-slate-400">{{ t('partners.noPartnersYet') }}</p>
+      <AdminEmptyState v-if="!rows?.length" :message="t('partners.noPartnersYet')" />
     </div>
 
     <AdminModal :open="isFormOpen" :title="editingId ? t('partners.editPartner') : t('partners.newPartner')" @close="isFormOpen = false">
@@ -136,7 +136,7 @@ async function onDrop(target: PartnerRow) {
           <input v-model="form.websiteUrl" class="min-h-11 rounded-md border border-slate-300 px-3 text-sm text-slate-900 dark:border-slate-600 dark:bg-slate-900 dark:text-slate-100">
         </AdminFormField>
         <p v-if="formError" class="text-xs text-red-600">{{ formError }}</p>
-        <button type="submit" class="min-h-11 rounded-md bg-primary text-sm font-medium text-white">{{ t('common.save') }}</button>
+        <button type="submit" class="min-h-11 rounded-md bg-indigo-600 text-sm font-medium text-white">{{ t('common.save') }}</button>
       </form>
     </AdminModal>
 

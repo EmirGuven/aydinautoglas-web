@@ -165,7 +165,7 @@ async function onDrop(target: ServiceRow) {
   <div>
     <div class="mb-4 flex items-center justify-between">
       <h1 class="text-2xl font-bold text-slate-900 dark:text-slate-100">{{ t('services.title') }}</h1>
-      <button type="button" class="min-h-11 rounded-md bg-primary px-4 text-sm font-medium text-white" @click="openCreate">
+      <button type="button" class="min-h-11 rounded-md bg-indigo-600 px-4 text-sm font-medium text-white" @click="openCreate">
         {{ t('services.newService') }}
       </button>
     </div>
@@ -187,7 +187,7 @@ async function onDrop(target: ServiceRow) {
           <span v-if="row.isFeatured" class="rounded-full bg-amber-100 px-2 py-0.5 text-xs text-amber-700">{{ t('common.featured') }}</span>
         </div>
         <div class="flex gap-3 text-xs">
-          <button type="button" class="text-primary underline" @click="openEdit(row)">{{ t('common.edit') }}</button>
+          <button type="button" class="text-indigo-600 underline" @click="openEdit(row)">{{ t('common.edit') }}</button>
           <button type="button" class="text-red-600 underline" @click="deleteTarget = row">{{ t('common.delete') }}</button>
         </div>
       </div>
@@ -237,7 +237,7 @@ async function onDrop(target: ServiceRow) {
         <AdminSeoPanel v-model="form.seo" :title-fallback="form.title" :url="`/services/${form.slug}`" />
 
         <p v-if="formError" class="text-xs text-red-600">{{ formError }}</p>
-        <button type="submit" class="min-h-11 rounded-md bg-primary text-sm font-medium text-white disabled:opacity-60" :disabled="submitting">
+        <button type="submit" class="min-h-11 rounded-md bg-indigo-600 text-sm font-medium text-white disabled:opacity-60" :disabled="submitting">
           {{ submitting ? t('common.saving') : t('common.save') }}
         </button>
       </form>

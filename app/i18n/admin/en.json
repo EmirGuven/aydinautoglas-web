@@ -228,7 +228,14 @@
     "welcomeBack": "Welcome back, {name}.",
     "appointments": "Appointments",
     "unreadMessages": "Unread messages",
-    "publishedPages": "Published pages"
+    "publishedPages": "Published pages",
+    "recentAppointments": "Recent appointments",
+    "viewAll": "View all",
+    "noRecentAppointments": "No appointments yet.",
+    "quickLinks": "Quick links",
+    "recentMessages": "Recent messages",
+    "noRecentMessages": "No messages yet.",
+    "unread": "Unread"
   },
   "pages": {
     "editPage": "Edit page",

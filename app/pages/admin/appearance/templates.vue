@@ -35,7 +35,7 @@ async function confirmApply() {
   <div>
     <div class="mb-4 flex gap-1 border-b border-slate-200 dark:border-slate-700">
       <NuxtLink to="/admin/appearance/theme" class="min-h-11 border-b-2 border-transparent px-3 pb-2 text-sm font-medium text-slate-500 hover:text-slate-700 dark:text-slate-400">{{ t('appearance.themeTab') }}</NuxtLink>
-      <NuxtLink to="/admin/appearance/templates" class="min-h-11 border-b-2 border-primary px-3 pb-2 text-sm font-medium text-primary">{{ t('appearance.templatesTab') }}</NuxtLink>
+      <NuxtLink to="/admin/appearance/templates" class="min-h-11 border-b-2 border-indigo-600 px-3 pb-2 text-sm font-medium text-indigo-600">{{ t('appearance.templatesTab') }}</NuxtLink>
     </div>
     <h1 class="text-2xl font-bold text-slate-900 dark:text-slate-100">{{ t('appearance.templates.title') }}</h1>
     <p class="mt-1 max-w-2xl text-sm text-slate-500 dark:text-slate-400">
@@ -53,7 +53,7 @@ async function confirmApply() {
             <h2 class="font-semibold text-slate-900 dark:text-slate-100">{{ template.name }}</h2>
             <span
               v-if="settings?.general?.activeSectorTemplate === template.key"
-              class="rounded-full bg-primary/10 px-2 py-0.5 text-xs font-medium text-primary"
+              class="rounded-full bg-indigo-600/10 px-2 py-0.5 text-xs font-medium text-indigo-600"
             >
               {{ t('appearance.templates.active') }}
             </span>
@@ -62,7 +62,7 @@ async function confirmApply() {
         </div>
         <button
           type="button"
-          class="mt-4 min-h-11 w-fit rounded-md border border-primary px-4 text-sm font-medium text-primary hover:bg-primary/5 disabled:opacity-60"
+          class="mt-4 min-h-11 w-fit rounded-md border border-indigo-600 px-4 text-sm font-medium text-indigo-600 hover:bg-indigo-600/5 disabled:opacity-60"
           :disabled="settings?.general?.activeSectorTemplate === template.key"
           @click="confirmTarget = template"
         >

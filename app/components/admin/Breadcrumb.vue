@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { ChevronRight } from '@lucide/vue'
+
 const route = useRoute()
 const { t } = useAdminI18n()
 
@@ -39,8 +41,8 @@ const crumbs = computed(() => {
 <template>
   <nav class="mb-4 flex items-center gap-1 text-sm text-slate-500 dark:text-slate-400" aria-label="Breadcrumb">
     <template v-for="(crumb, index) in crumbs" :key="crumb.path">
-      <span v-if="index > 0" class="mx-1">/</span>
-      <NuxtLink v-if="index < crumbs.length - 1" :to="crumb.path" class="hover:text-primary">
+      <ChevronRight v-if="index > 0" class="h-3.5 w-3.5 shrink-0 text-slate-400" />
+      <NuxtLink v-if="index < crumbs.length - 1" :to="crumb.path" class="hover:text-indigo-600">
         {{ crumb.label }}
       </NuxtLink>
       <span v-else class="font-medium text-slate-700 dark:text-slate-200">{{ crumb.label }}</span>

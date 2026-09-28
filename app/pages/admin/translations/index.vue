@@ -87,7 +87,7 @@ async function confirmDelete() {
           :placeholder="t('translations.searchPlaceholder')"
           class="min-h-11 rounded-md border border-slate-300 px-3 text-sm text-slate-900 dark:border-slate-600 dark:bg-slate-900 dark:text-slate-100"
         >
-        <button type="button" class="min-h-11 rounded-md bg-primary px-4 text-sm font-medium text-white" @click="openCreate">
+        <button type="button" class="min-h-11 rounded-md bg-indigo-600 px-4 text-sm font-medium text-white" @click="openCreate">
           {{ t('translations.newKey') }}
         </button>
       </div>
@@ -111,7 +111,7 @@ async function confirmDelete() {
             </td>
             <td class="px-3 py-2">
               <div class="flex gap-3 text-xs">
-                <button type="button" class="text-primary underline" @click="openEdit(row)">{{ t('common.edit') }}</button>
+                <button type="button" class="text-indigo-600 underline" @click="openEdit(row)">{{ t('common.edit') }}</button>
                 <button type="button" class="text-red-600 underline" @click="deleteTarget = row">{{ t('common.delete') }}</button>
               </div>
             </td>
@@ -143,7 +143,7 @@ async function confirmDelete() {
             class="min-h-11 rounded-md border border-slate-300 px-3 text-sm text-slate-900 dark:border-slate-600 dark:bg-slate-900 dark:text-slate-100"
           >
         </AdminFormField>
-        <button type="submit" class="min-h-11 rounded-md bg-primary text-sm font-medium text-white">{{ t('common.save') }}</button>
+        <button type="submit" class="min-h-11 rounded-md bg-indigo-600 text-sm font-medium text-white">{{ t('common.save') }}</button>
       </form>
     </AdminModal>
 

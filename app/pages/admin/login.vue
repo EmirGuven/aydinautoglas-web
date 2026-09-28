@@ -54,7 +54,7 @@ async function onSubmit() {
       </AdminFormField>
       <button
         type="submit"
-        class="min-h-11 rounded-md bg-primary text-sm font-medium text-white disabled:opacity-60"
+        class="min-h-11 rounded-md bg-indigo-600 text-sm font-medium text-white disabled:opacity-60"
         :disabled="submitting"
       >
         {{ submitting ? t('login.signingIn') : t('login.signIn') }}

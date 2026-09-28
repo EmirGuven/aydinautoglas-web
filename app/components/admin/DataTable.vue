@@ -99,11 +99,11 @@ function cellValue(row: T, column: DataTableColumn<T>): string {
       <table class="w-full text-left text-sm">
         <thead class="bg-slate-50 text-slate-600 dark:bg-slate-900 dark:text-slate-300">
           <tr>
-            <th v-if="selectable" class="w-10 px-3 py-2" />
+            <th v-if="selectable" class="w-10 px-4 py-3" />
             <th
               v-for="col in columns"
               :key="col.key"
-              class="px-3 py-2 font-medium"
+              class="px-4 py-3 font-medium"
               :class="col.sortable && 'cursor-pointer select-none'"
               @click="toggleSort(col.key, col.sortable)"
             >
@@ -121,15 +121,15 @@ function cellValue(row: T, column: DataTableColumn<T>): string {
             :key="String(row[rowKey])"
             class="border-t border-slate-100 text-slate-700 transition hover:bg-slate-50 dark:border-slate-700 dark:text-slate-200 dark:hover:bg-slate-700/40"
           >
-            <td v-if="selectable" class="px-3 py-2">
+            <td v-if="selectable" class="px-4 py-3">
               <input type="checkbox" :checked="selected.has(row[rowKey])" @change="toggleSelect(row)">
             </td>
-            <td v-for="col in columns" :key="col.key" class="px-3 py-2">
+            <td v-for="col in columns" :key="col.key" class="px-4 py-3">
               <slot :name="`cell-${col.key}`" :row="row">{{ cellValue(row, col) }}</slot>
             </td>
           </tr>
           <tr v-if="paginated.length === 0">
-            <td :colspan="columns.length + (selectable ? 1 : 0)" class="px-3 py-6 text-center text-slate-400">
+            <td :colspan="columns.length + (selectable ? 1 : 0)" class="px-4 py-8 text-center text-slate-500 dark:text-slate-400">
               {{ t('dataTable.noResults') }}
             </td>
           </tr>

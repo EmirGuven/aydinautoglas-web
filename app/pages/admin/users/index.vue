@@ -112,7 +112,7 @@ async function confirmDelete() {
       <h1 class="text-2xl font-bold text-slate-900 dark:text-slate-100">{{ t('users.title') }}</h1>
       <button
         type="button"
-        class="min-h-11 rounded-md bg-primary px-4 text-sm font-medium text-white"
+        class="min-h-11 rounded-md bg-indigo-600 px-4 text-sm font-medium text-white"
         @click="openCreate"
       >
         {{ t('users.newUser') }}
@@ -137,7 +137,7 @@ async function confirmDelete() {
       <template #cell-isActive="{ row }">
         <div class="flex items-center gap-2">
           <span>{{ row.isActive ? t('users.yes') : t('users.no') }}</span>
-          <button type="button" class="text-xs text-primary underline" @click="openEdit(row)">{{ t('common.edit') }}</button>
+          <button type="button" class="text-xs text-indigo-600 underline" @click="openEdit(row)">{{ t('common.edit') }}</button>
           <button type="button" class="text-xs text-red-600 underline" @click="openDelete(row)">{{ t('common.delete') }}</button>
         </div>
       </template>
@@ -161,7 +161,7 @@ async function confirmDelete() {
             <option value="owner">{{ t('users.roleOwner') }}</option>
           </select>
         </AdminFormField>
-        <button type="submit" class="min-h-11 rounded-md bg-primary text-sm font-medium text-white disabled:opacity-60" :disabled="submitting">
+        <button type="submit" class="min-h-11 rounded-md bg-indigo-600 text-sm font-medium text-white disabled:opacity-60" :disabled="submitting">
           {{ submitting ? t('common.creating') : t('users.createUser') }}
         </button>
       </form>
@@ -182,7 +182,7 @@ async function confirmDelete() {
         <AdminFormField :label="t('users.newPassword')" :hint="t('users.newPasswordHint')">
           <input v-model="form.password" type="password" minlength="10" class="min-h-11 rounded-md border border-slate-300 px-3 text-sm text-slate-900 dark:border-slate-600 dark:bg-slate-900 dark:text-slate-100">
         </AdminFormField>
-        <button type="submit" class="min-h-11 rounded-md bg-primary text-sm font-medium text-white disabled:opacity-60" :disabled="submitting">
+        <button type="submit" class="min-h-11 rounded-md bg-indigo-600 text-sm font-medium text-white disabled:opacity-60" :disabled="submitting">
           {{ submitting ? t('common.saving') : t('common.save') }}
         </button>
       </form>

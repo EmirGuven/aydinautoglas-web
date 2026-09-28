@@ -30,7 +30,7 @@ const resolvedConfirmLabel = computed(() => props.confirmLabel ?? t('common.conf
       <button
         type="button"
         class="min-h-11 rounded-md px-4 text-sm font-medium text-white"
-        :class="danger ? 'bg-red-600 hover:bg-red-700' : 'bg-primary hover:opacity-90'"
+        :class="danger ? 'bg-red-600 hover:bg-red-700' : 'bg-indigo-600 hover:opacity-90'"
         @click="emit('confirm')"
       >
         {{ resolvedConfirmLabel }}

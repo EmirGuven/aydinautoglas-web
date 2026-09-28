@@ -106,7 +106,7 @@ async function remove(lang: LanguageRow) {
       <p class="text-sm text-slate-500 dark:text-slate-400">
         {{ t('settings.languages.intro') }}
       </p>
-      <button type="button" class="min-h-11 rounded-md bg-primary px-4 text-sm font-medium text-white" @click="openCreate">
+      <button type="button" class="min-h-11 rounded-md bg-indigo-600 px-4 text-sm font-medium text-white" @click="openCreate">
         {{ t('settings.languages.addLanguage') }}
       </button>
     </div>
@@ -127,8 +127,8 @@ async function remove(lang: LanguageRow) {
             <td class="px-3 py-2">{{ lang.flagEmoji }} {{ lang.code }}</td>
             <td class="px-3 py-2">{{ lang.nativeName }}</td>
             <td class="px-3 py-2">
-              <span v-if="lang.isDefault" class="text-xs font-medium text-primary">{{ t('settings.languages.default') }}</span>
-              <button v-else type="button" class="text-xs text-primary underline" @click="makeDefault(lang)">{{ t('settings.languages.makeDefault') }}</button>
+              <span v-if="lang.isDefault" class="text-xs font-medium text-indigo-600">{{ t('settings.languages.default') }}</span>
+              <button v-else type="button" class="text-xs text-indigo-600 underline" @click="makeDefault(lang)">{{ t('settings.languages.makeDefault') }}</button>
             </td>
             <td class="px-3 py-2">
               <button type="button" class="text-xs underline" @click="toggleActive(lang)">
@@ -185,7 +185,7 @@ async function remove(lang: LanguageRow) {
           </select>
         </AdminFormField>
         <p v-if="formError" class="text-xs text-red-600">{{ formError }}</p>
-        <button type="submit" class="min-h-11 rounded-md bg-primary text-sm font-medium text-white disabled:opacity-60" :disabled="submitting">
+        <button type="submit" class="min-h-11 rounded-md bg-indigo-600 text-sm font-medium text-white disabled:opacity-60" :disabled="submitting">
           {{ submitting ? t('settings.languages.adding') : t('settings.languages.addLanguage') }}
         </button>
       </form>

@@ -88,7 +88,7 @@ async function save() {
 <template>
   <div>
     <div class="mb-4 flex gap-1 border-b border-slate-200 dark:border-slate-700">
-      <NuxtLink to="/admin/appearance/theme" class="min-h-11 border-b-2 border-primary px-3 pb-2 text-sm font-medium text-primary">{{ t('appearance.themeTab') }}</NuxtLink>
+      <NuxtLink to="/admin/appearance/theme" class="min-h-11 border-b-2 border-indigo-600 px-3 pb-2 text-sm font-medium text-indigo-600">{{ t('appearance.themeTab') }}</NuxtLink>
       <NuxtLink to="/admin/appearance/templates" class="min-h-11 border-b-2 border-transparent px-3 pb-2 text-sm font-medium text-slate-500 hover:text-slate-700 dark:text-slate-400">{{ t('appearance.templatesTab') }}</NuxtLink>
     </div>
     <h1 class="text-2xl font-bold text-slate-900 dark:text-slate-100">{{ t('appearance.theme.title') }}</h1>
@@ -168,7 +168,7 @@ async function save() {
             <option value="pill">{{ t('appearance.theme.pill') }}</option>
           </select>
         </AdminFormField>
-        <button type="submit" class="min-h-11 rounded-md bg-primary text-sm font-medium text-white disabled:opacity-60" :disabled="saving">
+        <button type="submit" class="min-h-11 rounded-md bg-indigo-600 text-sm font-medium text-white disabled:opacity-60" :disabled="saving">
           {{ saving ? t('common.saving') : t('appearance.theme.saveTheme') }}
         </button>
       </form>

@@ -71,16 +71,16 @@ function closeMobile() {
       <span v-if="!sidebarCollapsed">Admin</span>
       <span v-else>A</span>
     </div>
-    <nav class="flex-1 space-y-1 px-2">
+    <nav class="flex-1 space-y-0.5 overflow-y-auto px-2 py-2">
       <NuxtLink
         v-for="item in navItems"
         :key="item.to"
         :to="item.to"
-        class="flex min-h-11 items-center gap-3 rounded-md px-3 text-sm hover:bg-slate-800"
-        active-class="bg-slate-800 text-white"
+        class="group flex min-h-11 items-center gap-3 rounded-md border-l-2 border-transparent px-3 text-sm text-slate-300 transition-colors hover:bg-slate-800/70 hover:text-white"
+        active-class="router-link-active !border-indigo-500 !bg-slate-800 !text-white"
         @click="closeMobile"
       >
-        <component :is="item.icon" class="h-5 w-5 shrink-0" />
+        <component :is="item.icon" class="h-5 w-5 shrink-0 text-slate-400 transition-colors group-hover:text-white group-[.router-link-active]:text-indigo-400" />
         <span v-if="!sidebarCollapsed">{{ item.label }}</span>
       </NuxtLink>
     </nav>

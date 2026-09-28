@@ -151,7 +151,7 @@ async function deleteRule(row: RuleRow) {
       <button
         type="button"
         class="min-h-11 border-b-2 px-3 text-sm font-medium"
-        :class="tab === 'questions' ? 'border-primary text-primary' : 'border-transparent text-slate-500'"
+        :class="tab === 'questions' ? 'border-indigo-600 text-indigo-600' : 'border-transparent text-slate-500'"
         @click="tab = 'questions'"
       >
         {{ t('damageWizard.questions') }}
@@ -159,7 +159,7 @@ async function deleteRule(row: RuleRow) {
       <button
         type="button"
         class="min-h-11 border-b-2 px-3 text-sm font-medium"
-        :class="tab === 'rules' ? 'border-primary text-primary' : 'border-transparent text-slate-500'"
+        :class="tab === 'rules' ? 'border-indigo-600 text-indigo-600' : 'border-transparent text-slate-500'"
         @click="tab = 'rules'"
       >
         {{ t('damageWizard.rules') }}
@@ -168,7 +168,7 @@ async function deleteRule(row: RuleRow) {
 
     <div v-if="tab === 'questions'">
       <div class="mb-4 flex justify-end">
-        <button type="button" class="min-h-11 rounded-md bg-primary px-4 text-sm font-medium text-white" @click="isQuestionFormOpen = true">
+        <button type="button" class="min-h-11 rounded-md bg-indigo-600 px-4 text-sm font-medium text-white" @click="isQuestionFormOpen = true">
           {{ t('damageWizard.newQuestion') }}
         </button>
       </div>
@@ -188,7 +188,7 @@ async function deleteRule(row: RuleRow) {
               <span>{{ option.label.de }} <span class="text-xs text-slate-400">({{ t('damageWizard.score').toLowerCase() }}: {{ option.value?.score ?? 0 }})</span></span>
               <button type="button" class="text-xs text-red-600 underline" @click="deleteOption(option)">{{ t('damageWizard.remove') }}</button>
             </div>
-            <button type="button" class="w-fit text-xs text-primary underline" @click="openAddOption(question.id)">
+            <button type="button" class="w-fit text-xs text-indigo-600 underline" @click="openAddOption(question.id)">
               {{ t('damageWizard.addOption') }}
             </button>
           </div>
@@ -199,7 +199,7 @@ async function deleteRule(row: RuleRow) {
 
     <div v-else>
       <div class="mb-4 flex justify-end">
-        <button type="button" class="min-h-11 rounded-md bg-primary px-4 text-sm font-medium text-white" @click="openAddRule">
+        <button type="button" class="min-h-11 rounded-md bg-indigo-600 px-4 text-sm font-medium text-white" @click="openAddRule">
           {{ t('damageWizard.newRule') }}
         </button>
       </div>
@@ -225,7 +225,7 @@ async function deleteRule(row: RuleRow) {
         <AdminFormField :label="t('damageWizard.questionTextDe')">
           <input v-model="questionText" required class="min-h-11 rounded-md border border-slate-300 px-3 text-sm text-slate-900 dark:border-slate-600 dark:bg-slate-900 dark:text-slate-100">
         </AdminFormField>
-        <button type="submit" class="min-h-11 rounded-md bg-primary text-sm font-medium text-white">{{ t('faqs.add') }}</button>
+        <button type="submit" class="min-h-11 rounded-md bg-indigo-600 text-sm font-medium text-white">{{ t('faqs.add') }}</button>
       </form>
     </AdminModal>
 
@@ -237,7 +237,7 @@ async function deleteRule(row: RuleRow) {
         <AdminFormField :label="t('damageWizard.score')" :hint="t('damageWizard.scoreHint')">
           <input v-model.number="optionScore" type="number" class="min-h-11 rounded-md border border-slate-300 px-3 text-sm text-slate-900 dark:border-slate-600 dark:bg-slate-900 dark:text-slate-100">
         </AdminFormField>
-        <button type="submit" class="min-h-11 rounded-md bg-primary text-sm font-medium text-white">{{ t('faqs.add') }}</button>
+        <button type="submit" class="min-h-11 rounded-md bg-indigo-600 text-sm font-medium text-white">{{ t('faqs.add') }}</button>
       </form>
     </AdminModal>
 
@@ -255,7 +255,7 @@ async function deleteRule(row: RuleRow) {
         <AdminFormField :label="t('damageWizard.messageDe')">
           <textarea v-model="ruleMessage" rows="2" class="rounded-md border border-slate-300 px-3 py-2 text-sm text-slate-900 dark:border-slate-600 dark:bg-slate-900 dark:text-slate-100" />
         </AdminFormField>
-        <button type="submit" class="min-h-11 rounded-md bg-primary text-sm font-medium text-white">{{ t('faqs.add') }}</button>
+        <button type="submit" class="min-h-11 rounded-md bg-indigo-600 text-sm font-medium text-white">{{ t('faqs.add') }}</button>
       </form>
     </AdminModal>
   </div>

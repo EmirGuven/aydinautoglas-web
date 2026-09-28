@@ -39,7 +39,7 @@ async function onSave() {
         <span class="min-h-11 content-center rounded-md border border-slate-300 bg-slate-50 px-3 text-sm text-slate-700 dark:border-slate-600 dark:bg-slate-900 dark:text-slate-300">
           {{ value.activeSectorTemplate }}
         </span>
-        <NuxtLink to="/admin/appearance/templates" class="text-sm text-primary underline">{{ t('settings.general.changeTemplate') }}</NuxtLink>
+        <NuxtLink to="/admin/appearance/templates" class="text-sm text-indigo-600 underline">{{ t('settings.general.changeTemplate') }}</NuxtLink>
       </div>
     </AdminFormField>
     <AdminFormField :label="t('settings.general.logo')">
@@ -48,7 +48,7 @@ async function onSave() {
     <AdminFormField :label="t('settings.general.favicon')">
       <AdminMediaPicker v-model="logoValue.faviconMediaId" />
     </AdminFormField>
-    <button type="submit" class="min-h-11 w-fit rounded-md bg-primary px-4 text-sm font-medium text-white disabled:opacity-60" :disabled="saving">
+    <button type="submit" class="min-h-11 w-fit rounded-md bg-indigo-600 px-4 text-sm font-medium text-white disabled:opacity-60" :disabled="saving">
       {{ saving ? t('common.saving') : t('common.save') }}
     </button>
   </form>

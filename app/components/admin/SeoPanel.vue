@@ -67,7 +67,7 @@ const scoreColor = computed(() => (score.value >= 80 ? 'text-emerald-600' : scor
       <div class="mt-1 h-1 w-full overflow-hidden rounded-full bg-slate-200 dark:bg-slate-700">
         <div
           class="h-full rounded-full"
-          :class="titlePixelPct > 100 ? 'bg-red-500' : 'bg-primary'"
+          :class="titlePixelPct > 100 ? 'bg-red-500' : 'bg-indigo-600'"
           :style="{ width: `${Math.min(100, titlePixelPct)}%` }"
         />
       </div>
@@ -81,7 +81,7 @@ const scoreColor = computed(() => (score.value >= 80 ? 'text-emerald-600' : scor
       <div class="mt-1 h-1 w-full overflow-hidden rounded-full bg-slate-200 dark:bg-slate-700">
         <div
           class="h-full rounded-full"
-          :class="descriptionPixelPct > 100 ? 'bg-red-500' : 'bg-primary'"
+          :class="descriptionPixelPct > 100 ? 'bg-red-500' : 'bg-indigo-600'"
           :style="{ width: `${Math.min(100, descriptionPixelPct)}%` }"
         />
       </div>

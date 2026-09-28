@@ -210,7 +210,7 @@ async function deleteCategory(row: CategoryRow) {
       <button
         type="button"
         class="min-h-11 border-b-2 px-3 text-sm font-medium"
-        :class="tab === 'posts' ? 'border-primary text-primary' : 'border-transparent text-slate-500'"
+        :class="tab === 'posts' ? 'border-indigo-600 text-indigo-600' : 'border-transparent text-slate-500'"
         @click="tab = 'posts'"
       >
         {{ t('blog.posts') }}
@@ -218,7 +218,7 @@ async function deleteCategory(row: CategoryRow) {
       <button
         type="button"
         class="min-h-11 border-b-2 px-3 text-sm font-medium"
-        :class="tab === 'categories' ? 'border-primary text-primary' : 'border-transparent text-slate-500'"
+        :class="tab === 'categories' ? 'border-indigo-600 text-indigo-600' : 'border-transparent text-slate-500'"
         @click="tab = 'categories'"
       >
         {{ t('blog.categories') }}
@@ -227,7 +227,7 @@ async function deleteCategory(row: CategoryRow) {
 
     <div v-if="tab === 'posts'">
       <div class="mb-4 flex justify-end">
-        <button type="button" class="min-h-11 rounded-md bg-primary px-4 text-sm font-medium text-white" @click="openCreatePost">
+        <button type="button" class="min-h-11 rounded-md bg-indigo-600 px-4 text-sm font-medium text-white" @click="openCreatePost">
           {{ t('blog.newPost') }}
         </button>
       </div>
@@ -236,7 +236,7 @@ async function deleteCategory(row: CategoryRow) {
           <div class="flex items-center gap-3">
             <span>/{{ row.slug.de }}</span>
             <span v-if="row.publishedByLocale.de" class="rounded-full bg-emerald-100 px-2 py-0.5 text-xs text-emerald-700">{{ t('pages.published') }}</span>
-            <button type="button" class="text-xs text-primary underline" @click="openEditPost(row)">{{ t('common.edit') }}</button>
+            <button type="button" class="text-xs text-indigo-600 underline" @click="openEditPost(row)">{{ t('common.edit') }}</button>
             <button type="button" class="text-xs text-red-600 underline" @click="deletePostTarget = row">{{ t('common.delete') }}</button>
           </div>
         </template>
@@ -245,7 +245,7 @@ async function deleteCategory(row: CategoryRow) {
 
     <div v-else>
       <div class="mb-4 flex justify-end">
-        <button type="button" class="min-h-11 rounded-md bg-primary px-4 text-sm font-medium text-white" @click="openCreateCategory">
+        <button type="button" class="min-h-11 rounded-md bg-indigo-600 px-4 text-sm font-medium text-white" @click="openCreateCategory">
           {{ t('blog.newCategory') }}
         </button>
       </div>
@@ -257,7 +257,7 @@ async function deleteCategory(row: CategoryRow) {
         >
           <span class="text-sm text-slate-700 dark:text-slate-200">{{ category.name.de }}</span>
           <div class="flex gap-3 text-xs">
-            <button type="button" class="text-primary underline" @click="openEditCategory(category)">{{ t('common.edit') }}</button>
+            <button type="button" class="text-indigo-600 underline" @click="openEditCategory(category)">{{ t('common.edit') }}</button>
             <button type="button" class="text-red-600 underline" @click="deleteCategory(category)">{{ t('common.delete') }}</button>
           </div>
         </div>
@@ -310,7 +310,7 @@ async function deleteCategory(row: CategoryRow) {
         <AdminSeoPanel v-model="postForm.seo" :title-fallback="postForm.title" :url="`/blog/${postForm.slug}`" />
 
         <p v-if="postFormError" class="text-xs text-red-600">{{ postFormError }}</p>
-        <button type="submit" class="min-h-11 rounded-md bg-primary text-sm font-medium text-white disabled:opacity-60" :disabled="postSubmitting">
+        <button type="submit" class="min-h-11 rounded-md bg-indigo-600 text-sm font-medium text-white disabled:opacity-60" :disabled="postSubmitting">
           {{ postSubmitting ? t('common.saving') : t('common.save') }}
         </button>
       </form>
@@ -325,7 +325,7 @@ async function deleteCategory(row: CategoryRow) {
           <input v-model="categoryForm.slug" required class="min-h-11 rounded-md border border-slate-300 px-3 text-sm text-slate-900 dark:border-slate-600 dark:bg-slate-900 dark:text-slate-100">
         </AdminFormField>
         <p v-if="categoryFormError" class="text-xs text-red-600">{{ categoryFormError }}</p>
-        <button type="submit" class="min-h-11 rounded-md bg-primary text-sm font-medium text-white">{{ t('common.save') }}</button>
+        <button type="submit" class="min-h-11 rounded-md bg-indigo-600 text-sm font-medium text-white">{{ t('common.save') }}</button>
       </form>
     </AdminModal>
 

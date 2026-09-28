@@ -108,7 +108,7 @@ async function dismissLog(log: NotFoundLogRow) {
           {{ t('redirects.intro') }}
         </p>
       </div>
-      <button v-if="tab === 'redirects'" type="button" class="min-h-11 rounded-md bg-primary px-4 text-sm font-medium text-white" @click="openCreate">
+      <button v-if="tab === 'redirects'" type="button" class="min-h-11 rounded-md bg-indigo-600 px-4 text-sm font-medium text-white" @click="openCreate">
         {{ t('redirects.newRedirect') }}
       </button>
     </div>
@@ -117,7 +117,7 @@ async function dismissLog(log: NotFoundLogRow) {
       <button
         type="button"
         class="min-h-11 border-b-2 px-3 text-sm font-medium"
-        :class="tab === 'redirects' ? 'border-primary text-primary' : 'border-transparent text-slate-500'"
+        :class="tab === 'redirects' ? 'border-indigo-600 text-indigo-600' : 'border-transparent text-slate-500'"
         @click="tab = 'redirects'"
       >
         {{ t('redirects.title') }}
@@ -125,7 +125,7 @@ async function dismissLog(log: NotFoundLogRow) {
       <button
         type="button"
         class="min-h-11 border-b-2 px-3 text-sm font-medium"
-        :class="tab === 'notFoundLogs' ? 'border-primary text-primary' : 'border-transparent text-slate-500'"
+        :class="tab === 'notFoundLogs' ? 'border-indigo-600 text-indigo-600' : 'border-transparent text-slate-500'"
         @click="tab = 'notFoundLogs'"
       >
         {{ t('redirects.notFoundLogs') }} <span v-if="notFoundLogs?.length" class="ml-1 rounded-full bg-slate-200 px-1.5 text-xs dark:bg-slate-700">{{ notFoundLogs.length }}</span>
@@ -149,14 +149,14 @@ async function dismissLog(log: NotFoundLogRow) {
             <td class="px-3 py-2">{{ row.statusCode }}</td>
             <td class="px-3 py-2">
               <div class="flex gap-3 text-xs">
-                <button type="button" class="text-primary underline" @click="openEdit(row)">{{ t('common.edit') }}</button>
+                <button type="button" class="text-indigo-600 underline" @click="openEdit(row)">{{ t('common.edit') }}</button>
                 <button type="button" class="text-red-600 underline" @click="deleteTarget = row">{{ t('common.delete') }}</button>
               </div>
             </td>
           </tr>
         </tbody>
       </table>
-      <p v-if="!rows?.length" class="px-4 py-6 text-center text-sm text-slate-400">{{ t('redirects.noRedirectsYet') }}</p>
+      <AdminEmptyState v-if="!rows?.length" :message="t('redirects.noRedirectsYet')" />
     </div>
 
     <div v-else class="overflow-hidden rounded-xl border border-slate-200 shadow-sm dark:border-slate-700">
@@ -187,7 +187,7 @@ async function dismissLog(log: NotFoundLogRow) {
             </td>
             <td class="px-3 py-2">
               <div class="flex gap-3 text-xs">
-                <button type="button" class="text-primary underline" @click="createRedirectFromLog(log)">{{ t('redirects.createRedirect') }}</button>
+                <button type="button" class="text-indigo-600 underline" @click="createRedirectFromLog(log)">{{ t('redirects.createRedirect') }}</button>
                 <button type="button" class="text-red-600 underline" @click="dismissLog(log)">{{ t('redirects.dismiss') }}</button>
               </div>
             </td>
@@ -211,7 +211,7 @@ async function dismissLog(log: NotFoundLogRow) {
             <option :value="302">302 ({{ t('redirects.temporary') }})</option>
           </select>
         </AdminFormField>
-        <button type="submit" class="min-h-11 rounded-md bg-primary text-sm font-medium text-white">{{ t('common.save') }}</button>
+        <button type="submit" class="min-h-11 rounded-md bg-indigo-600 text-sm font-medium text-white">{{ t('common.save') }}</button>
       </form>
     </AdminModal>
 

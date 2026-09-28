@@ -110,7 +110,7 @@ watch(
             class="min-h-11 flex-1 rounded-md border border-slate-300 px-3 text-sm text-slate-900 dark:border-slate-600 dark:bg-slate-900 dark:text-slate-100"
           >
           <label
-            class="min-h-11 cursor-pointer rounded-md bg-primary px-3 py-2 text-sm font-medium text-white"
+            class="min-h-11 cursor-pointer rounded-md bg-indigo-600 px-3 py-2 text-sm font-medium text-white"
           >
             {{ uploading ? t('common.uploading') : t('common.upload') }}
             <input ref="fileInput" type="file" accept="image/*,.svg" class="hidden" :disabled="uploading" @change="onFileChosen">
@@ -123,7 +123,7 @@ watch(
             v-for="item in items"
             :key="item.id"
             type="button"
-            class="aspect-square overflow-hidden rounded-md border border-slate-200 bg-slate-100 hover:ring-2 hover:ring-primary dark:border-slate-600 dark:bg-slate-700"
+            class="aspect-square overflow-hidden rounded-md border border-slate-200 bg-slate-100 hover:ring-2 hover:ring-indigo-600 dark:border-slate-600 dark:bg-slate-700"
             :title="item.originalFileName"
             @click="select(item)"
           >

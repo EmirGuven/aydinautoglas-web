@@ -83,7 +83,7 @@ async function saveRow(row: BulkSeoRow) {
             <td class="px-3 py-2 align-top">
               <button
                 type="button"
-                class="min-h-9 rounded-md bg-primary px-3 text-xs font-medium text-white disabled:opacity-60"
+                class="min-h-9 rounded-md bg-indigo-600 px-3 text-xs font-medium text-white disabled:opacity-60"
                 :disabled="savingIds[row.id]"
                 @click="saveRow(row)"
               >

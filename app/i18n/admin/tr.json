@@ -228,7 +228,14 @@
     "welcomeBack": "Tekrar hoş geldiniz, {name}.",
     "appointments": "Randevular",
     "unreadMessages": "Okunmamış mesajlar",
-    "publishedPages": "Yayınlanan sayfalar"
+    "publishedPages": "Yayınlanan sayfalar",
+    "recentAppointments": "Son randevular",
+    "viewAll": "Tümünü gör",
+    "noRecentAppointments": "Henüz randevu yok.",
+    "quickLinks": "Hızlı bağlantılar",
+    "recentMessages": "Son mesajlar",
+    "noRecentMessages": "Henüz mesaj yok.",
+    "unread": "Okunmadı"
   },
   "pages": {
     "editPage": "Sayfayı düzenle",

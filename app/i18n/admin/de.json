@@ -228,7 +228,14 @@
     "welcomeBack": "Willkommen zurück, {name}.",
     "appointments": "Termine",
     "unreadMessages": "Ungelesene Nachrichten",
-    "publishedPages": "Veröffentlichte Seiten"
+    "publishedPages": "Veröffentlichte Seiten",
+    "recentAppointments": "Letzte Termine",
+    "viewAll": "Alle ansehen",
+    "noRecentAppointments": "Noch keine Termine.",
+    "quickLinks": "Schnellzugriff",
+    "recentMessages": "Letzte Nachrichten",
+    "noRecentMessages": "Noch keine Nachrichten.",
+    "unread": "Ungelesen"
   },
   "pages": {
     "editPage": "Seite bearbeiten",

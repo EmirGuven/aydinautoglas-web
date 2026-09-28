@@ -27,7 +27,7 @@ async function onSave() {
       <input v-model="value.turnstileEnabledOnForms" type="checkbox">
       {{ t('settings.forms.turnstileLabel') }}
     </label>
-    <button type="submit" class="min-h-11 w-fit rounded-md bg-primary px-4 text-sm font-medium text-white disabled:opacity-60" :disabled="saving">
+    <button type="submit" class="min-h-11 w-fit rounded-md bg-indigo-600 px-4 text-sm font-medium text-white disabled:opacity-60" :disabled="saving">
       {{ saving ? t('common.saving') : t('common.save') }}
     </button>
   </form>

@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { CircleAlert } from '@lucide/vue'
+
 defineProps<{ label: string; error?: string; hint?: string; for?: string }>()
 </script>
 
@@ -9,6 +11,9 @@ defineProps<{ label: string; error?: string; hint?: string; for?: string }>()
     </label>
     <slot />
     <p v-if="hint && !error" class="text-xs text-slate-500 dark:text-slate-400">{{ hint }}</p>
-    <p v-if="error" class="text-xs text-red-600">{{ error }}</p>
+    <p v-if="error" class="flex items-center gap-1 text-xs font-medium text-red-600 dark:text-red-400">
+      <CircleAlert class="h-3.5 w-3.5 shrink-0" />
+      {{ error }}
+    </p>
   </div>
 </template>

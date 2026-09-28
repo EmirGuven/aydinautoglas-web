@@ -147,7 +147,7 @@ async function onDrop(target: MenuItemNode) {
   <div>
     <div class="mb-4 flex items-center justify-between">
       <h1 class="text-2xl font-bold text-slate-900 dark:text-slate-100">{{ t('menus.title') }}</h1>
-      <button type="button" class="min-h-11 rounded-md bg-primary px-4 text-sm font-medium text-white" @click="openCreate">
+      <button type="button" class="min-h-11 rounded-md bg-indigo-600 px-4 text-sm font-medium text-white" @click="openCreate">
         {{ t('menus.newItem') }}
       </button>
     </div>
@@ -156,7 +156,7 @@ async function onDrop(target: MenuItemNode) {
       <button
         type="button"
         class="min-h-11 border-b-2 px-3 text-sm font-medium"
-        :class="location === 'header' ? 'border-primary text-primary' : 'border-transparent text-slate-500'"
+        :class="location === 'header' ? 'border-indigo-600 text-indigo-600' : 'border-transparent text-slate-500'"
         @click="location = 'header'"
       >
         {{ t('menus.header') }}
@@ -164,7 +164,7 @@ async function onDrop(target: MenuItemNode) {
       <button
         type="button"
         class="min-h-11 border-b-2 px-3 text-sm font-medium"
-        :class="location === 'footer' ? 'border-primary text-primary' : 'border-transparent text-slate-500'"
+        :class="location === 'footer' ? 'border-indigo-600 text-indigo-600' : 'border-transparent text-slate-500'"
         @click="location = 'footer'"
       >
         {{ t('menus.footer') }}
@@ -189,7 +189,7 @@ async function onDrop(target: MenuItemNode) {
           <span class="text-xs text-slate-400">({{ item.node.linkType }}: {{ item.node.linkValue }})</span>
         </div>
         <div class="flex gap-3 text-xs">
-          <button type="button" class="text-primary underline" @click="openEdit(item.node)">{{ t('common.edit') }}</button>
+          <button type="button" class="text-indigo-600 underline" @click="openEdit(item.node)">{{ t('common.edit') }}</button>
           <button type="button" class="text-red-600 underline" @click="removeItem(item.node)">{{ t('common.delete') }}</button>
         </div>
       </div>
@@ -232,7 +232,7 @@ async function onDrop(target: MenuItemNode) {
             </option>
           </select>
         </AdminFormField>
-        <button type="submit" class="min-h-11 rounded-md bg-primary text-sm font-medium text-white">
+        <button type="submit" class="min-h-11 rounded-md bg-indigo-600 text-sm font-medium text-white">
           {{ editingId ? t('menus.saveChanges') : t('menus.addItem') }}
         </button>
       </form>

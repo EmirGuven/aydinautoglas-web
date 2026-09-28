@@ -60,9 +60,9 @@ async function onSave() {
       />
     </AdminFormField>
     <p class="text-xs text-slate-400">
-      {{ t('settings.robots.preview') }} <a href="/robots.txt" target="_blank" class="text-primary underline">/robots.txt</a>
+      {{ t('settings.robots.preview') }} <a href="/robots.txt" target="_blank" class="text-indigo-600 underline">/robots.txt</a>
     </p>
-    <button type="submit" class="min-h-11 w-fit rounded-md bg-primary px-4 text-sm font-medium text-white disabled:opacity-60" :disabled="saving">
+    <button type="submit" class="min-h-11 w-fit rounded-md bg-indigo-600 px-4 text-sm font-medium text-white disabled:opacity-60" :disabled="saving">
       {{ saving ? t('common.saving') : t('common.save') }}
     </button>
   </form>

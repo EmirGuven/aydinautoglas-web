@@ -63,7 +63,7 @@ async function onSaveIndexNow() {
       <input v-model="value.markdownExportEnabled" type="checkbox">
       {{ t('settings.seo.markdownExportEnabled') }}
     </label>
-    <button type="submit" class="min-h-11 w-fit rounded-md bg-primary px-4 text-sm font-medium text-white disabled:opacity-60" :disabled="saving">
+    <button type="submit" class="min-h-11 w-fit rounded-md bg-indigo-600 px-4 text-sm font-medium text-white disabled:opacity-60" :disabled="saving">
       {{ saving ? t('common.saving') : t('common.save') }}
     </button>
   </form>
@@ -78,10 +78,10 @@ async function onSaveIndexNow() {
     <AdminFormField v-if="indexNow.key" :label="t('settings.seo.indexNowKey')">
       <input :value="indexNow.key" readonly class="min-h-11 rounded-md border border-slate-300 bg-slate-50 px-3 font-mono text-sm text-slate-600 dark:border-slate-600 dark:bg-slate-900 dark:text-slate-300">
       <p class="mt-1 text-xs text-slate-400">
-        {{ t('settings.seo.indexNowKeyHint') }} <a :href="`/${indexNow.key}.txt`" target="_blank" class="text-primary underline">/{{ indexNow.key }}.txt</a>
+        {{ t('settings.seo.indexNowKeyHint') }} <a :href="`/${indexNow.key}.txt`" target="_blank" class="text-indigo-600 underline">/{{ indexNow.key }}.txt</a>
       </p>
     </AdminFormField>
-    <button type="submit" class="min-h-11 w-fit rounded-md bg-primary text-sm font-medium text-white disabled:opacity-60" :disabled="indexNowSaving">
+    <button type="submit" class="min-h-11 w-fit rounded-md bg-indigo-600 text-sm font-medium text-white disabled:opacity-60" :disabled="indexNowSaving">
       {{ indexNowSaving ? t('common.saving') : t('common.save') }}
     </button>
   </form>

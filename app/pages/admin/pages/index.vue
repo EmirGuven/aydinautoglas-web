@@ -70,7 +70,7 @@ async function confirmDelete() {
   <div>
     <div class="mb-4 flex items-center justify-between">
       <h1 class="text-2xl font-bold text-slate-900 dark:text-slate-100">{{ t('nav.pages') }}</h1>
-      <button type="button" class="min-h-11 rounded-md bg-primary px-4 text-sm font-medium text-white" @click="openCreate">
+      <button type="button" class="min-h-11 rounded-md bg-indigo-600 px-4 text-sm font-medium text-white" @click="openCreate">
         {{ t('common.new') }}
       </button>
     </div>
@@ -87,7 +87,7 @@ async function confirmDelete() {
       <template #cell-slug="{ row }">
         <div class="flex items-center gap-3">
           <span>/{{ row.slug.de }}</span>
-          <NuxtLink :to="`/admin/pages/${row.id}`" class="text-xs text-primary underline">{{ t('common.edit') }}</NuxtLink>
+          <NuxtLink :to="`/admin/pages/${row.id}`" class="text-xs text-indigo-600 underline">{{ t('common.edit') }}</NuxtLink>
           <button
             v-if="!row.isSystemPage"
             type="button"
@@ -109,7 +109,7 @@ async function confirmDelete() {
           <input v-model="form.slug" class="min-h-11 rounded-md border border-slate-300 px-3 text-sm text-slate-900 dark:border-slate-600 dark:bg-slate-900 dark:text-slate-100">
         </AdminFormField>
         <p v-if="formError" class="text-xs text-red-600">{{ formError }}</p>
-        <button type="submit" class="min-h-11 rounded-md bg-primary text-sm font-medium text-white disabled:opacity-60" :disabled="submitting">
+        <button type="submit" class="min-h-11 rounded-md bg-indigo-600 text-sm font-medium text-white disabled:opacity-60" :disabled="submitting">
           {{ submitting ? t('common.creating') : t('common.create') }}
         </button>
       </form>

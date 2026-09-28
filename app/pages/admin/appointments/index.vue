@@ -102,7 +102,7 @@ function downloadCsv() {
       <button
         type="button"
         class="min-h-11 border-b-2 px-3 text-sm font-medium"
-        :class="tab === 'appointments' ? 'border-primary text-primary' : 'border-transparent text-slate-500'"
+        :class="tab === 'appointments' ? 'border-indigo-600 text-indigo-600' : 'border-transparent text-slate-500'"
         @click="tab = 'appointments'"
       >
         {{ t('appointments.appointmentsTab') }}
@@ -110,7 +110,7 @@ function downloadCsv() {
       <button
         type="button"
         class="min-h-11 border-b-2 px-3 text-sm font-medium"
-        :class="tab === 'messages' ? 'border-primary text-primary' : 'border-transparent text-slate-500'"
+        :class="tab === 'messages' ? 'border-indigo-600 text-indigo-600' : 'border-transparent text-slate-500'"
         @click="tab = 'messages'"
       >
         {{ t('appointments.messagesTab') }}
@@ -157,7 +157,7 @@ function downloadCsv() {
               <option value="done">{{ t('appointments.statusDone') }}</option>
               <option value="cancelled">{{ t('appointments.statusCancelled') }}</option>
             </select>
-            <button type="button" class="text-xs text-primary underline" @click="openAppointment(row)">{{ t('appointments.detailsNotes') }}</button>
+            <button type="button" class="text-xs text-indigo-600 underline" @click="openAppointment(row)">{{ t('appointments.detailsNotes') }}</button>
           </div>
         </div>
         <p v-if="!filteredAppointments.length" class="px-4 py-6 text-center text-sm text-slate-400">{{ t('appointments.noAppointments') }}</p>
@@ -178,7 +178,7 @@ function downloadCsv() {
             <p class="mt-1 text-xs text-slate-400">{{ new Date(row.createdAt).toLocaleString() }}</p>
           </div>
           <div class="flex gap-3 text-xs">
-            <button type="button" class="text-primary underline" @click="toggleRead(row)">
+            <button type="button" class="text-indigo-600 underline" @click="toggleRead(row)">
               {{ row.isRead ? t('appointments.markUnread') : t('appointments.markRead') }}
             </button>
             <button type="button" class="text-red-600 underline" @click="deleteMessage(row)">{{ t('common.delete') }}</button>
@@ -201,7 +201,7 @@ function downloadCsv() {
             class="rounded-md border border-slate-300 px-3 py-2 text-sm text-slate-900 dark:border-slate-600 dark:bg-slate-900 dark:text-slate-100"
           />
         </AdminFormField>
-        <button type="button" class="min-h-11 rounded-md bg-primary text-sm font-medium text-white" @click="saveNotes">
+        <button type="button" class="min-h-11 rounded-md bg-indigo-600 text-sm font-medium text-white" @click="saveNotes">
           {{ t('appointments.saveNotes') }}
         </button>
       </div>

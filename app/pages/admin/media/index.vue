@@ -109,7 +109,7 @@ async function confirmDelete(force = false) {
           :placeholder="t('media.searchPlaceholder')"
           class="min-h-11 rounded-md border border-slate-300 px-3 text-sm text-slate-900 dark:border-slate-600 dark:bg-slate-900 dark:text-slate-100"
         >
-        <label class="min-h-11 cursor-pointer rounded-md bg-primary px-4 py-2 text-sm font-medium text-white">
+        <label class="min-h-11 cursor-pointer rounded-md bg-indigo-600 px-4 py-2 text-sm font-medium text-white">
           {{ uploading ? t('common.uploading') : t('common.upload') }}
           <input ref="fileInput" type="file" accept="image/*,.svg" class="hidden" :disabled="uploading" @change="onFileChosen">
         </label>
@@ -138,7 +138,7 @@ async function confirmDelete(force = false) {
             {{ item.originalFileName }}
           </p>
           <div class="mt-1 flex gap-2 text-xs">
-            <button type="button" class="text-primary underline" @click="openEdit(item)">{{ t('media.altText') }}</button>
+            <button type="button" class="text-indigo-600 underline" @click="openEdit(item)">{{ t('media.altText') }}</button>
             <button type="button" class="text-red-600 underline" @click="openDelete(item)">{{ t('common.delete') }}</button>
           </div>
         </div>
@@ -156,7 +156,7 @@ async function confirmDelete(force = false) {
             class="min-h-11 rounded-md border border-slate-300 px-3 text-sm text-slate-900 dark:border-slate-600 dark:bg-slate-900 dark:text-slate-100"
           >
         </AdminFormField>
-        <button type="submit" class="min-h-11 rounded-md bg-primary text-sm font-medium text-white">{{ t('common.save') }}</button>
+        <button type="submit" class="min-h-11 rounded-md bg-indigo-600 text-sm font-medium text-white">{{ t('common.save') }}</button>
       </form>
     </AdminModal>
 

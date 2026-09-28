@@ -60,7 +60,7 @@ async function handleLogout() {
           :aria-expanded="profileMenuOpen"
           @click="profileMenuOpen = !profileMenuOpen"
         >
-          <span class="flex h-8 w-8 items-center justify-center rounded-full bg-primary text-sm font-semibold text-white">
+          <span class="flex h-8 w-8 items-center justify-center rounded-full bg-indigo-600 text-sm font-semibold text-white">
             {{ user?.name?.[0]?.toUpperCase() ?? '?' }}
           </span>
           <span class="hidden text-sm sm:block">{{ user?.name }}</span>

@@ -118,7 +118,7 @@ async function submitCategory() {
         <button type="button" class="min-h-11 rounded-md border border-slate-300 px-4 text-sm dark:border-slate-600" @click="isCategoryFormOpen = true">
           {{ t('faqs.newCategory') }}
         </button>
-        <button type="button" class="min-h-11 rounded-md bg-primary px-4 text-sm font-medium text-white" @click="openCreateFaq">
+        <button type="button" class="min-h-11 rounded-md bg-indigo-600 px-4 text-sm font-medium text-white" @click="openCreateFaq">
           {{ t('faqs.newFaq') }}
         </button>
       </div>
@@ -140,11 +140,11 @@ async function submitCategory() {
           <span class="text-xs text-slate-400">({{ categoryNameFor(row.categoryId) }})</span>
         </div>
         <div class="flex gap-3 text-xs">
-          <button type="button" class="text-primary underline" @click="openEditFaq(row)">{{ t('common.edit') }}</button>
+          <button type="button" class="text-indigo-600 underline" @click="openEditFaq(row)">{{ t('common.edit') }}</button>
           <button type="button" class="text-red-600 underline" @click="deleteFaqTarget = row">{{ t('common.delete') }}</button>
         </div>
       </div>
-      <p v-if="!faqs?.length" class="px-4 py-6 text-center text-sm text-slate-400">{{ t('faqs.noFaqsYet') }}</p>
+      <AdminEmptyState v-if="!faqs?.length" :message="t('faqs.noFaqsYet')" />
     </div>
 
     <AdminModal :open="isFaqFormOpen" :title="editingFaqId ? t('faqs.editFaq') : t('faqs.newFaq')" @close="isFaqFormOpen = false">
@@ -161,7 +161,7 @@ async function submitCategory() {
         <AdminFormField :label="t('faqs.answerDe')">
           <textarea v-model="faqForm.answer" required rows="3" class="rounded-md border border-slate-300 px-3 py-2 text-sm text-slate-900 dark:border-slate-600 dark:bg-slate-900 dark:text-slate-100" />
         </AdminFormField>
-        <button type="submit" class="min-h-11 rounded-md bg-primary text-sm font-medium text-white">{{ t('common.save') }}</button>
+        <button type="submit" class="min-h-11 rounded-md bg-indigo-600 text-sm font-medium text-white">{{ t('common.save') }}</button>
       </form>
     </AdminModal>
 
@@ -170,7 +170,7 @@ async function submitCategory() {
         <AdminFormField :label="t('locations.nameDe')">
           <input v-model="categoryName" required class="min-h-11 rounded-md border border-slate-300 px-3 text-sm text-slate-900 dark:border-slate-600 dark:bg-slate-900 dark:text-slate-100">
         </AdminFormField>
-        <button type="submit" class="min-h-11 rounded-md bg-primary text-sm font-medium text-white">{{ t('faqs.add') }}</button>
+        <button type="submit" class="min-h-11 rounded-md bg-indigo-600 text-sm font-medium text-white">{{ t('faqs.add') }}</button>
       </form>
     </AdminModal>
 

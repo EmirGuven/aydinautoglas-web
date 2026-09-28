@@ -110,7 +110,7 @@ async function confirmDelete() {
   <div>
     <div class="mb-4 flex items-center justify-between">
       <h1 class="text-2xl font-bold text-slate-900 dark:text-slate-100">{{ t('locations.title') }}</h1>
-      <button type="button" class="min-h-11 rounded-md bg-primary px-4 text-sm font-medium text-white" @click="openCreate">
+      <button type="button" class="min-h-11 rounded-md bg-indigo-600 px-4 text-sm font-medium text-white" @click="openCreate">
         {{ t('locations.newBranch') }}
       </button>
     </div>
@@ -119,7 +119,7 @@ async function confirmDelete() {
       <template #cell-phone="{ row }">
         <div class="flex items-center gap-3">
           <span>{{ row.phone }}</span>
-          <button type="button" class="text-xs text-primary underline" @click="openEdit(row)">{{ t('common.edit') }}</button>
+          <button type="button" class="text-xs text-indigo-600 underline" @click="openEdit(row)">{{ t('common.edit') }}</button>
           <button type="button" class="text-xs text-red-600 underline" @click="deleteTarget = row">{{ t('common.delete') }}</button>
         </div>
       </template>
@@ -151,7 +151,7 @@ async function confirmDelete() {
           </AdminFormField>
         </div>
         <p v-if="formError" class="text-xs text-red-600">{{ formError }}</p>
-        <button type="submit" class="min-h-11 rounded-md bg-primary text-sm font-medium text-white disabled:opacity-60" :disabled="submitting">
+        <button type="submit" class="min-h-11 rounded-md bg-indigo-600 text-sm font-medium text-white disabled:opacity-60" :disabled="submitting">
           {{ submitting ? t('common.saving') : t('common.save') }}
         </button>
       </form>
