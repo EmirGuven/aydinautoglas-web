@@ -18,6 +18,7 @@ interface BlogPostDetail {
   authorName?: string
   authorRole: Record<string, string>
   authorPhotoMediaId?: string
+  coverMediaId?: string
   shortAnswer: Record<string, string>
   seo: Record<string, BlogPostSeoValue>
 }
@@ -41,12 +42,19 @@ const shortAnswer = computed(() => seo.value.shortAnswer || pickTranslated(post.
 const authorRoleText = computed(() => pickTranslated(post.value?.authorRole, locale.value))
 
 const authorPhoto = ref<{ id: string; sizes: Record<string, string>; altText: Record<string, string> } | undefined>()
+const coverImage = ref<{ id: string; sizes: Record<string, string>; altText: Record<string, string> } | undefined>()
 watchEffect(async () => {
   if (post.value?.authorPhotoMediaId) {
     const map = await fetchMediaMap([post.value.authorPhotoMediaId])
     authorPhoto.value = map[post.value.authorPhotoMediaId]
   } else {
     authorPhoto.value = undefined
+  }
+  if (post.value?.coverMediaId) {
+    const map = await fetchMediaMap([post.value.coverMediaId])
+    coverImage.value = map[post.value.coverMediaId]
+  } else {
+    coverImage.value = undefined
   }
 })
 
@@ -122,6 +130,15 @@ useBreadcrumbJsonLd(() =>
         </p>
       </div>
     </div>
+
+    <img
+      v-if="coverImage"
+      :src="mediaUrl(coverImage, 'large')"
+      :alt="mediaAlt(coverImage, locale)"
+      width="1200"
+      height="675"
+      class="mt-6 aspect-video w-full rounded-card object-cover"
+    >
 
     <p v-if="shortAnswer" class="mt-4 text-lg text-text/80">{{ shortAnswer }}</p>
 

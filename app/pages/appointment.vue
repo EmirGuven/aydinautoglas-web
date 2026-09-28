@@ -64,14 +64,19 @@ const inputClass = 'min-h-12 rounded-button border border-border bg-surface px-3
 </script>
 
 <template>
-  <main class="mx-auto max-w-xl px-4 py-12">
-    <h1 class="font-heading text-fluid-h1 font-bold text-text">{{ t('appointmentForm.title') }}</h1>
+  <main class="bg-secondary/5 px-4 py-12">
+    <div class="mx-auto max-w-2xl">
+      <h1 class="text-center font-heading text-fluid-h1 font-bold text-text">{{ t('appointmentForm.title') }}</h1>
 
-    <p v-if="submitted" class="mt-8 rounded-card border border-emerald-200 bg-emerald-50 p-6 text-center text-emerald-700">
-      {{ t('appointmentForm.success') }}
-    </p>
+      <p v-if="submitted" class="mt-8 rounded-card border border-emerald-200 bg-emerald-50 p-6 text-center text-emerald-700">
+        {{ t('appointmentForm.success') }}
+      </p>
 
-    <form v-else class="mt-8" @submit.prevent="step === STEPS.length - 1 ? submit() : next()">
+      <form
+        v-else
+        class="mt-8 rounded-card border border-border bg-surface p-6 shadow-card sm:p-8"
+        @submit.prevent="step === STEPS.length - 1 ? submit() : next()"
+      >
       <!-- Step indicator: progress bar + numeric label, so the form never feels like an
            open-ended list of questions. -->
       <div class="mb-6">
@@ -136,6 +141,7 @@ const inputClass = 'min-h-12 rounded-button border border-border bg-surface px-3
           {{ step === STEPS.length - 1 ? (submitting ? t('appointmentForm.sending') : t('appointmentForm.submit')) : t('appointmentForm.next') }}
         </button>
       </div>
-    </form>
+      </form>
+    </div>
   </main>
 </template>
