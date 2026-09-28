@@ -12,6 +12,16 @@ const localePath = useLocalePath()
 const { data: settings } = await usePublicSettings()
 const { data: menu } = await useFetch<MenuItemNode[]>('/api/menus/header', { key: 'header-menu' })
 
+const logoMediaId = computed(() => settings.value?.logo?.logoMediaId)
+const { data: logoMedia } = await useAsyncData(
+  'header-logo-media',
+  (): Promise<Awaited<ReturnType<typeof fetchMediaMap>>> =>
+    logoMediaId.value ? fetchMediaMap([logoMediaId.value]) : Promise.resolve({}),
+  { watch: [logoMediaId] },
+)
+const logoUrl = computed(() => mediaUrl(logoMedia.value?.[logoMediaId.value ?? ''], 'medium'))
+const logoAlt = computed(() => mediaAlt(logoMedia.value?.[logoMediaId.value ?? ''], locale.value) || settings.value?.general?.companyName || '')
+
 const mobileOpen = ref(false)
 
 function hrefFor(item: MenuItemNode): string {
@@ -22,8 +32,16 @@ function hrefFor(item: MenuItemNode): string {
 <template>
   <header class="border-b border-slate-200 bg-background">
     <div class="mx-auto flex max-w-6xl items-center justify-between px-4 py-4">
-      <NuxtLink :to="localePath('/')" class="text-lg font-bold text-text">
-        {{ settings?.general?.companyName || 'Company' }}
+      <NuxtLink :to="localePath('/')" class="flex items-center text-lg font-bold text-text">
+        <img
+          v-if="logoUrl"
+          :src="logoUrl"
+          :alt="logoAlt"
+          width="160"
+          height="40"
+          class="h-10 w-auto object-contain"
+        >
+        <span v-else>{{ settings?.general?.companyName || 'Company' }}</span>
       </NuxtLink>
 
       <nav class="hidden items-center gap-6 sm:flex">
