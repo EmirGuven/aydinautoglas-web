@@ -5,7 +5,10 @@ import type { heroBlockSchema } from '#shared/schemas/blocks'
 
 const { data } = defineProps<{ data: z.infer<typeof heroBlockSchema>['data'] }>()
 const { locale } = useI18n()
+const localePath = useLocalePath()
 const { data: settings } = await usePublicSettings()
+
+const ctaHref = computed(() => (data.ctaHref?.startsWith('/') ? localePath(data.ctaHref) : data.ctaHref))
 
 const { data: mediaMap } = await useAsyncData(
   () => `hero-media-${data.backgroundMediaId ?? 'none'}`,
@@ -49,7 +52,7 @@ useHead(() => (bgUrl.value ? { link: [{ rel: 'preload', as: 'image', href: bgUrl
       <div class="mt-8 flex flex-wrap items-center justify-center gap-3">
         <a
           v-if="data.ctaHref && pickTranslated(data.ctaLabel, locale)"
-          :href="data.ctaHref"
+          :href="ctaHref"
           class="inline-flex min-h-12 items-center justify-center rounded-button bg-accent px-8 text-sm font-bold uppercase tracking-wide text-secondary shadow-elevated transition hover:brightness-105"
         >
           {{ pickTranslated(data.ctaLabel, locale) }}

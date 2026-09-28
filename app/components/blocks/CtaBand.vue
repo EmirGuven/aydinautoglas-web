@@ -4,6 +4,9 @@ import type { ctaBandBlockSchema } from '#shared/schemas/blocks'
 
 const { data } = defineProps<{ data: z.infer<typeof ctaBandBlockSchema>['data'] }>()
 const { locale } = useI18n()
+const localePath = useLocalePath()
+
+const ctaHref = computed(() => (data.ctaHref?.startsWith('/') ? localePath(data.ctaHref) : data.ctaHref))
 </script>
 
 <template>
@@ -13,7 +16,7 @@ const { locale } = useI18n()
       {{ pickTranslated(data.subheading, locale) }}
     </p>
     <a
-      :href="data.ctaHref"
+      :href="ctaHref"
       class="mt-6 inline-flex min-h-12 items-center justify-center rounded-button bg-accent px-8 text-sm font-bold uppercase tracking-wide text-secondary shadow-elevated transition hover:brightness-105"
     >
       {{ pickTranslated(data.ctaLabel, locale) }}
