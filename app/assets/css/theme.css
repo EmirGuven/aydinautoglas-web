@@ -1,0 +1,30 @@
+/**
+ * Default fallback values for theme custom properties.
+ * The actual values are injected server-side per request from the `theme`
+ * table (see app/composables/useTheme.ts) as an inline <style> in <head>,
+ * overriding these defaults before first paint (no FOUC).
+ */
+:root {
+  --site-color-primary: #1d4ed8;
+  --site-color-secondary: #0f172a;
+  --site-color-accent: #f59e0b;
+  --site-color-background: #ffffff;
+  --site-color-text: #0f172a;
+  --site-font-family: system-ui, sans-serif;
+  --site-radius-button: 0.5rem;
+}
+
+/*
+ * `@theme inline` maps our runtime-controlled custom properties onto
+ * Tailwind's design tokens, so utilities like `bg-primary` / `text-primary`
+ * / `rounded-button` stay in sync with whatever the admin theme editor sets.
+ */
+@theme inline {
+  --color-primary: var(--site-color-primary);
+  --color-secondary: var(--site-color-secondary);
+  --color-accent: var(--site-color-accent);
+  --color-background: var(--site-color-background);
+  --color-text: var(--site-color-text);
+  --font-body: var(--site-font-family);
+  --radius-button: var(--site-radius-button);
+}

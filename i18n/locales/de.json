@@ -1,0 +1,68 @@
+{
+  "common": {
+    "learnMore": "Mehr erfahren"
+  },
+  "languageBanner": {
+    "text": "Diese Seite ist auch auf {language} verfügbar.",
+    "switch": "Zu {language} wechseln",
+    "dismiss": "Schließen"
+  },
+  "cookieConsent": {
+    "title": "Cookie-Einstellungen",
+    "acceptAll": "Alle akzeptieren",
+    "rejectAll": "Nur notwendige",
+    "customize": "Einstellungen",
+    "save": "Auswahl speichern",
+    "necessary": "Notwendig",
+    "functional": "Funktional",
+    "analytics": "Analyse",
+    "marketing": "Marketing"
+  },
+  "map": {
+    "loadPrompt": "Karte laden",
+    "consentNotice": "Die Karte wird von einem externen Anbieter geladen. Mit dem Laden akzeptieren Sie dessen Datenschutzbestimmungen."
+  },
+  "contactForm": {
+    "nameLabel": "Name",
+    "emailLabel": "E-Mail",
+    "phoneLabel": "Telefon (optional)",
+    "messageLabel": "Nachricht",
+    "send": "Senden",
+    "sending": "Wird gesendet...",
+    "success": "Vielen Dank, wir melden uns in Kürze.",
+    "error": "Etwas ist schiefgelaufen. Bitte versuchen Sie es erneut."
+  },
+  "errorPage": {
+    "notFoundTitle": "Seite nicht gefunden",
+    "notFoundBody": "Die gesuchte Seite existiert nicht oder wurde verschoben.",
+    "genericTitle": "Etwas ist schiefgelaufen",
+    "genericBody": "Bitte versuchen Sie es später erneut.",
+    "backToHome": "Zur Startseite"
+  },
+  "servicePage": {
+    "priceFrom": "Preis ab",
+    "duration": "Dauer",
+    "durationMinutes": "ca. {count} Min.",
+    "warranty": "Garantie",
+    "insuranceInfo": "Versicherung"
+  },
+  "blogPost": {
+    "publishedOn": "Veröffentlicht am",
+    "updatedOn": "Aktualisiert am"
+  },
+  "blocks": {
+    "noServicesYet": "Noch keine Leistungen veröffentlicht.",
+    "noBlogPostsYet": "Noch keine Blogartikel veröffentlicht.",
+    "noBranchesYet": "Noch keine Standorte veröffentlicht."
+  },
+  "faqBlock": {
+    "topicsLabel": "Themen",
+    "searchPlaceholder": "Frage oder Thema suchen...",
+    "questionsCount": "{count} Fragen",
+    "noResultsTitle": "Keine Ergebnisse für \"{query}\".",
+    "noResultsText": "Versuchen Sie ein anderes Wort oder schreiben Sie uns direkt.",
+    "contactCta": "Frage stellen →",
+    "resultsCount": "{count} Ergebnisse — \"{query}\"",
+    "generalCategory": "Allgemein"
+  }
+}

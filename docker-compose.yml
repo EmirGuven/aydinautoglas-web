@@ -1,0 +1,63 @@
+services:
+  app:
+    build: .
+    container_name: aydin-autoglas-web
+    restart: unless-stopped
+    environment:
+      NODE_ENV: production
+      HOST: "0.0.0.0"
+      PORT: "3000"
+      ADMIN_JWT_SECRET: ${ADMIN_JWT_SECRET:?ADMIN_JWT_SECRET is required}
+      # Shared PostgreSQL instance on this server (network: db_internal below) — not a
+      # dedicated container for this app. See docs/deployment-shared-server.md for the
+      # one-time SQL to create this app's own database/user inside that shared instance.
+      DATABASE_URL: ${DATABASE_URL:?DATABASE_URL is required}
+
+    volumes:
+      - uploads:/app/uploads
+
+    healthcheck:
+      test: ["CMD", "node", "-e", "fetch('http://localhost:3000/api/health').then(r=>{if(r.ok)process.exit(0);else process.exit(1)}).catch(()=>process.exit(1))"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 15s
+
+    # Traefik yönlendirmesi (bu sunucuda Caddy değil Traefik kullanılıyor — bkz.
+    # docs/deployment-shared-server.md). Port 80/443 host'ta zaten Traefik'e ait; bu servis
+    # host'ta hiçbir port yayınlamaz, Traefik'e sadece "proxy" network'ü üzerinden bağlanır.
+    labels:
+      - "traefik.enable=true"
+      - "traefik.docker.network=proxy"
+
+      - "traefik.http.routers.aydin-autoglas.rule=Host(`aydinautoglas.de`) || Host(`www.aydinautoglas.de`)"
+      - "traefik.http.routers.aydin-autoglas.entrypoints=web"
+      - "traefik.http.routers.aydin-autoglas.service=aydin-autoglas"
+
+      - "traefik.http.routers.aydin-autoglas-secure.rule=Host(`aydinautoglas.de`) || Host(`www.aydinautoglas.de`)"
+      - "traefik.http.routers.aydin-autoglas-secure.entrypoints=websecure"
+      - "traefik.http.routers.aydin-autoglas-secure.tls=true"
+      - "traefik.http.routers.aydin-autoglas-secure.tls.certresolver=letsencrypt"
+      - "traefik.http.routers.aydin-autoglas-secure.service=aydin-autoglas"
+
+      - "traefik.http.services.aydin-autoglas.loadbalancer.server.port=3000"
+
+      # Reverse-proxy-level gzip/br (closes the ADR-0013 compression gap — Nitro itself
+      # doesn't compress dynamic SSR HTML, see docs/decisions.md).
+      - "traefik.http.middlewares.aydin-autoglas-compress.compress=true"
+      - "traefik.http.routers.aydin-autoglas-secure.middlewares=aydin-autoglas-compress"
+
+    networks:
+      - proxy
+      # Shared PostgreSQL container's network on this server (same one ev-mobil uses).
+      - db_internal
+
+networks:
+  proxy:
+    external: true
+  db_internal:
+    external: true
+    name: livaisitme_internal
+
+volumes:
+  uploads:

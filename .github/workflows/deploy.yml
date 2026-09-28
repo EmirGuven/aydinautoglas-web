@@ -1,0 +1,64 @@
+name: Deploy Aydin Autoglas
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Deploy to Server
+        uses: appleboy/ssh-action@v1
+        with:
+          host: ${{ secrets.SERVER_IP }}
+          username: dev
+          key: ${{ secrets.SERVER_SSH_KEY }}
+          port: 22
+          script: |
+            set -e
+
+            APP_DIR="/srv/docker/apps/aydin-autoglas-web"
+            REPO="git@github.com:EmirGuven/aydin-autoglas-web.git"
+
+            echo "📁 Preparing application directory..."
+            mkdir -p "$APP_DIR"
+            cd "$APP_DIR"
+
+            echo "📦 Checking repository..."
+
+            if [ ! -d ".git" ]; then
+              echo "⬇️ Cloning repository..."
+              git clone "$REPO" .
+            else
+              echo "🔄 Pulling latest changes..."
+              git fetch origin
+              git reset --hard origin/main
+            fi
+
+            echo "🐳 Building and starting containers..."
+            docker compose up -d --build
+
+            echo "🩺 Waiting for health check..."
+            for i in $(seq 1 15); do
+              if docker compose exec -T app node -e "fetch('http://localhost:3000/api/health').then(r=>process.exit(r.ok?0:1)).catch(()=>process.exit(1))"; then
+                echo "✅ App is healthy"
+                break
+              fi
+              if [ "$i" -eq 15 ]; then
+                echo "❌ App did not become healthy in time"
+                docker compose logs --tail=100 app
+                exit 1
+              fi
+              sleep 2
+            done
+
+            echo "🧹 Cleaning unused docker images..."
+            docker image prune -f
+
+            echo "✅ Deploy completed successfully"

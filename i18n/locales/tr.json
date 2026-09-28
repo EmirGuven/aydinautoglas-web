@@ -1,0 +1,68 @@
+{
+  "common": {
+    "learnMore": "Daha fazla bilgi"
+  },
+  "languageBanner": {
+    "text": "Bu sayfa {language} dilinde de mevcut.",
+    "switch": "{language} diline geç",
+    "dismiss": "Kapat"
+  },
+  "cookieConsent": {
+    "title": "Çerez ayarları",
+    "acceptAll": "Tümünü kabul et",
+    "rejectAll": "Yalnızca gerekli",
+    "customize": "Ayarlar",
+    "save": "Seçimi kaydet",
+    "necessary": "Gerekli",
+    "functional": "Fonksiyonel",
+    "analytics": "Analiz",
+    "marketing": "Pazarlama"
+  },
+  "map": {
+    "loadPrompt": "Haritayı yükle",
+    "consentNotice": "Harita üçüncü taraf bir sağlayıcıdan yüklenir. Yükleyerek onların gizlilik politikasını kabul etmiş olursunuz."
+  },
+  "contactForm": {
+    "nameLabel": "Ad",
+    "emailLabel": "E-posta",
+    "phoneLabel": "Telefon (opsiyonel)",
+    "messageLabel": "Mesaj",
+    "send": "Gönder",
+    "sending": "Gönderiliyor...",
+    "success": "Teşekkürler, kısa süre içinde size ulaşacağız.",
+    "error": "Bir şeyler yanlış gitti. Lütfen tekrar deneyin."
+  },
+  "errorPage": {
+    "notFoundTitle": "Sayfa bulunamadı",
+    "notFoundBody": "Aradığınız sayfa mevcut değil veya taşınmış.",
+    "genericTitle": "Bir şeyler ters gitti",
+    "genericBody": "Lütfen daha sonra tekrar deneyin.",
+    "backToHome": "Ana sayfaya dön"
+  },
+  "servicePage": {
+    "priceFrom": "Başlangıç fiyatı",
+    "duration": "Süre",
+    "durationMinutes": "yaklaşık {count} dk",
+    "warranty": "Garanti",
+    "insuranceInfo": "Sigorta"
+  },
+  "blogPost": {
+    "publishedOn": "Yayın tarihi",
+    "updatedOn": "Güncelleme tarihi"
+  },
+  "blocks": {
+    "noServicesYet": "Henüz yayınlanmış hizmet yok.",
+    "noBlogPostsYet": "Henüz yayınlanmış blog yazısı yok.",
+    "noBranchesYet": "Henüz yayınlanmış şube yok."
+  },
+  "faqBlock": {
+    "topicsLabel": "Konular",
+    "searchPlaceholder": "Soru veya konu ara...",
+    "questionsCount": "{count} soru",
+    "noResultsTitle": "\"{query}\" için sonuç bulunamadı.",
+    "noResultsText": "Farklı bir kelime deneyin veya doğrudan bize yazın.",
+    "contactCta": "Soru sorun →",
+    "resultsCount": "{count} sonuç — \"{query}\"",
+    "generalCategory": "Genel"
+  }
+}

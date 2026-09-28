@@ -1,0 +1,68 @@
+{
+  "common": {
+    "learnMore": "Learn more"
+  },
+  "languageBanner": {
+    "text": "This page is also available in {language}.",
+    "switch": "Switch to {language}",
+    "dismiss": "Dismiss"
+  },
+  "cookieConsent": {
+    "title": "Cookie settings",
+    "acceptAll": "Accept all",
+    "rejectAll": "Necessary only",
+    "customize": "Customize",
+    "save": "Save selection",
+    "necessary": "Necessary",
+    "functional": "Functional",
+    "analytics": "Analytics",
+    "marketing": "Marketing"
+  },
+  "map": {
+    "loadPrompt": "Load map",
+    "consentNotice": "The map is loaded from a third-party provider. Loading it means accepting their privacy policy."
+  },
+  "contactForm": {
+    "nameLabel": "Name",
+    "emailLabel": "Email",
+    "phoneLabel": "Phone (optional)",
+    "messageLabel": "Message",
+    "send": "Send",
+    "sending": "Sending...",
+    "success": "Thank you, we'll be in touch shortly.",
+    "error": "Something went wrong. Please try again."
+  },
+  "errorPage": {
+    "notFoundTitle": "Page not found",
+    "notFoundBody": "The page you're looking for doesn't exist or has been moved.",
+    "genericTitle": "Something went wrong",
+    "genericBody": "Please try again later.",
+    "backToHome": "Back to homepage"
+  },
+  "servicePage": {
+    "priceFrom": "Price from",
+    "duration": "Duration",
+    "durationMinutes": "approx. {count} min",
+    "warranty": "Warranty",
+    "insuranceInfo": "Insurance"
+  },
+  "blogPost": {
+    "publishedOn": "Published on",
+    "updatedOn": "Updated on"
+  },
+  "blocks": {
+    "noServicesYet": "No services published yet.",
+    "noBlogPostsYet": "No blog posts published yet.",
+    "noBranchesYet": "No branches published yet."
+  },
+  "faqBlock": {
+    "topicsLabel": "Topics",
+    "searchPlaceholder": "Search a question or topic...",
+    "questionsCount": "{count} questions",
+    "noResultsTitle": "No results for \"{query}\".",
+    "noResultsText": "Try a different word, or write to us directly.",
+    "contactCta": "Ask us →",
+    "resultsCount": "{count} results — \"{query}\"",
+    "generalCategory": "General"
+  }
+}

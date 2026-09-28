@@ -1,0 +1,6 @@
+@import "tailwindcss";
+@plugin "@tailwindcss/typography";
+@import "./theme.css";
+
+/* Class-based dark mode (toggled by app/composables/useAdminUi.ts), instead of Tailwind v4's default media-query strategy. */
+@custom-variant dark (&:where(.dark, .dark *));
