@@ -608,7 +608,13 @@
     "noIcon": "No icon",
     "trustBadges": "Trust badges",
     "trustBadgePlaceholder": "e.g. Free loaner car",
-    "addTrustBadge": "Add badge"
+    "addTrustBadge": "Add badge",
+    "layoutVariant": "Layout variant",
+    "variantGrid": "Grid",
+    "variantList": "List",
+    "variantScroll": "Horizontal scroll",
+    "variantHorizontal": "Horizontal (numbered)",
+    "variantTimeline": "Timeline"
   },
   "seoPanel": {
     "focusKeyword": "Focus keyword",

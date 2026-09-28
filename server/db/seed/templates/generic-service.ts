@@ -157,13 +157,14 @@ export async function seedGenericServiceTemplate(): Promise<void> {
     },
     {
       type: 'service-cards',
-      data: { heading: { de: 'Unsere Leistungen', en: 'Our Services', tr: 'Hizmetlerimiz' }, subheading: {}, limit: 6, onlyFeatured: false },
+      data: { heading: { de: 'Unsere Leistungen', en: 'Our Services', tr: 'Hizmetlerimiz' }, subheading: {}, limit: 6, onlyFeatured: false, variant: 'grid' },
     },
     {
       type: 'why-us',
       data: {
         heading: { de: 'Warum Ihr Service GmbH?', en: 'Why Ihr Service GmbH?', tr: 'Neden Ihr Service GmbH?' },
         subheading: {},
+        variant: 'list',
         features: [
           { title: { de: 'Flexible Termine', en: 'Flexible scheduling', tr: 'Esnek randevu' }, description: { de: 'Wir richten uns nach Ihrem Zeitplan.', en: 'We work around your schedule.', tr: 'Programınıza göre çalışıyoruz.' }, icon: 'clock' },
           { title: { de: 'Geprüftes Personal', en: 'Vetted staff', tr: 'Güvenilir personel' }, description: { de: 'Alle Mitarbeitenden sind geschult und versichert.', en: 'All staff are trained and insured.', tr: 'Tüm personel eğitimli ve sigortalıdır.' }, icon: 'shield' },

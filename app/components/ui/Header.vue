@@ -30,9 +30,9 @@ function hrefFor(item: MenuItemNode): string {
 </script>
 
 <template>
-  <header class="border-b border-slate-200 bg-background">
+  <header class="sticky top-0 z-20 border-b border-border bg-surface">
     <div class="mx-auto flex max-w-6xl items-center justify-between px-4 py-4">
-      <NuxtLink :to="localePath('/')" class="flex items-center text-lg font-bold text-text">
+      <NuxtLink :to="localePath('/')" class="flex items-center font-heading text-lg font-bold text-text">
         <img
           v-if="logoUrl"
           :src="logoUrl"
@@ -70,7 +70,7 @@ function hrefFor(item: MenuItemNode): string {
     </div>
 
     <!-- Mobile off-canvas menu -->
-    <div v-if="mobileOpen" class="border-t border-slate-200 sm:hidden">
+    <div v-if="mobileOpen" class="border-t border-border sm:hidden">
       <nav class="flex flex-col px-4 py-2">
         <NuxtLink
           v-for="item in menu"

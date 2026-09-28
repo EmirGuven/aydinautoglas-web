@@ -83,9 +83,33 @@ function addComparisonRow() {
           {{ t('blocks.showOnlyFeaturedServices') }}
         </label>
       </AdminFormField>
+      <AdminFormField v-if="type === 'service-cards'" :label="t('blocks.layoutVariant')">
+        <select v-model="data.variant" :class="inputClass">
+          <option value="grid">{{ t('blocks.variantGrid') }}</option>
+          <option value="list">{{ t('blocks.variantList') }}</option>
+        </select>
+      </AdminFormField>
+      <AdminFormField v-if="type === 'testimonials'" :label="t('blocks.layoutVariant')">
+        <select v-model="data.variant" :class="inputClass">
+          <option value="grid">{{ t('blocks.variantGrid') }}</option>
+          <option value="scroll">{{ t('blocks.variantScroll') }}</option>
+        </select>
+      </AdminFormField>
     </template>
 
     <template v-else-if="type === 'how-it-works' || type === 'why-us'">
+      <AdminFormField :label="t('blocks.layoutVariant')">
+        <select v-model="data.variant" :class="inputClass">
+          <template v-if="type === 'how-it-works'">
+            <option value="horizontal">{{ t('blocks.variantHorizontal') }}</option>
+            <option value="timeline">{{ t('blocks.variantTimeline') }}</option>
+          </template>
+          <template v-else>
+            <option value="grid">{{ t('blocks.variantGrid') }}</option>
+            <option value="list">{{ t('blocks.variantList') }}</option>
+          </template>
+        </select>
+      </AdminFormField>
       <AdminFormField :label="type === 'how-it-works' ? t('blocks.steps') : t('blocks.features')">
         <div class="flex flex-col gap-3">
           <div

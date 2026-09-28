@@ -105,14 +105,14 @@ useJsonLd(() =>
 <template>
   <section class="mx-auto max-w-5xl px-4 py-12">
     <div class="mx-auto max-w-2xl text-center">
-      <h2 class="text-2xl font-bold text-text sm:text-3xl">{{ pickTranslated(data.heading, locale) }}</h2>
+      <h2 class="font-heading text-fluid-h2 font-bold text-text">{{ pickTranslated(data.heading, locale) }}</h2>
       <p v-if="pickTranslated(data.subheading, locale)" class="mt-3 text-text/70">
         {{ pickTranslated(data.subheading, locale) }}
       </p>
     </div>
 
     <!-- Scoped to a single category: keep the simple flat accordion, nothing to switch between. -->
-    <div v-if="data.categoryId" class="mt-8 divide-y divide-slate-200 border-y border-slate-200">
+    <div v-if="data.categoryId" class="mt-8 divide-y divide-border border-y border-border">
       <div v-for="faq in rows" :key="faq.id">
         <button
           type="button"
@@ -131,7 +131,7 @@ useJsonLd(() =>
     <!-- Full "help center" layout: search + category tabs + accordion. -->
     <template v-else>
       <div class="mx-auto mt-8 max-w-xl">
-        <div class="flex items-center gap-2 rounded-full border border-slate-200 bg-white px-4 py-3 shadow-sm focus-within:border-primary">
+        <div class="flex items-center gap-2 rounded-full border border-border bg-surface px-4 py-3 shadow-card focus-within:border-primary">
           <svg class="h-5 w-5 shrink-0 text-slate-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8" /><path d="m21 21-4.35-4.35" /></svg>
           <input
             v-model="searchQuery"
@@ -159,7 +159,7 @@ useJsonLd(() =>
           <div
             v-for="({ categoryName, item }) in searchResults"
             :key="item.id"
-            class="overflow-hidden rounded-2xl border border-slate-200 bg-white transition"
+            class="overflow-hidden rounded-2xl border border-border bg-surface transition"
             :class="openId === item.id ? 'border-primary shadow-md' : 'hover:shadow-sm'"
           >
             <button type="button" class="flex w-full items-center gap-3 px-4 py-3.5 text-left" @click="toggle(item.id)">
@@ -178,8 +178,8 @@ useJsonLd(() =>
 
       <!-- Default mode: category tabs (left, sticky on desktop only) + accordion (right). -->
       <div v-else class="mt-8 grid grid-cols-1 items-start gap-6" :class="showTabs && 'lg:grid-cols-[280px_minmax(0,1fr)]'">
-        <nav v-if="showTabs" class="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm lg:sticky lg:top-24">
-          <p class="px-4 pb-2 pt-4 text-xs font-bold uppercase tracking-wide text-slate-400">{{ t('faqBlock.topicsLabel') }}</p>
+        <nav v-if="showTabs" class="overflow-hidden rounded-2xl border border-border bg-surface shadow-sm lg:sticky lg:top-24">
+          <p class="px-4 pb-2 pt-4 text-xs font-bold uppercase tracking-wide text-muted">{{ t('faqBlock.topicsLabel') }}</p>
           <button
             v-for="group in groups"
             :key="group.category.id"
@@ -200,7 +200,7 @@ useJsonLd(() =>
           </button>
         </nav>
 
-        <div class="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
+        <div class="rounded-2xl border border-border bg-surface p-5 shadow-sm">
           <div class="mb-4 flex items-center gap-3 border-b border-slate-100 pb-4">
             <h3 class="text-lg font-bold text-text">{{ activeGroup ? pickTranslated(activeGroup.category.name, locale) : '' }}</h3>
             <span class="ml-auto rounded-full bg-primary/10 px-3 py-1 text-xs font-semibold text-primary">
@@ -212,7 +212,7 @@ useJsonLd(() =>
             <div
               v-for="(item, index) in activeGroup?.items"
               :key="item.id"
-              class="overflow-hidden rounded-2xl border border-slate-200 transition"
+              class="overflow-hidden rounded-2xl border border-border transition"
               :class="openId === item.id ? 'border-primary shadow-md' : 'hover:shadow-sm'"
             >
               <button type="button" class="flex w-full items-center gap-3 px-4 py-3.5 text-left" @click="toggle(item.id)">

@@ -7,29 +7,29 @@ interface LocationRow {
   phone?: string
 }
 
-const { locale } = useI18n()
+const { locale, t } = useI18n()
 const localePath = useLocalePath()
 const { data: rows } = await useFetch<LocationRow[]>('/api/content/locations')
 
-useSeoMeta({ title: () => 'Branches' })
+useSeoMeta({ title: () => t('listPages.branchesTitle') })
 useLocaleSeo()
 </script>
 
 <template>
   <main class="mx-auto max-w-5xl px-4 py-12">
-    <h1 class="text-3xl font-bold text-text">Branches</h1>
+    <h1 class="font-heading text-fluid-h1 font-bold text-text">{{ t('listPages.branchesTitle') }}</h1>
     <div v-if="rows?.length" class="mt-8 grid grid-cols-1 gap-6 sm:grid-cols-2">
       <NuxtLink
         v-for="location in rows"
         :key="location.id"
         :to="localePath(`/branches/${location.slug[locale] ?? location.slug.de}`)"
-        class="rounded-button border border-slate-200 p-6 hover:border-primary"
+        class="rounded-card border border-border bg-surface p-6 shadow-card transition hover:-translate-y-0.5 hover:border-primary hover:shadow-elevated"
       >
-        <h2 class="font-semibold text-text">{{ pickTranslated(location.name, locale) }}</h2>
+        <h2 class="font-heading font-semibold text-text">{{ pickTranslated(location.name, locale) }}</h2>
         <p class="mt-2 text-sm text-text/70">{{ pickTranslated(location.address, locale) }}</p>
         <p v-if="location.phone" class="mt-2 text-sm text-text/70">{{ location.phone }}</p>
       </NuxtLink>
     </div>
-    <p v-else class="mt-8 text-text/50">No branches published yet.</p>
+    <p v-else class="mt-8 text-muted">{{ t('listPages.branchesEmpty') }}</p>
   </main>
 </template>

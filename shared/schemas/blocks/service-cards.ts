@@ -9,5 +9,7 @@ export const serviceCardsBlockSchema = z.object({
     subheading: translatableOptionalText(),
     limit: z.number().int().min(1).max(24).default(6),
     onlyFeatured: z.boolean().default(false),
+    /** `grid` = icon-card grid (default); `list` = full-width rows, better for a longer/scannable list. */
+    variant: z.enum(['grid', 'list']).default('grid'),
   }),
 })

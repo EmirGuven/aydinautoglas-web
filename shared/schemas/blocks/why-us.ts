@@ -13,5 +13,7 @@ export const whyUsBlockSchema = z.object({
     heading: translatableText(),
     subheading: translatableOptionalText(),
     features: z.array(whyUsFeatureSchema).default([]),
+    /** `grid` = centered icon-circle grid (default); `list` = left-aligned rows, denser for 4+ features. */
+    variant: z.enum(['grid', 'list']).default('grid'),
   }),
 })

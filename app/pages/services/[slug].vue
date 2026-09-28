@@ -87,30 +87,46 @@ useBreadcrumbJsonLd(() =>
 </script>
 
 <template>
-  <main class="mx-auto max-w-3xl px-4 py-12">
-    <h1 class="text-3xl font-bold text-text">{{ pickTranslated(service?.title, locale) }}</h1>
-    <p v-if="shortAnswer" class="mt-4 text-lg text-text/80">{{ shortAnswer }}</p>
+  <main class="mx-auto max-w-5xl px-4 py-12">
+    <div class="grid grid-cols-1 gap-10 lg:grid-cols-[minmax(0,1fr)_280px]">
+      <div class="min-w-0">
+        <h1 class="font-heading text-fluid-h1 font-bold text-text">{{ pickTranslated(service?.title, locale) }}</h1>
+        <p v-if="shortAnswer" class="mt-4 text-lg text-text/80">{{ shortAnswer }}</p>
 
-    <dl v-if="hasFacts" class="mt-6 grid grid-cols-2 gap-4 rounded-xl border border-text/10 p-4 sm:grid-cols-4">
-      <div v-if="priceFromLabel">
-        <dt class="text-xs uppercase tracking-wide text-text/50">{{ t('servicePage.priceFrom') }}</dt>
-        <dd class="font-semibold text-text">{{ priceFromLabel }}</dd>
-      </div>
-      <div v-if="service?.durationMinutes">
-        <dt class="text-xs uppercase tracking-wide text-text/50">{{ t('servicePage.duration') }}</dt>
-        <dd class="font-semibold text-text">{{ t('servicePage.durationMinutes', { count: service.durationMinutes }) }}</dd>
-      </div>
-      <div v-if="warrantyText">
-        <dt class="text-xs uppercase tracking-wide text-text/50">{{ t('servicePage.warranty') }}</dt>
-        <dd class="font-semibold text-text">{{ warrantyText }}</dd>
-      </div>
-      <div v-if="insuranceInfoText">
-        <dt class="text-xs uppercase tracking-wide text-text/50">{{ t('servicePage.insuranceInfo') }}</dt>
-        <dd class="font-semibold text-text">{{ insuranceInfoText }}</dd>
-      </div>
-    </dl>
+        <dl v-if="hasFacts" class="mt-6 grid grid-cols-2 gap-4 rounded-card border border-border bg-surface p-4 shadow-card sm:grid-cols-4">
+          <div v-if="priceFromLabel">
+            <dt class="text-xs uppercase tracking-wide text-muted">{{ t('servicePage.priceFrom') }}</dt>
+            <dd class="font-heading font-semibold text-text">{{ priceFromLabel }}</dd>
+          </div>
+          <div v-if="service?.durationMinutes">
+            <dt class="text-xs uppercase tracking-wide text-muted">{{ t('servicePage.duration') }}</dt>
+            <dd class="font-heading font-semibold text-text">{{ t('servicePage.durationMinutes', { count: service.durationMinutes }) }}</dd>
+          </div>
+          <div v-if="warrantyText">
+            <dt class="text-xs uppercase tracking-wide text-muted">{{ t('servicePage.warranty') }}</dt>
+            <dd class="font-heading font-semibold text-text">{{ warrantyText }}</dd>
+          </div>
+          <div v-if="insuranceInfoText">
+            <dt class="text-xs uppercase tracking-wide text-muted">{{ t('servicePage.insuranceInfo') }}</dt>
+            <dd class="font-heading font-semibold text-text">{{ insuranceInfoText }}</dd>
+          </div>
+        </dl>
 
-    <!-- eslint-disable-next-line vue/no-v-html -- sanitized server-side before storage -->
-    <div class="prose mt-6 max-w-none text-text" v-html="pickTranslated(service?.content, locale)" />
+        <!-- eslint-disable-next-line vue/no-v-html -- sanitized server-side before storage -->
+        <div class="prose mt-6 max-w-none text-text prose-headings:font-heading" v-html="pickTranslated(service?.content, locale)" />
+      </div>
+
+      <!-- Sticky conversion card: fills the dead desktop whitespace a single-column text
+           page otherwise leaves, and keeps the primary CTA in view while reading. -->
+      <aside class="h-fit rounded-card border border-border bg-surface p-6 shadow-card lg:sticky lg:top-24">
+        <p class="font-heading text-lg font-semibold text-text">{{ t('servicePage.ctaHeading') }}</p>
+        <NuxtLink
+          :to="localePath('/appointment')"
+          class="mt-4 inline-flex min-h-12 w-full items-center justify-center rounded-button bg-accent px-6 text-sm font-bold uppercase tracking-wide text-secondary shadow-card transition hover:brightness-105"
+        >
+          {{ t('servicePage.ctaButton') }}
+        </NuxtLink>
+      </aside>
+    </div>
   </main>
 </template>

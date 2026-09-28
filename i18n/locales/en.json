@@ -44,11 +44,17 @@
     "duration": "Duration",
     "durationMinutes": "approx. {count} min",
     "warranty": "Warranty",
-    "insuranceInfo": "Insurance"
+    "insuranceInfo": "Insurance",
+    "ctaHeading": "Book an appointment for this service",
+    "ctaButton": "Book now"
   },
   "blogPost": {
     "publishedOn": "Published on",
     "updatedOn": "Updated on"
+  },
+  "branchPage": {
+    "ctaHeading": "Book an appointment at this branch",
+    "ctaButton": "Book appointment"
   },
   "blocks": {
     "noServicesYet": "No services published yet.",
@@ -64,5 +70,53 @@
     "contactCta": "Ask us →",
     "resultsCount": "{count} results — \"{query}\"",
     "generalCategory": "General"
+  },
+  "listPages": {
+    "servicesTitle": "Our services",
+    "servicesEmpty": "No services published yet.",
+    "branchesTitle": "Our branches",
+    "branchesEmpty": "No branches published yet.",
+    "blogTitle": "Blog",
+    "blogEmpty": "No blog posts published yet."
+  },
+  "mobileCta": {
+    "call": "Call",
+    "book": "Book",
+    "whatsapp": "WhatsApp"
+  },
+  "appointmentForm": {
+    "title": "Book an appointment",
+    "stepOf": "Step {current} of {total}",
+    "stepVehicle": "Your vehicle",
+    "make": "Make",
+    "model": "Model",
+    "year": "Year",
+    "licensePlate": "License plate (optional)",
+    "stepService": "Service & branch",
+    "selectService": "Select a service",
+    "selectBranch": "Select a branch",
+    "stepSchedule": "Preferred date & time",
+    "stepInsurance": "Insurance (optional)",
+    "insuranceCompany": "Insurance company",
+    "policyNumber": "Policy number",
+    "stepContact": "Your contact details",
+    "name": "Name",
+    "email": "Email",
+    "phone": "Phone",
+    "consent": "I agree that my data will be processed to handle my appointment request (DSGVO).",
+    "back": "Back",
+    "next": "Next",
+    "submit": "Submit",
+    "sending": "Sending...",
+    "success": "Thank you! We received your request and will be in touch shortly.",
+    "error": "Something went wrong. Please try again."
+  },
+  "damageWizard": {
+    "notConfigured": "The wizard has not been configured yet.",
+    "questionOf": "Question {current} of {total}",
+    "repairTitle": "Repair recommended",
+    "replaceTitle": "Windshield replacement recommended",
+    "bookAppointment": "Book appointment",
+    "startOver": "Start over"
   }
 }

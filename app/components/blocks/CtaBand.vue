@@ -7,14 +7,14 @@ const { locale } = useI18n()
 </script>
 
 <template>
-  <section class="bg-primary px-4 py-12 text-center text-white">
-    <h2 class="text-2xl font-bold sm:text-3xl">{{ pickTranslated(data.heading, locale) }}</h2>
+  <section class="bg-primary px-4 py-14 text-center text-white">
+    <h2 class="font-heading text-fluid-h2 font-bold uppercase tracking-tight">{{ pickTranslated(data.heading, locale) }}</h2>
     <p v-if="pickTranslated(data.subheading, locale)" class="mt-3 opacity-90">
       {{ pickTranslated(data.subheading, locale) }}
     </p>
     <a
       :href="data.ctaHref"
-      class="mt-6 inline-flex min-h-11 items-center justify-center rounded-button bg-white px-6 text-sm font-semibold text-primary"
+      class="mt-6 inline-flex min-h-12 items-center justify-center rounded-button bg-accent px-8 text-sm font-bold uppercase tracking-wide text-secondary shadow-elevated transition hover:brightness-105"
     >
       {{ pickTranslated(data.ctaLabel, locale) }}
     </a>

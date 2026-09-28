@@ -608,7 +608,13 @@
     "noIcon": "Kein Icon",
     "trustBadges": "Vertrauens-Badges",
     "trustBadgePlaceholder": "z.B. Kostenloser Ersatzwagen",
-    "addTrustBadge": "Badge hinzufügen"
+    "addTrustBadge": "Badge hinzufügen",
+    "layoutVariant": "Layout-Variante",
+    "variantGrid": "Raster",
+    "variantList": "Liste",
+    "variantScroll": "Horizontales Scrollen",
+    "variantHorizontal": "Horizontal (nummeriert)",
+    "variantTimeline": "Zeitleiste"
   },
   "seoPanel": {
     "focusKeyword": "Fokus-Keyword",

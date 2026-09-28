@@ -8,8 +8,8 @@ interface LocationOption {
   name: Record<string, string>
 }
 
-const { locale } = useI18n()
-useSeoMeta({ title: () => 'Book an appointment' })
+const { locale, t } = useI18n()
+useSeoMeta({ title: () => t('appointmentForm.title') })
 useLocaleSeo()
 
 const { data: services } = await useFetch<ServiceOption[]>('/api/content/services', { query: { limit: 100 } })
@@ -54,79 +54,86 @@ async function submit() {
     await $fetch('/api/appointments', { method: 'POST', body: { ...form, locale: locale.value } })
     submitted.value = true
   } catch (err) {
-    error.value = getErrorMessage(err, 'Something went wrong. Please try again.')
+    error.value = getErrorMessage(err, t('appointmentForm.error'))
   } finally {
     submitting.value = false
   }
 }
 
-const inputClass = 'min-h-11 rounded-button border border-slate-300 px-3 text-sm'
+const inputClass = 'min-h-12 rounded-button border border-border bg-surface px-3 text-sm text-text'
 </script>
 
 <template>
   <main class="mx-auto max-w-xl px-4 py-12">
-    <h1 class="text-3xl font-bold text-text">Book an appointment</h1>
+    <h1 class="font-heading text-fluid-h1 font-bold text-text">{{ t('appointmentForm.title') }}</h1>
 
-    <p v-if="submitted" class="mt-8 rounded-button bg-emerald-50 p-6 text-center text-emerald-700">
-      Thank you! We received your request and will be in touch shortly.
+    <p v-if="submitted" class="mt-8 rounded-card border border-emerald-200 bg-emerald-50 p-6 text-center text-emerald-700">
+      {{ t('appointmentForm.success') }}
     </p>
 
     <form v-else class="mt-8" @submit.prevent="step === STEPS.length - 1 ? submit() : next()">
-      <p class="mb-4 text-xs text-text/50">Step {{ step + 1 }} / {{ STEPS.length }}</p>
+      <!-- Step indicator: progress bar + numeric label, so the form never feels like an
+           open-ended list of questions. -->
+      <div class="mb-6">
+        <div class="h-1.5 w-full overflow-hidden rounded-full bg-border">
+          <div class="h-full rounded-full bg-primary transition-[width]" :style="{ width: `${((step + 1) / STEPS.length) * 100}%` }" />
+        </div>
+        <p class="mt-2 text-xs text-muted">{{ t('appointmentForm.stepOf', { current: step + 1, total: STEPS.length }) }}</p>
+      </div>
 
       <div v-if="STEPS[step] === 'vehicle'" class="flex flex-col gap-4">
-        <h2 class="font-semibold text-text">Your vehicle</h2>
-        <input v-model="form.vehicleMake" placeholder="Make" :class="inputClass">
-        <input v-model="form.vehicleModel" placeholder="Model" :class="inputClass">
-        <input v-model="form.vehicleYear" placeholder="Year" :class="inputClass">
-        <input v-model="form.licensePlate" placeholder="License plate (optional)" :class="inputClass">
+        <h2 class="font-heading font-semibold text-text">{{ t('appointmentForm.stepVehicle') }}</h2>
+        <input v-model="form.vehicleMake" :placeholder="t('appointmentForm.make')" :class="inputClass">
+        <input v-model="form.vehicleModel" :placeholder="t('appointmentForm.model')" :class="inputClass">
+        <input v-model="form.vehicleYear" :placeholder="t('appointmentForm.year')" :class="inputClass">
+        <input v-model="form.licensePlate" :placeholder="t('appointmentForm.licensePlate')" :class="inputClass">
       </div>
 
       <div v-else-if="STEPS[step] === 'service'" class="flex flex-col gap-4">
-        <h2 class="font-semibold text-text">Service &amp; branch</h2>
+        <h2 class="font-heading font-semibold text-text">{{ t('appointmentForm.stepService') }}</h2>
         <select v-model="form.serviceId" :class="inputClass">
-          <option value="">Select a service</option>
+          <option value="">{{ t('appointmentForm.selectService') }}</option>
           <option v-for="s in services" :key="s.id" :value="s.id">{{ pickTranslated(s.title, locale) }}</option>
         </select>
         <select v-model="form.locationId" :class="inputClass">
-          <option value="">Select a branch</option>
+          <option value="">{{ t('appointmentForm.selectBranch') }}</option>
           <option v-for="l in locationOptions" :key="l.id" :value="l.id">{{ pickTranslated(l.name, locale) }}</option>
         </select>
       </div>
 
       <div v-else-if="STEPS[step] === 'schedule'" class="flex flex-col gap-4">
-        <h2 class="font-semibold text-text">Preferred date &amp; time</h2>
+        <h2 class="font-heading font-semibold text-text">{{ t('appointmentForm.stepSchedule') }}</h2>
         <input v-model="form.preferredDate" type="date" :class="inputClass">
         <input v-model="form.preferredTime" type="time" :class="inputClass">
       </div>
 
       <div v-else-if="STEPS[step] === 'insurance'" class="flex flex-col gap-4">
-        <h2 class="font-semibold text-text">Insurance (optional)</h2>
-        <input v-model="form.insuranceCompany" placeholder="Insurance company" :class="inputClass">
-        <input v-model="form.insuranceNumber" placeholder="Policy number" :class="inputClass">
+        <h2 class="font-heading font-semibold text-text">{{ t('appointmentForm.stepInsurance') }}</h2>
+        <input v-model="form.insuranceCompany" :placeholder="t('appointmentForm.insuranceCompany')" :class="inputClass">
+        <input v-model="form.insuranceNumber" :placeholder="t('appointmentForm.policyNumber')" :class="inputClass">
       </div>
 
       <div v-else class="flex flex-col gap-4">
-        <h2 class="font-semibold text-text">Your contact details</h2>
-        <input v-model="form.contactName" required placeholder="Name" :class="inputClass">
-        <input v-model="form.contactEmail" required type="email" placeholder="Email" :class="inputClass">
-        <input v-model="form.contactPhone" placeholder="Phone" :class="inputClass">
+        <h2 class="font-heading font-semibold text-text">{{ t('appointmentForm.stepContact') }}</h2>
+        <input v-model="form.contactName" required :placeholder="t('appointmentForm.name')" :class="inputClass">
+        <input v-model="form.contactEmail" required type="email" :placeholder="t('appointmentForm.email')" :class="inputClass">
+        <input v-model="form.contactPhone" :placeholder="t('appointmentForm.phone')" :class="inputClass">
         <input v-model="form.companyWebsite" type="text" class="hidden" tabindex="-1" autocomplete="off">
         <label class="flex items-start gap-2 text-sm text-text/70">
           <input v-model="form.consent" required type="checkbox" class="mt-1">
-          I agree that my data will be processed to handle my appointment request (DSGVO).
+          {{ t('appointmentForm.consent') }}
         </label>
       </div>
 
-      <p v-if="error" class="mt-4 text-sm text-red-600">{{ error }}</p>
+      <p v-if="error" class="mt-4 rounded-card border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700">{{ error }}</p>
 
       <div class="mt-8 flex justify-between">
-        <button v-if="step > 0" type="button" class="min-h-11 rounded-button border border-slate-300 px-4 text-sm" @click="back">
-          Back
+        <button v-if="step > 0" type="button" class="min-h-12 rounded-button border border-border px-4 text-sm" @click="back">
+          {{ t('appointmentForm.back') }}
         </button>
         <span v-else />
-        <button type="submit" class="min-h-11 rounded-button bg-primary px-6 text-sm font-semibold text-white disabled:opacity-60" :disabled="submitting">
-          {{ step === STEPS.length - 1 ? (submitting ? 'Sending...' : 'Submit') : 'Next' }}
+        <button type="submit" class="min-h-12 rounded-button bg-accent px-6 text-sm font-bold uppercase tracking-wide text-secondary shadow-card disabled:opacity-60" :disabled="submitting">
+          {{ step === STEPS.length - 1 ? (submitting ? t('appointmentForm.sending') : t('appointmentForm.submit')) : t('appointmentForm.next') }}
         </button>
       </div>
     </form>

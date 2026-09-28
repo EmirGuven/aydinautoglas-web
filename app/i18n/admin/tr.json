@@ -608,7 +608,13 @@
     "noIcon": "İkon yok",
     "trustBadges": "Güven rozetleri",
     "trustBadgePlaceholder": "örn. Ücretsiz yedek araç",
-    "addTrustBadge": "Rozet ekle"
+    "addTrustBadge": "Rozet ekle",
+    "layoutVariant": "Yerleşim varyantı",
+    "variantGrid": "Izgara",
+    "variantList": "Liste",
+    "variantScroll": "Yatay kaydırma",
+    "variantHorizontal": "Yatay (numaralı)",
+    "variantTimeline": "Zaman çizelgesi"
   },
   "seoPanel": {
     "focusKeyword": "Odak anahtar kelime",

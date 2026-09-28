@@ -13,5 +13,7 @@ export const howItWorksBlockSchema = z.object({
     heading: translatableText(),
     subheading: translatableOptionalText(),
     steps: z.array(howItWorksStepSchema).default([]),
+    /** `horizontal` = numbered columns (default); `timeline` = vertical connected-line steps. */
+    variant: z.enum(['horizontal', 'timeline']).default('horizontal'),
   }),
 })

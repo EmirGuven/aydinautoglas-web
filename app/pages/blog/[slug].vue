@@ -99,7 +99,7 @@ useBreadcrumbJsonLd(() =>
 
 <template>
   <main class="mx-auto max-w-3xl px-4 py-12">
-    <h1 class="text-3xl font-bold text-text">{{ pickTranslated(post?.title, locale) }}</h1>
+    <h1 class="font-heading text-fluid-h1 font-bold text-text">{{ pickTranslated(post?.title, locale) }}</h1>
 
     <div v-if="post?.authorName || post?.publishedAt" class="mt-3 flex items-center gap-3 text-sm text-text/60">
       <img
@@ -126,6 +126,6 @@ useBreadcrumbJsonLd(() =>
     <p v-if="shortAnswer" class="mt-4 text-lg text-text/80">{{ shortAnswer }}</p>
 
     <!-- eslint-disable-next-line vue/no-v-html -- sanitized server-side before storage -->
-    <div class="prose mt-6 max-w-none text-text" v-html="pickTranslated(post?.content, locale)" />
+    <div class="prose mt-6 max-w-none text-text prose-headings:font-heading" v-html="pickTranslated(post?.content, locale)" />
   </main>
 </template>

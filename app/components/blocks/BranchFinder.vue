@@ -21,7 +21,7 @@ const { data: rows } = await useFetch<LocationRow[]>('/api/content/locations')
 <template>
   <section class="mx-auto max-w-5xl px-4 py-12">
     <div class="mx-auto max-w-2xl text-center">
-      <h2 class="text-2xl font-bold text-text sm:text-3xl">{{ pickTranslated(data.heading, locale) }}</h2>
+      <h2 class="font-heading text-fluid-h2 font-bold text-text">{{ pickTranslated(data.heading, locale) }}</h2>
       <p v-if="pickTranslated(data.subheading, locale)" class="mt-3 text-text/70">
         {{ pickTranslated(data.subheading, locale) }}
       </p>
@@ -31,7 +31,7 @@ const { data: rows } = await useFetch<LocationRow[]>('/api/content/locations')
         v-for="location in rows"
         :key="location.id"
         :to="`/branches/${location.slug[locale] ?? location.slug.de}`"
-        class="group rounded-button border border-slate-200 p-6 shadow-sm transition hover:-translate-y-0.5 hover:shadow-md"
+        class="group rounded-card border border-border bg-surface p-6 shadow-card transition hover:-translate-y-0.5 hover:shadow-elevated"
       >
         <div class="flex items-center gap-2 font-semibold text-text group-hover:text-primary">
           <MapPin class="h-5 w-5 shrink-0 text-primary" />
@@ -43,6 +43,6 @@ const { data: rows } = await useFetch<LocationRow[]>('/api/content/locations')
         </p>
       </NuxtLink>
     </div>
-    <p v-else class="mt-10 text-center text-text/50">{{ t('blocks.noBranchesYet') }}</p>
+    <p v-else class="mt-10 text-center text-muted">{{ t('blocks.noBranchesYet') }}</p>
   </section>
 </template>

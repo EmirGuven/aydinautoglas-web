@@ -17,7 +17,7 @@ interface EvaluationResult {
 }
 
 const { data } = defineProps<{ data: z.infer<typeof damageWizardBlockSchema>['data'] }>()
-const { locale } = useI18n()
+const { locale, t } = useI18n()
 const localePath = useLocalePath()
 
 const { data: questions } = await useFetch<QuestionRow[]>('/api/damage-wizard/config')
@@ -56,43 +56,54 @@ function restart() {
 <template>
   <section class="mx-auto max-w-2xl px-4 py-12">
     <div class="text-center">
-      <h2 class="text-2xl font-bold text-text sm:text-3xl">{{ pickTranslated(data.heading, locale) }}</h2>
+      <h2 class="font-heading text-fluid-h2 font-bold text-text">{{ pickTranslated(data.heading, locale) }}</h2>
       <p v-if="pickTranslated(data.subheading, locale)" class="mt-3 text-text/70">
         {{ pickTranslated(data.subheading, locale) }}
       </p>
     </div>
 
-    <div v-if="!questions?.length" class="mt-8 rounded-button border border-dashed border-slate-300 p-8 text-center text-sm text-text/50">
-      The wizard has not been configured yet.
+    <!-- Step indicator: a row of filled/unfilled dots, one per question, so the visitor
+         always has a sense of progress through the wizard. -->
+    <div v-if="questions?.length && !result" class="mt-6 flex items-center justify-center gap-2">
+      <span
+        v-for="(_, index) in questions"
+        :key="index"
+        class="h-2 w-8 rounded-full transition-colors"
+        :class="index <= currentStep ? 'bg-primary' : 'bg-border'"
+      />
     </div>
 
-    <div v-else-if="result" class="mt-8 rounded-button border border-slate-200 p-6 text-center">
-      <p class="text-lg font-semibold text-text">
-        {{ result.recommendation === 'replace' ? 'Windshield replacement recommended' : 'Repair should be sufficient' }}
+    <div v-if="!questions?.length" class="mt-8 rounded-card border border-dashed border-border p-8 text-center text-sm text-muted">
+      {{ t('damageWizard.notConfigured') }}
+    </div>
+
+    <div v-else-if="result" class="mt-8 rounded-card border border-border bg-surface p-6 text-center shadow-card">
+      <p class="font-heading text-lg font-semibold text-text">
+        {{ result.recommendation === 'replace' ? t('damageWizard.replaceTitle') : t('damageWizard.repairTitle') }}
       </p>
       <p class="mt-2 text-text/70">{{ pickTranslated(result.message, locale) }}</p>
-      <div class="mt-6 flex justify-center gap-3">
+      <div class="mt-6 flex flex-wrap justify-center gap-3">
         <NuxtLink
           :to="localePath('/appointment')"
-          class="inline-flex min-h-11 items-center justify-center rounded-button bg-primary px-6 text-sm font-semibold text-white"
+          class="inline-flex min-h-12 items-center justify-center rounded-button bg-accent px-6 text-sm font-bold uppercase tracking-wide text-secondary shadow-card"
         >
-          Book appointment
+          {{ t('damageWizard.bookAppointment') }}
         </NuxtLink>
-        <button type="button" class="min-h-11 rounded-button border border-slate-300 px-6 text-sm" @click="restart">
-          Start over
+        <button type="button" class="min-h-12 rounded-button border border-border px-6 text-sm" @click="restart">
+          {{ t('damageWizard.startOver') }}
         </button>
       </div>
     </div>
 
     <div v-else-if="currentQuestion" class="mt-8">
-      <p class="mb-2 text-center text-xs text-text/50">Question {{ currentStep + 1 }} / {{ questions.length }}</p>
-      <h3 class="text-center font-semibold text-text">{{ pickTranslated(currentQuestion.text, locale) }}</h3>
+      <p class="mb-2 text-center text-xs text-muted">{{ t('damageWizard.questionOf', { current: currentStep + 1, total: questions.length }) }}</p>
+      <h3 class="text-center font-heading font-semibold text-text">{{ pickTranslated(currentQuestion.text, locale) }}</h3>
       <div class="mt-6 grid grid-cols-1 gap-3 sm:grid-cols-2">
         <button
           v-for="option in currentQuestion.options"
           :key="option.id"
           type="button"
-          class="min-h-11 rounded-button border border-slate-300 px-4 py-3 text-sm hover:border-primary disabled:opacity-50"
+          class="min-h-12 rounded-button border border-border px-4 py-3 text-sm transition hover:border-primary disabled:opacity-50"
           :disabled="evaluating"
           @click="selectOption(currentQuestion!.id, option.id)"
         >

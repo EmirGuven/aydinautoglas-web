@@ -16,8 +16,8 @@ function handleRetry() {
   <div class="flex min-h-screen flex-col bg-background text-text">
     <UiHeader />
     <main class="flex flex-1 flex-col items-center justify-center px-4 py-24 text-center">
-      <p class="text-sm font-semibold text-primary">{{ props.error.statusCode }}</p>
-      <h1 class="mt-2 text-3xl font-bold sm:text-4xl">
+      <p class="font-heading text-sm font-bold uppercase tracking-widest text-primary">{{ props.error.statusCode }}</p>
+      <h1 class="mt-2 font-heading text-fluid-h1 font-bold">
         {{ props.error.statusCode === 404 ? t('errorPage.notFoundTitle') : t('errorPage.genericTitle') }}
       </h1>
       <p class="mt-4 max-w-md text-text/70">

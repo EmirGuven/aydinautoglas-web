@@ -44,11 +44,17 @@
     "duration": "Süre",
     "durationMinutes": "yaklaşık {count} dk",
     "warranty": "Garanti",
-    "insuranceInfo": "Sigorta"
+    "insuranceInfo": "Sigorta",
+    "ctaHeading": "Bu hizmet için randevu alın",
+    "ctaButton": "Hemen randevu al"
   },
   "blogPost": {
     "publishedOn": "Yayın tarihi",
     "updatedOn": "Güncelleme tarihi"
+  },
+  "branchPage": {
+    "ctaHeading": "Bu şubede randevu alın",
+    "ctaButton": "Randevu al"
   },
   "blocks": {
     "noServicesYet": "Henüz yayınlanmış hizmet yok.",
@@ -64,5 +70,53 @@
     "contactCta": "Soru sorun →",
     "resultsCount": "{count} sonuç — \"{query}\"",
     "generalCategory": "Genel"
+  },
+  "listPages": {
+    "servicesTitle": "Hizmetlerimiz",
+    "servicesEmpty": "Henüz yayınlanmış hizmet yok.",
+    "branchesTitle": "Şubelerimiz",
+    "branchesEmpty": "Henüz yayınlanmış şube yok.",
+    "blogTitle": "Blog",
+    "blogEmpty": "Henüz yayınlanmış blog yazısı yok."
+  },
+  "mobileCta": {
+    "call": "Ara",
+    "book": "Randevu",
+    "whatsapp": "WhatsApp"
+  },
+  "appointmentForm": {
+    "title": "Randevu al",
+    "stepOf": "Adım {current} / {total}",
+    "stepVehicle": "Aracınız",
+    "make": "Marka",
+    "model": "Model",
+    "year": "Model yılı",
+    "licensePlate": "Plaka (opsiyonel)",
+    "stepService": "Hizmet ve şube",
+    "selectService": "Hizmet seçin",
+    "selectBranch": "Şube seçin",
+    "stepSchedule": "Tercih edilen tarih ve saat",
+    "stepInsurance": "Sigorta (opsiyonel)",
+    "insuranceCompany": "Sigorta şirketi",
+    "policyNumber": "Poliçe numarası",
+    "stepContact": "İletişim bilgileriniz",
+    "name": "Ad",
+    "email": "E-posta",
+    "phone": "Telefon",
+    "consent": "Randevu talebimin işlenmesi için verilerimin kullanılmasını kabul ediyorum (DSGVO).",
+    "back": "Geri",
+    "next": "İleri",
+    "submit": "Gönder",
+    "sending": "Gönderiliyor...",
+    "success": "Teşekkürler! Talebinizi aldık, kısa süre içinde size ulaşacağız.",
+    "error": "Bir şeyler yanlış gitti. Lütfen tekrar deneyin."
+  },
+  "damageWizard": {
+    "notConfigured": "Asistan henüz yapılandırılmadı.",
+    "questionOf": "Soru {current} / {total}",
+    "repairTitle": "Onarım önerilir",
+    "replaceTitle": "Cam değişimi önerilir",
+    "bookAppointment": "Randevu al",
+    "startOver": "Yeniden başla"
   }
 }

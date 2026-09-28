@@ -356,13 +356,14 @@ export async function seedAutoglassTemplate(): Promise<void> {
     },
     {
       type: 'service-cards',
-      data: { heading: { de: 'Unsere Leistungen', en: 'Our Services', tr: 'Hizmetlerimiz' }, subheading: {}, limit: 6, onlyFeatured: false },
+      data: { heading: { de: 'Unsere Leistungen', en: 'Our Services', tr: 'Hizmetlerimiz' }, subheading: {}, limit: 6, onlyFeatured: false, variant: 'grid' },
     },
     {
       type: 'how-it-works',
       data: {
         heading: { de: 'So funktioniert es', en: 'How it works', tr: 'Nasıl çalışır' },
         subheading: {},
+        variant: 'timeline',
         steps: [
           { title: { de: '1. Schaden melden', en: '1. Report the damage', tr: '1. Hasarı bildirin' }, description: { de: 'Online-Formular oder Hasar-Check ausfüllen.', en: 'Fill out the online form or damage check.', tr: 'Online formu veya hasar testini doldurun.' } },
           { title: { de: '2. Termin vereinbaren', en: '2. Schedule an appointment', tr: '2. Randevu alın' }, description: { de: 'Wunschtermin und Filiale auswählen.', en: 'Choose your preferred time and branch.', tr: 'Tercih ettiğiniz zamanı ve şubeyi seçin.' } },
@@ -379,6 +380,7 @@ export async function seedAutoglassTemplate(): Promise<void> {
       data: {
         heading: { de: 'Warum Aydin Autoglas?', en: 'Why Aydin Autoglas?', tr: 'Neden Aydin Autoglas?' },
         subheading: {},
+        variant: 'list',
         features: [
           { title: { de: 'ADAS-Kalibrierung', en: 'ADAS calibration', tr: 'ADAS kalibrasyonu' }, description: { de: 'Zertifizierte Kalibrierung moderner Assistenzsysteme.', en: 'Certified calibration of modern assistance systems.', tr: 'Modern destek sistemlerinin sertifikalı kalibrasyonu.' }, icon: 'shield' },
           { title: { de: 'Direkte Versicherungsabwicklung', en: 'Direct insurance billing', tr: 'Doğrudan sigorta işlemleri' }, description: { de: 'Wir übernehmen den Papierkram für Sie.', en: 'We handle the paperwork for you.', tr: 'Evrak işlerini sizin için hallederiz.' }, icon: 'check' },
@@ -399,7 +401,7 @@ export async function seedAutoglassTemplate(): Promise<void> {
     },
     {
       type: 'testimonials',
-      data: { heading: { de: 'Das sagen unsere Kunden', en: 'What our customers say', tr: 'Müşterilerimiz ne diyor' }, subheading: {}, limit: 6 },
+      data: { heading: { de: 'Das sagen unsere Kunden', en: 'What our customers say', tr: 'Müşterilerimiz ne diyor' }, subheading: {}, limit: 6, variant: 'scroll' },
     },
     {
       type: 'branch-finder',
