@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Richtung 1 — Werkstatt Präzision</title>
+<style>
+  /* Self-hosted intent: IBM Plex Sans Condensed (headings) + IBM Plex Sans (body) via Fontsource.
+     Both ship full Latin-Extended coverage (ä ö ü ß included). Preview falls back to system stack. */
+  @font-face {
+    font-family: 'PlexCond';
+    src: local('IBM Plex Sans Condensed');
+  }
+  @font-face {
+    font-family: 'Plex';
+    src: local('IBM Plex Sans');
+  }
+  :root {
+    --color-primary: #1E3A5F;
+    --color-primary-dark: #142943;
+    --color-secondary: #23282D;
+    --color-accent: #FFB020;
+    --color-bg: #F4F6F8;
+    --color-surface: #FFFFFF;
+    --color-text: #1A1F24;
+    --color-text-muted: #5B6570;
+    --color-border: #D7DCE1;
+
+    --font-heading: 'PlexCond', 'Arial Narrow', sans-serif;
+    --font-body: 'Plex', system-ui, sans-serif;
+
+    --radius-sm: 2px;
+    --radius-md: 4px;
+    --radius-lg: 6px;
+
+    --shadow-sm: 0 1px 2px rgba(20, 41, 67, 0.08);
+    --shadow-md: 0 4px 10px rgba(20, 41, 67, 0.12);
+    --shadow-lg: 0 12px 28px rgba(20, 41, 67, 0.18);
+
+    --space-1: 0.25rem; --space-2: 0.5rem; --space-3: 0.75rem;
+    --space-4: 1rem; --space-6: 1.5rem; --space-8: 2rem;
+    --space-12: 3rem; --space-16: 4rem; --space-24: 6rem;
+
+    --fs-h1: clamp(2.25rem, 1.6rem + 3vw, 3.75rem);
+    --fs-h2: clamp(1.5rem, 1.2rem + 1.4vw, 2.25rem);
+    --fs-h3: clamp(1.15rem, 1.05rem + 0.5vw, 1.375rem);
+    --fs-body: clamp(1rem, 0.97rem + 0.15vw, 1.0625rem);
+    --fs-small: 0.875rem;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; font-family: var(--font-body); color: var(--color-text); background: var(--color-bg); line-height: 1.55; }
+  h1, h2, h3 { font-family: var(--font-heading); font-weight: 700; letter-spacing: -0.01em; margin: 0 0 var(--space-3); text-transform: uppercase; }
+  h1 { font-size: var(--fs-h1); line-height: 1.05; }
+  h2 { font-size: var(--fs-h2); line-height: 1.1; }
+  h3 { font-size: var(--fs-h3); line-height: 1.2; text-transform: none; }
+  p { font-size: var(--fs-body); color: var(--color-text-muted); margin: 0 0 var(--space-4); }
+  section { padding: var(--space-16) var(--space-6); max-width: 1200px; margin: 0 auto; }
+  .spec { background: #FFF6E3; border: 1px solid var(--color-accent); border-radius: var(--radius-md); padding: var(--space-6); font-size: var(--fs-small); }
+  .spec strong { display: block; font-family: var(--font-heading); text-transform: uppercase; font-size: 1rem; margin-bottom: var(--space-2); }
+  .grid { display: grid; gap: var(--space-6); }
+  .grid-2 { grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
+  .grid-3 { grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); }
+  .swatch { border-radius: var(--radius-sm); padding: var(--space-4); color: #fff; font-family: monospace; font-size: var(--fs-small); box-shadow: var(--shadow-sm); }
+  .swatch small { display: block; opacity: 0.85; margin-top: var(--space-1); }
+  .ratio-pass { color: #0A5C2B; font-weight: 700; }
+  .card { background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius-md); padding: var(--space-6); box-shadow: var(--shadow-sm); }
+  .btn { display: inline-flex; align-items: center; justify-content: center; min-height: 48px; padding: 0 var(--space-8); border-radius: var(--radius-sm); font-family: var(--font-heading); text-transform: uppercase; font-weight: 700; letter-spacing: 0.03em; font-size: 0.9rem; border: 2px solid transparent; cursor: pointer; text-decoration: none; }
+  .btn-primary { background: var(--color-accent); color: var(--color-secondary); }
+  .btn-primary:hover { background: #E6A11C; }
+  .btn-secondary { background: transparent; border-color: var(--color-surface); color: var(--color-surface); }
+  .btn-disabled { background: var(--color-border); color: #8C97A3; cursor: not-allowed; }
+  header.hero { background: linear-gradient(180deg, var(--color-secondary) 0%, var(--color-primary-dark) 100%); color: #fff; position: relative; overflow: hidden; }
+  header.hero::before {
+    content: ""; position: absolute; inset: 0;
+    background-image: repeating-linear-gradient(45deg, rgba(255,255,255,0.035) 0 2px, transparent 2px 14px);
+  }
+  .hero-inner { position: relative; padding: var(--space-24) var(--space-6); max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1.2fr 0.8fr; gap: var(--space-12); align-items: center; }
+  .hero-badge { display: inline-block; background: var(--color-accent); color: var(--color-secondary); font-family: var(--font-heading); text-transform: uppercase; font-size: 0.75rem; font-weight: 700; padding: var(--space-1) var(--space-3); border-radius: 2px; margin-bottom: var(--space-4); }
+  .hero h1 { color: #fff; }
+  .hero p.sub { color: #C9D4DE; font-size: 1.15rem; max-width: 38ch; }
+  .phone-line { font-family: var(--font-heading); font-size: 1.5rem; font-weight: 700; color: var(--color-accent); margin-top: var(--space-6); }
+  .trust-row { display: flex; gap: var(--space-6); flex-wrap: wrap; margin-top: var(--space-8); border-top: 1px solid rgba(255,255,255,0.15); padding-top: var(--space-6); }
+  .trust-item { font-size: var(--fs-small); color: #C9D4DE; display: flex; align-items: center; gap: var(--space-2); }
+  .trust-item b { color: #fff; }
+  .diagram-panel { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.15); border-radius: var(--radius-md); padding: var(--space-6); font-family: monospace; font-size: 0.8rem; color: #9FB0C0; }
+  .diagram-panel .line { display: flex; justify-content: space-between; border-bottom: 1px dashed rgba(255,255,255,0.15); padding: var(--space-2) 0; }
+
+  .variant-label { font-family: var(--font-heading); text-transform: uppercase; font-size: 0.8rem; letter-spacing: 0.08em; color: var(--color-accent); background: var(--color-secondary); display: inline-block; padding: var(--space-1) var(--space-3); border-radius: 2px; margin-bottom: var(--space-6); }
+
+  /* Service cards variant A: technical spec-sheet style */
+  .svc-card { background: var(--color-surface); border: 1px solid var(--color-border); border-left: 4px solid var(--color-primary); border-radius: var(--radius-sm); padding: var(--space-6); }
+  .svc-card .code { font-family: monospace; font-size: var(--fs-small); color: var(--color-accent); background: var(--color-secondary); display: inline-block; padding: 2px 8px; border-radius: 2px; margin-bottom: var(--space-3); }
+  .svc-card ul { margin: var(--space-3) 0 0; padding-left: 1.1rem; font-size: var(--fs-small); color: var(--color-text-muted); }
+
+  /* Service cards variant B: horizontal list with icon rail */
+  .svc-row { display: grid; grid-template-columns: 72px 1fr auto; align-items: center; gap: var(--space-6); background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius-sm); padding: var(--space-4) var(--space-6); }
+  .svc-row + .svc-row { margin-top: var(--space-3); }
+  .icon-box { width: 56px; height: 56px; background: var(--color-primary); border-radius: var(--radius-sm); display: flex; align-items: center; justify-content: center; color: var(--color-accent); font-family: var(--font-heading); font-weight: 700; font-size: 1.2rem; }
+
+  /* Why-us variant A: numbered ledger */
+  .ledger-item { display: flex; gap: var(--space-4); align-items: flex-start; padding: var(--space-4) 0; border-bottom: 1px solid var(--color-border); }
+  .ledger-num { font-family: var(--font-heading); font-size: 2rem; color: var(--color-border); width: 3rem; flex-shrink: 0; }
+
+  /* Why-us variant B: stat strip */
+  .stat-strip { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px,1fr)); background: var(--color-secondary); border-radius: var(--radius-md); overflow: hidden; }
+  .stat-cell { padding: var(--space-8) var(--space-4); text-align: center; border-right: 1px solid rgba(255,255,255,0.1); color: #fff; }
+  .stat-cell .num { font-family: var(--font-heading); font-size: 2.25rem; color: var(--color-accent); display: block; }
+
+  footer.note { text-align: center; padding: var(--space-8); color: var(--color-text-muted); font-size: var(--fs-small); }
+  @media (max-width: 760px) {
+    .hero-inner { grid-template-columns: 1fr; }
+    section { padding: var(--space-12) var(--space-4); }
+  }
+</style>
+</head>
+<body>
+
+<section>
+  <div class="spec">
+    <strong>Konzept — Werkstatt Präzision</strong>
+    Technisch, präzise, vertrauenswürdig wie ein Prüfprotokoll: gedecktes Dunkelblau/Graphit trifft auf Warnsignal-Amber
+    als Arbeitsfarbe. Kondensierte Versal-Headlines, dünne Trennlinien, Diagramm-Ästhetik (Raster, Codes, Kennzahlen)
+    erinnern an technische Datenblätter statt an eine generische Service-Website. Kanten sind bewusst scharf
+    (kleine Radien), Schatten sind knapp und funktional — nichts "weich" oder dekorativ.
+  </div>
+</section>
+
+<section>
+  <h2>Farbpalette &amp; Kontrast (WCAG)</h2>
+  <div class="grid grid-3">
+    <div class="swatch" style="background: var(--color-primary);">Primary #1E3A5F<small>Weißer Text darauf: <span class="ratio-pass">11.5:1 — AAA</span></small></div>
+    <div class="swatch" style="background: var(--color-secondary);">Secondary #23282D<small>Weißer Text darauf: <span class="ratio-pass">15.1:1 — AAA</span></small></div>
+    <div class="swatch" style="background: var(--color-accent); color:#1A1F24;">Accent #FFB020<small style="color:#1A1F24">Dunkler Text darauf: <span class="ratio-pass">9.4:1 — AAA</span></small></div>
+    <div class="swatch" style="background: var(--color-bg); color:#1A1F24; border:1px solid var(--color-border);">Background #F4F6F8<small style="color:#1A1F24">Text #1A1F24 darauf: <span class="ratio-pass">15.3:1 — AAA</span></small></div>
+    <div class="swatch" style="background: var(--color-surface); color:#1A1F24; border:1px solid var(--color-border);">Surface #FFFFFF<small style="color:#1A1F24">Text #1A1F24 darauf: <span class="ratio-pass">16.7:1 — AAA</span></small></div>
+    <div class="swatch" style="background: var(--color-text);">Text #1A1F24<small>Referenzfarbe für Fließtext</small></div>
+  </div>
+</section>
+
+<section>
+  <h2>Schriftpaarung</h2>
+  <p style="font-family: var(--font-heading); text-transform: uppercase; font-size: 1.75rem; color: var(--color-text); letter-spacing: 0.01em;">IBM Plex Sans Condensed — Headline</p>
+  <p style="font-size: 1.125rem;">IBM Plex Sans — Fließtext. „Grüße aus Köln – Steinschlagreparatur ohne Wartezeit, für Ihre Frontscheibe.“</p>
+</section>
+
+<section>
+  <h2>Type Scale (fluid, clamp)</h2>
+  <div class="card">
+    <h1 style="margin-bottom: var(--space-2);">H1 Scheibenreparatur</h1>
+    <h2 style="margin-bottom: var(--space-2);">H2 Unsere Leistungen</h2>
+    <h3 style="margin-bottom: var(--space-2);">H3 Steinschlagreparatur</h3>
+    <p style="margin-bottom: var(--space-2);">Body — Standardtext für Absätze und Beschreibungen.</p>
+    <p style="font-size: var(--fs-small); margin-bottom:0;">Small — Meta-Informationen, Zeitstempel, Fußnoten.</p>
+  </div>
+</section>
+
+<section>
+  <h2>Radius &amp; Schatten</h2>
+  <div class="grid grid-3">
+    <div class="card" style="border-radius: var(--radius-sm); box-shadow: var(--shadow-sm);">radius-sm (2px)<br>shadow-sm</div>
+    <div class="card" style="border-radius: var(--radius-md); box-shadow: var(--shadow-md);">radius-md (4px)<br>shadow-md</div>
+    <div class="card" style="border-radius: var(--radius-lg); box-shadow: var(--shadow-lg);">radius-lg (6px)<br>shadow-lg</div>
+  </div>
+</section>
+
+<section>
+  <h2>Buttons</h2>
+  <div style="display:flex; gap: var(--space-4); flex-wrap:wrap; background: var(--color-secondary); padding: var(--space-6); border-radius: var(--radius-md);">
+    <a class="btn btn-primary" href="#">Termin buchen</a>
+    <a class="btn btn-secondary" href="#">Mehr erfahren</a>
+    <span class="btn btn-disabled">Nicht verfügbar</span>
+  </div>
+</section>
+
+<header class="hero">
+  <div class="hero-inner">
+    <div>
+      <span class="hero-badge">Meisterbetrieb seit 2011</span>
+      <h1>Steinschlag heute<br>repariert. Fertig.</h1>
+      <p class="sub">Direkte Abrechnung mit Ihrer Versicherung. Termin in unter 2 Minuten online — an 2 Standorten in Deutschland.</p>
+      <a class="btn btn-primary" href="#">Jetzt Termin sichern</a>
+      <div class="phone-line">📞 0800 123 456 7</div>
+      <div class="trust-row">
+        <div class="trust-item"><b>4,8 / 5</b> · 612 Bewertungen</div>
+        <div class="trust-item"><b>Allianz · HUK · AXA</b> Partnerwerkstatt</div>
+        <div class="trust-item"><b>24 Monate</b> Garantie</div>
+      </div>
+    </div>
+    <div class="diagram-panel">
+      <div class="line"><span>Reparaturzeit</span><span>≈ 30 Min.</span></div>
+      <div class="line"><span>Frontscheibe (Standard)</span><span>0 € Zuzahlung¹</span></div>
+      <div class="line"><span>Mobiler Service</span><span>Verfügbar</span></div>
+      <div class="line" style="border-bottom:none;"><span>Nächster Termin</span><span>Heute, 14:30</span></div>
+    </div>
+  </div>
+</header>
+
+<section>
+  <h2>Leistungen — Variante A (Datenblatt)</h2>
+  <span class="variant-label">Variant A</span>
+  <div class="grid grid-3">
+    <div class="svc-card">
+      <span class="code">SR-01</span>
+      <h3>Steinschlagreparatur</h3>
+      <p>Reparatur eines Steinschlags ohne Scheibentausch.</p>
+      <ul><li>Dauer: 30 Min.</li><li>Ab 0 € bei Kaskoversicherung</li><li>Vor-Ort-Service möglich</li></ul>
+    </div>
+    <div class="svc-card">
+      <span class="code">SW-02</span>
+      <h3>Scheibenwechsel</h3>
+      <p>Kompletter Austausch der Frontscheibe inkl. Kalibrierung.</p>
+      <ul><li>Dauer: 90 Min.</li><li>Direktabrechnung Versicherung</li><li>OEM-Qualität</li></ul>
+    </div>
+    <div class="svc-card">
+      <span class="code">KA-03</span>
+      <h3>Sensor-Kalibrierung</h3>
+      <p>Neukalibrierung von Fahrassistenzsystemen nach Scheibentausch.</p>
+      <ul><li>Dauer: 45 Min.</li><li>Für ADAS-Fahrzeuge</li><li>Prüfprotokoll inklusive</li></ul>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2>Leistungen — Variante B (Icon-Reihe)</h2>
+  <span class="variant-label">Variant B</span>
+  <div class="svc-row">
+    <div class="icon-box">SR</div>
+    <div><h3 style="margin-bottom:2px;">Steinschlagreparatur</h3><p style="margin:0;">Ab 0 € bei Kaskoversicherung, in 30 Minuten erledigt.</p></div>
+    <a class="btn btn-primary" style="background:var(--color-primary); color:#fff;" href="#">Details</a>
+  </div>
+  <div class="svc-row">
+    <div class="icon-box">SW</div>
+    <div><h3 style="margin-bottom:2px;">Scheibenwechsel</h3><p style="margin:0;">Kompletter Austausch inkl. Kalibrierung, OEM-Qualität.</p></div>
+    <a class="btn btn-primary" style="background:var(--color-primary); color:#fff;" href="#">Details</a>
+  </div>
+</section>
+
+<section>
+  <h2>Warum wir — Variante A (Ledger)</h2>
+  <span class="variant-label">Variant A</span>
+  <div class="ledger-item"><span class="ledger-num">01</span><div><h3 style="margin-bottom:2px;">Meisterqualität</h3><p style="margin:0;">Zertifizierte Techniker, geprüfte Prozesse nach Herstellervorgabe.</p></div></div>
+  <div class="ledger-item"><span class="ledger-num">02</span><div><h3 style="margin-bottom:2px;">Direktabrechnung</h3><p style="margin:0;">Wir klären die Kostenübernahme direkt mit Ihrer Versicherung.</p></div></div>
+  <div class="ledger-item" style="border-bottom:none;"><span class="ledger-num">03</span><div><h3 style="margin-bottom:2px;">Mobiler Service</h3><p style="margin:0;">Auf Wunsch kommen wir zu Ihnen — Werkstatt oder Parkplatz.</p></div></div>
+</section>
+
+<section>
+  <h2>Warum wir — Variante B (Kennzahlen-Leiste)</h2>
+  <span class="variant-label">Variant B</span>
+  <div class="stat-strip">
+    <div class="stat-cell"><span class="num">12.400+</span>Reparaturen/Jahr</div>
+    <div class="stat-cell"><span class="num">4,8/5</span>Kundenbewertung</div>
+    <div class="stat-cell"><span class="num">24 Mon.</span>Garantie</div>
+    <div class="stat-cell" style="border-right:none;"><span class="num">30 Min.</span>Ø Reparaturzeit</div>
+  </div>
+</section>
+
+<footer class="note">Direction 1 / 3 — Werkstatt Präzision — Statische Vorschau, kein Anwendungscode.</footer>
+
+</body>
+</html>

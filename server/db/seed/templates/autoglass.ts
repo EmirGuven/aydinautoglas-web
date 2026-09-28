@@ -22,14 +22,23 @@ import type { Block } from '../../../../shared/schemas/blocks'
 
 export async function seedAutoglassTemplate(): Promise<void> {
   console.log('[seed] autoglass: theme, settings...')
+  // "Werkstatt Präzision" direction — see docs/design/directions/direction-1-werkstatt-praezision.html
+  // and docs/design-system.md for the full rationale and WCAG contrast figures.
   await setTheme({
-    colorPrimary: '#1d4ed8',
-    colorSecondary: '#0f172a',
-    colorAccent: '#f59e0b',
-    colorBackground: '#ffffff',
-    colorText: '#0f172a',
-    fontFamily: 'system-ui, sans-serif',
-    borderRadius: '0.5rem',
+    colorPrimary: '#1E3A5F',
+    colorSecondary: '#23282D',
+    colorAccent: '#FFB020',
+    colorBackground: '#F4F6F8',
+    colorText: '#1A1F24',
+    colorSurface: '#FFFFFF',
+    colorBorder: '#D7DCE1',
+    colorMuted: '#5B6570',
+    fontFamily: '"IBM Plex Sans", system-ui, sans-serif',
+    fontFamilyHeading: '"IBM Plex Sans Condensed", "Arial Narrow", sans-serif',
+    borderRadius: '2px',
+    radiusCard: '4px',
+    shadowCard: '0 1px 2px rgba(20, 41, 67, 0.08)',
+    shadowElevated: '0 12px 28px rgba(20, 41, 67, 0.18)',
     buttonStyle: 'solid',
   })
 

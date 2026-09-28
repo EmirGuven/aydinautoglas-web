@@ -19,8 +19,15 @@ export function useTheme() {
       `--site-color-accent:${t.colorAccent};` +
       `--site-color-background:${t.colorBackground};` +
       `--site-color-text:${t.colorText};` +
+      `--site-color-surface:${t.colorSurface};` +
+      `--site-color-border:${t.colorBorder};` +
+      `--site-color-muted:${t.colorMuted};` +
       `--site-font-family:${t.fontFamily};` +
+      `--site-font-family-heading:${t.fontFamilyHeading};` +
       `--site-radius-button:${t.borderRadius};` +
+      `--site-radius-card:${t.radiusCard};` +
+      `--site-shadow-card:${t.shadowCard};` +
+      `--site-shadow-elevated:${t.shadowElevated};` +
       `}`
   })
 

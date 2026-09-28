@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Richtung 2 — Vertrauen &amp; Service</title>
+<style>
+  /* Self-hosted intent: Fraunces (headings, variable font via Fontsource) + Inter (body).
+     Both cover Latin-Extended incl. ä ö ü ß. Preview falls back to system stack. */
+  @font-face { font-family: 'FrauncesLocal'; src: local('Fraunces'); }
+  @font-face { font-family: 'InterLocal'; src: local('Inter'); }
+  :root {
+    --color-primary: #0F5257;
+    --color-primary-dark: #0A3B3F;
+    --color-secondary: #E0673A;
+    --color-accent: #E0673A;
+    --color-bg: #FBF7F2;
+    --color-surface: #FFFFFF;
+    --color-text: #262220;
+    --color-text-muted: #6B625C;
+    --color-border: #E8DFD5;
+
+    --font-heading: 'FrauncesLocal', Georgia, serif;
+    --font-body: 'InterLocal', system-ui, sans-serif;
+
+    --radius-sm: 10px;
+    --radius-md: 18px;
+    --radius-lg: 28px;
+
+    --shadow-sm: 0 2px 6px rgba(38, 34, 32, 0.06);
+    --shadow-md: 0 10px 24px rgba(38, 34, 32, 0.10);
+    --shadow-lg: 0 22px 48px rgba(38, 34, 32, 0.16);
+
+    --space-1: 0.25rem; --space-2: 0.5rem; --space-3: 0.75rem;
+    --space-4: 1rem; --space-6: 1.5rem; --space-8: 2rem;
+    --space-12: 3rem; --space-16: 4rem; --space-24: 6rem;
+
+    --fs-h1: clamp(2.5rem, 1.7rem + 3.4vw, 4.25rem);
+    --fs-h2: clamp(1.6rem, 1.3rem + 1.4vw, 2.4rem);
+    --fs-h3: clamp(1.2rem, 1.1rem + 0.5vw, 1.45rem);
+    --fs-body: clamp(1rem, 0.97rem + 0.15vw, 1.0625rem);
+    --fs-small: 0.875rem;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; font-family: var(--font-body); color: var(--color-text); background: var(--color-bg); line-height: 1.6; }
+  h1, h2, h3 { font-family: var(--font-heading); font-weight: 600; margin: 0 0 var(--space-3); }
+  h1 { font-size: var(--fs-h1); line-height: 1.05; }
+  h2 { font-size: var(--fs-h2); line-height: 1.15; }
+  h3 { font-size: var(--fs-h3); line-height: 1.25; }
+  p { font-size: var(--fs-body); color: var(--color-text-muted); margin: 0 0 var(--space-4); }
+  section { padding: var(--space-16) var(--space-6); max-width: 1180px; margin: 0 auto; }
+  .spec { background: #fff; border: 1px solid var(--color-border); border-radius: var(--radius-md); padding: var(--space-6); font-size: var(--fs-small); box-shadow: var(--shadow-sm); }
+  .spec strong { display: block; font-family: var(--font-heading); font-size: 1.2rem; margin-bottom: var(--space-2); color: var(--color-primary); }
+  .grid { display: grid; gap: var(--space-6); }
+  .grid-2 { grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
+  .grid-3 { grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); }
+  .swatch { border-radius: var(--radius-sm); padding: var(--space-4); color: #fff; font-family: monospace; font-size: var(--fs-small); box-shadow: var(--shadow-sm); }
+  .swatch small { display: block; opacity: 0.9; margin-top: var(--space-1); }
+  .ratio-pass { color: #0A5C2B; font-weight: 700; }
+  .card { background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius-md); padding: var(--space-6); box-shadow: var(--shadow-sm); }
+  .btn { display: inline-flex; align-items: center; justify-content: center; min-height: 48px; padding: 0 var(--space-8); border-radius: 999px; font-family: var(--font-body); font-weight: 600; font-size: 1rem; border: 2px solid transparent; cursor: pointer; text-decoration: none; }
+  .btn-primary { background: var(--color-secondary); color: #fff; box-shadow: var(--shadow-md); }
+  .btn-primary:hover { background: #C7542C; }
+  .btn-secondary { background: #fff; border-color: var(--color-primary); color: var(--color-primary); }
+  .btn-disabled { background: #EFE7DC; color: #B5AA9D; cursor: not-allowed; box-shadow: none; }
+  header.hero { background: radial-gradient(circle at 15% 20%, #12656B 0%, var(--color-primary) 45%, var(--color-primary-dark) 100%); color: #fff; overflow: hidden; }
+  .hero-inner { padding: var(--space-24) var(--space-6); max-width: 1180px; margin: 0 auto; display: grid; grid-template-columns: 1.1fr 0.9fr; gap: var(--space-12); align-items: center; }
+  .hero-badge { display: inline-flex; align-items: center; gap: 6px; background: rgba(255,255,255,0.14); color: #FCEADF; font-size: 0.85rem; font-weight: 600; padding: var(--space-2) var(--space-4); border-radius: 999px; margin-bottom: var(--space-4); }
+  .hero h1 { color: #fff; }
+  .hero p.sub { color: #DCEDEC; font-size: 1.2rem; max-width: 40ch; }
+  .phone-pill { display: inline-flex; align-items: center; gap: var(--space-2); background: #fff; color: var(--color-primary-dark); font-weight: 700; font-size: 1.15rem; padding: var(--space-3) var(--space-6); border-radius: 999px; margin-top: var(--space-6); box-shadow: var(--shadow-md); }
+  .trust-row { display: flex; gap: var(--space-6); flex-wrap: wrap; margin-top: var(--space-8); }
+  .trust-item { font-size: var(--fs-small); color: #DCEDEC; background: rgba(255,255,255,0.08); border-radius: var(--radius-sm); padding: var(--space-3) var(--space-4); }
+  .trust-item b { display:block; color: #fff; font-size: 1.1rem; font-family: var(--font-heading); }
+  .hero-card { background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.25); backdrop-filter: none; border-radius: var(--radius-lg); padding: var(--space-8); }
+  .hero-card .review { display:flex; gap: var(--space-2); align-items:center; margin-bottom: var(--space-4); }
+  .stars { color: #FFD37A; font-size: 1.1rem; letter-spacing: 2px; }
+
+  .variant-label { font-family: var(--font-body); text-transform: uppercase; font-size: 0.75rem; letter-spacing: 0.08em; color: #fff; background: var(--color-primary); display: inline-block; padding: 4px 12px; border-radius: 999px; margin-bottom: var(--space-6); }
+
+  /* Service cards variant A: warm image-led card */
+  .svc-card-a { background: var(--color-surface); border-radius: var(--radius-lg); overflow: hidden; box-shadow: var(--shadow-sm); }
+  .svc-card-a .media { height: 140px; background: linear-gradient(135deg, var(--color-primary), #1B7A80); display:flex; align-items:center; justify-content:center; color:#fff; font-family: var(--font-heading); font-size:2rem; }
+  .svc-card-a .body { padding: var(--space-6); }
+
+  /* Service cards variant B: alternating zig-zag feature rows */
+  .zigzag { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-8); align-items: center; padding: var(--space-8) 0; border-bottom: 1px solid var(--color-border); }
+  .zigzag:nth-child(even) { direction: rtl; }
+  .zigzag:nth-child(even) > * { direction: ltr; }
+  .zigzag .media { height: 180px; border-radius: var(--radius-lg); background: linear-gradient(135deg, #F4A97E, var(--color-secondary)); display:flex; align-items:center; justify-content:center; color:#fff; font-family: var(--font-heading); font-size: 1.5rem; }
+
+  /* Why-us variant A: soft icon cards */
+  .why-card { background: var(--color-surface); border-radius: var(--radius-md); padding: var(--space-6); text-align:center; box-shadow: var(--shadow-sm); }
+  .why-icon { width: 64px; height: 64px; border-radius: 50%; background: #FDEDE3; color: var(--color-secondary); display:flex; align-items:center; justify-content:center; margin: 0 auto var(--space-4); font-size: 1.5rem; font-weight:700; font-family: var(--font-heading); }
+
+  /* Why-us variant B: quote-style testimonial strip */
+  .quote-strip { background: var(--color-primary); border-radius: var(--radius-lg); padding: var(--space-8); color: #fff; }
+  .quote-strip blockquote { font-family: var(--font-heading); font-size: 1.4rem; margin: 0 0 var(--space-4); line-height: 1.4; }
+  .quote-strip cite { font-style: normal; color: #DCEDEC; font-size: var(--fs-small); }
+
+  footer.note { text-align: center; padding: var(--space-8); color: var(--color-text-muted); font-size: var(--fs-small); }
+  @media (max-width: 760px) {
+    .hero-inner, .zigzag { grid-template-columns: 1fr; }
+    .zigzag:nth-child(even) { direction: ltr; }
+    section { padding: var(--space-12) var(--space-4); }
+  }
+</style>
+</head>
+<body>
+
+<section>
+  <div class="spec">
+    <strong>Konzept — Vertrauen &amp; Service</strong>
+    Warm, menschlich, einladend — ohne unseriös zu wirken. Ein tiefes Petrol als Vertrauensanker, ein warmes Terrakotta
+    als Handlungsfarbe, cremiger Hintergrund statt sterilem Weiß. Eine Serif-Headline-Schrift (Fraunces) gibt der Marke
+    Charakter und Wärme, während Inter im Fließtext für Klarheit sorgt. Weiche, großzügige Radien und diffuse Schatten
+    statt harter Kanten — passend zu einer Marke, die sich um Menschen in einer stressigen Situation (Glasschaden) kümmert.
+  </div>
+</section>
+
+<section>
+  <h2>Farbpalette &amp; Kontrast (WCAG)</h2>
+  <div class="grid grid-3">
+    <div class="swatch" style="background: var(--color-primary);">Primary #0F5257<small>Weißer Text darauf: <span class="ratio-pass">8.9:1 — AAA</span></small></div>
+    <div class="swatch" style="background: var(--color-secondary);">Secondary/Accent #E0673A<small>Weißer Text darauf: <span class="ratio-pass">3.6:1 — AA (großer Text)</span></small></div>
+    <div class="swatch" style="background: var(--color-primary-dark);">Primary Dark #0A3B3F<small>Weißer Text darauf: <span class="ratio-pass">11.9:1 — AAA</span></small></div>
+    <div class="swatch" style="background: var(--color-bg); color:#262220; border:1px solid var(--color-border);">Background #FBF7F2<small style="color:#262220">Text #262220 darauf: <span class="ratio-pass">14.8:1 — AAA</span></small></div>
+    <div class="swatch" style="background: var(--color-surface); color:#262220; border:1px solid var(--color-border);">Surface #FFFFFF<small style="color:#262220">Text #262220 darauf: <span class="ratio-pass">15.8:1 — AAA</span></small></div>
+    <div class="swatch" style="background: var(--color-text);">Text #262220<small>Referenzfarbe für Fließtext</small></div>
+  </div>
+  <p style="margin-top: var(--space-4);">Hinweis: Terrakotta (#E0673A) mit weißem Text erreicht nur 3.6:1 — ausreichend für große/fette Buttontexte (≥ 18px bold), <b>nicht</b> für kleinen Fließtext. Buttons in diesem Direction nutzen deshalb min. 1rem/600 Gewicht.</p>
+</section>
+
+<section>
+  <h2>Schriftpaarung</h2>
+  <p style="font-family: var(--font-heading); font-size: 1.9rem; color: var(--color-text); font-weight: 600;">Fraunces — Headline</p>
+  <p style="font-size: 1.125rem;">Inter — Fließtext. „Grüße aus Köln – Scheibenreparatur ohne Wartezeit, wir kümmern uns um alles.“</p>
+</section>
+
+<section>
+  <h2>Type Scale (fluid, clamp)</h2>
+  <div class="card">
+    <h1 style="margin-bottom: var(--space-2);">H1 Ihre Scheibe. Unsere Sorge.</h1>
+    <h2 style="margin-bottom: var(--space-2);">H2 Unsere Leistungen</h2>
+    <h3 style="margin-bottom: var(--space-2);">H3 Steinschlagreparatur</h3>
+    <p style="margin-bottom: var(--space-2);">Body — Standardtext für Absätze und Beschreibungen.</p>
+    <p style="font-size: var(--fs-small); margin-bottom:0;">Small — Meta-Informationen, Zeitstempel, Fußnoten.</p>
+  </div>
+</section>
+
+<section>
+  <h2>Radius &amp; Schatten</h2>
+  <div class="grid grid-3">
+    <div class="card" style="border-radius: var(--radius-sm); box-shadow: var(--shadow-sm);">radius-sm (10px)<br>shadow-sm</div>
+    <div class="card" style="border-radius: var(--radius-md); box-shadow: var(--shadow-md);">radius-md (18px)<br>shadow-md</div>
+    <div class="card" style="border-radius: var(--radius-lg); box-shadow: var(--shadow-lg);">radius-lg (28px)<br>shadow-lg</div>
+  </div>
+</section>
+
+<section>
+  <h2>Buttons</h2>
+  <div style="display:flex; gap: var(--space-4); flex-wrap:wrap; background: var(--color-bg); padding: var(--space-6); border-radius: var(--radius-md);">
+    <a class="btn btn-primary" href="#">Termin buchen</a>
+    <a class="btn btn-secondary" href="#">Mehr erfahren</a>
+    <span class="btn btn-disabled">Nicht verfügbar</span>
+  </div>
+</section>
+
+<header class="hero">
+  <div class="hero-inner">
+    <div>
+      <span class="hero-badge">★ Familienbetrieb seit 2011</span>
+      <h1>Ihre Scheibe.<br>Unsere Sorge.</h1>
+      <p class="sub">Vom ersten Anruf bis zur fertigen Reparatur begleiten wir Sie persönlich — inklusive Versicherungsabwicklung.</p>
+      <div class="phone-pill">📞 0800 123 456 7</div>
+      <div class="trust-row">
+        <div class="trust-item"><b>4,8 / 5</b>612 Bewertungen</div>
+        <div class="trust-item"><b>Allianz · HUK · AXA</b>Partnerwerkstatt</div>
+        <div class="trust-item"><b>24 Monate</b>Garantie</div>
+      </div>
+    </div>
+    <div class="hero-card">
+      <div class="review"><span class="stars">★★★★★</span><span>4,8 von 5</span></div>
+      <blockquote style="font-family: var(--font-heading); font-size:1.2rem; margin:0 0 12px;">„Innerhalb von 30 Minuten war alles erledigt — sehr freundlich.“</blockquote>
+      <cite style="color:#DCEDEC; font-size:0.85rem;">— Sabine K., Köln</cite>
+      <a class="btn btn-primary" href="#" style="margin-top:20px; width:100%;">Jetzt Termin sichern</a>
+    </div>
+  </div>
+</header>
+
+<section>
+  <h2>Leistungen — Variante A (Karten)</h2>
+  <span class="variant-label">Variant A</span>
+  <div class="grid grid-3">
+    <div class="svc-card-a"><div class="media">SR</div><div class="body"><h3>Steinschlagreparatur</h3><p>Ab 0 € bei Kaskoversicherung, in 30 Minuten erledigt.</p><a class="btn btn-secondary" href="#" style="min-height:40px; padding:0 20px;">Details</a></div></div>
+    <div class="svc-card-a"><div class="media">SW</div><div class="body"><h3>Scheibenwechsel</h3><p>Kompletter Austausch inkl. Kalibrierung, OEM-Qualität.</p><a class="btn btn-secondary" href="#" style="min-height:40px; padding:0 20px;">Details</a></div></div>
+    <div class="svc-card-a"><div class="media">KA</div><div class="body"><h3>Sensor-Kalibrierung</h3><p>Neukalibrierung von Fahrassistenzsystemen.</p><a class="btn btn-secondary" href="#" style="min-height:40px; padding:0 20px;">Details</a></div></div>
+  </div>
+</section>
+
+<section>
+  <h2>Leistungen — Variante B (Zick-Zack)</h2>
+  <span class="variant-label">Variant B</span>
+  <div class="zigzag">
+    <div class="media">Foto: Reparatur</div>
+    <div><h3>Steinschlagreparatur</h3><p>Ein kleiner Steinschlag muss keine neue Scheibe bedeuten. Unsere Techniker reparieren ihn meist in 30 Minuten — häufig ohne Zuzahlung.</p><a class="btn btn-primary" href="#">Termin für Reparatur</a></div>
+  </div>
+  <div class="zigzag" style="border-bottom:none;">
+    <div class="media">Foto: Werkstatt</div>
+    <div><h3>Scheibenwechsel</h3><p>Ist die Scheibe stärker beschädigt, tauschen wir sie fachgerecht aus — inklusive Kalibrierung moderner Assistenzsysteme.</p><a class="btn btn-primary" href="#">Termin für Wechsel</a></div>
+  </div>
+</section>
+
+<section>
+  <h2>Warum wir — Variante A (Icon-Karten)</h2>
+  <span class="variant-label">Variant A</span>
+  <div class="grid grid-3">
+    <div class="why-card"><div class="why-icon">✓</div><h3>Meisterqualität</h3><p>Zertifizierte Techniker, geprüfte Prozesse.</p></div>
+    <div class="why-card"><div class="why-icon">€</div><h3>Direktabrechnung</h3><p>Wir klären alles mit Ihrer Versicherung.</p></div>
+    <div class="why-card"><div class="why-icon">🚗</div><h3>Mobiler Service</h3><p>Wir kommen zu Ihnen, wenn gewünscht.</p></div>
+  </div>
+</section>
+
+<section>
+  <h2>Warum wir — Variante B (Zitat-Band)</h2>
+  <span class="variant-label">Variant B</span>
+  <div class="quote-strip">
+    <blockquote>„Man merkt sofort, dass hier Menschen arbeiten, die wirklich helfen wollen — nicht nur verkaufen.“</blockquote>
+    <cite>— Markus T., Berlin, 5★ Bewertung</cite>
+  </div>
+</section>
+
+<footer class="note">Direction 2 / 3 — Vertrauen &amp; Service — Statische Vorschau, kein Anwendungscode.</footer>
+
+</body>
+</html>

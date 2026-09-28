@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Richtung 3 — Klare Kante</title>
+<style>
+  /* Self-hosted intent: Space Grotesk (headings, variable font via Fontsource) + Inter (body).
+     Both cover Latin-Extended incl. ä ö ü ß. Preview falls back to system stack. */
+  @font-face { font-family: 'GroteskLocal'; src: local('Space Grotesk'); }
+  @font-face { font-family: 'InterLocal'; src: local('Inter'); }
+  :root {
+    --color-primary: #0B0B0C;
+    --color-secondary: #4A4F55;
+    --color-accent: #FF5A1F;
+    --color-bg: #FFFFFF;
+    --color-surface: #F5F5F4;
+    --color-text: #0B0B0C;
+    --color-text-muted: #55585C;
+    --color-border: #DCDCDA;
+
+    --font-heading: 'GroteskLocal', 'Arial Black', sans-serif;
+    --font-body: 'InterLocal', system-ui, sans-serif;
+
+    --radius-sm: 0px;
+    --radius-md: 0px;
+    --radius-lg: 0px;
+
+    --shadow-sm: none;
+    --shadow-md: 6px 6px 0 var(--color-primary);
+    --shadow-lg: 10px 10px 0 var(--color-accent);
+
+    --space-1: 0.25rem; --space-2: 0.5rem; --space-3: 0.75rem;
+    --space-4: 1rem; --space-6: 1.5rem; --space-8: 2rem;
+    --space-12: 3rem; --space-16: 4rem; --space-24: 6rem;
+
+    --fs-h1: clamp(2.75rem, 1.8rem + 4.2vw, 5rem);
+    --fs-h2: clamp(1.75rem, 1.4rem + 1.6vw, 2.6rem);
+    --fs-h3: clamp(1.2rem, 1.1rem + 0.5vw, 1.4rem);
+    --fs-body: clamp(1rem, 0.97rem + 0.15vw, 1.0625rem);
+    --fs-small: 0.85rem;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; font-family: var(--font-body); color: var(--color-text); background: var(--color-bg); line-height: 1.5; }
+  h1, h2, h3 { font-family: var(--font-heading); font-weight: 700; letter-spacing: -0.02em; margin: 0 0 var(--space-3); text-transform: uppercase; }
+  h1 { font-size: var(--fs-h1); line-height: 0.98; }
+  h2 { font-size: var(--fs-h2); line-height: 1.05; }
+  h3 { font-size: var(--fs-h3); line-height: 1.2; }
+  p { font-size: var(--fs-body); color: var(--color-text-muted); margin: 0 0 var(--space-4); }
+  section { padding: var(--space-16) var(--space-6); max-width: 1200px; margin: 0 auto; border-bottom: 3px solid var(--color-primary); }
+  .spec { background: var(--color-surface); border: 3px solid var(--color-primary); padding: var(--space-6); font-size: var(--fs-small); }
+  .spec strong { display: block; font-family: var(--font-heading); text-transform: uppercase; font-size: 1.1rem; margin-bottom: var(--space-2); }
+  .grid { display: grid; gap: var(--space-6); }
+  .grid-2 { grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
+  .grid-3 { grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); }
+  .swatch { padding: var(--space-4); color: #fff; font-family: monospace; font-size: var(--fs-small); border: 3px solid var(--color-primary); }
+  .swatch small { display: block; opacity: 0.9; margin-top: var(--space-1); }
+  .ratio-pass { color: #0A5C2B; font-weight: 700; background:#fff; padding:1px 4px; }
+  .ratio-note { color: #7A3B00; font-weight: 700; background:#fff; padding:1px 4px; }
+  .card { background: var(--color-surface); border: 3px solid var(--color-primary); padding: var(--space-6); }
+  .btn { display: inline-flex; align-items: center; justify-content: center; min-height: 48px; padding: 0 var(--space-8); font-family: var(--font-heading); text-transform: uppercase; font-weight: 700; letter-spacing: 0.02em; font-size: 0.95rem; border: 3px solid var(--color-primary); cursor: pointer; text-decoration: none; }
+  .btn-primary { background: var(--color-primary); color: #fff; box-shadow: 5px 5px 0 var(--color-accent); }
+  .btn-primary:hover { box-shadow: 2px 2px 0 var(--color-accent); transform: translate(3px, 3px); }
+  .btn-secondary { background: #fff; color: var(--color-primary); }
+  .btn-disabled { background: var(--color-border); color: #8C8C8A; border-color: var(--color-border); cursor: not-allowed; }
+  header.hero { background: var(--color-primary); color: #fff; position: relative; overflow: hidden; }
+  header.hero::after { content: ""; position: absolute; top:0; right:0; width: 40%; height: 100%; background: var(--color-accent); clip-path: polygon(30% 0, 100% 0, 100% 100%, 0% 100%); opacity: 0.9; }
+  .hero-inner { position: relative; z-index: 1; padding: var(--space-24) var(--space-6); max-width: 1200px; margin: 0 auto; }
+  .hero-badge { display: inline-block; background: var(--color-accent); color: var(--color-primary); font-family: var(--font-heading); text-transform: uppercase; font-size: 0.8rem; font-weight: 700; padding: var(--space-2) var(--space-4); margin-bottom: var(--space-4); }
+  .hero h1 { color: #fff; max-width: 14ch; }
+  .hero p.sub { color: #D6D6D4; font-size: 1.2rem; max-width: 42ch; }
+  .cta-row { display:flex; gap: var(--space-4); flex-wrap:wrap; margin-top: var(--space-6); align-items:center; }
+  .phone-block { font-family: var(--font-heading); font-size: 1.4rem; font-weight: 700; color: #fff; border-left: 3px solid var(--color-accent); padding-left: var(--space-4); }
+  .trust-row { display: flex; gap: 0; flex-wrap: wrap; margin-top: var(--space-12); border-top: 3px solid #fff; }
+  .trust-item { font-size: var(--fs-small); color: #fff; padding: var(--space-4) var(--space-6) 0 0; border-right: 1px solid #4A4F55; margin-right: var(--space-6); }
+  .trust-item b { display:block; font-family: var(--font-heading); font-size: 1.3rem; color: var(--color-accent); }
+
+  .variant-label { font-family: var(--font-heading); text-transform: uppercase; font-size: 0.8rem; letter-spacing: 0.05em; color: #fff; background: var(--color-primary); display: inline-block; padding: 4px 14px; margin-bottom: var(--space-6); }
+
+  /* Service cards variant A: bold blocks with accent corner tag */
+  .svc-block { position: relative; background: #fff; border: 3px solid var(--color-primary); padding: var(--space-6); }
+  .svc-block .tag { position: absolute; top: -3px; right: -3px; background: var(--color-accent); color: var(--color-primary); font-family: var(--font-heading); font-size: 0.75rem; padding: 4px 10px; font-weight: 700; }
+
+  /* Service cards variant B: single wide feature bar list */
+  .svc-bar { display: grid; grid-template-columns: 100px 1fr auto; align-items: center; border: 3px solid var(--color-primary); border-top: none; padding: var(--space-4) var(--space-6); }
+  .svc-bar:first-of-type { border-top: 3px solid var(--color-primary); }
+  .svc-bar .num { font-family: var(--font-heading); font-size: 2rem; color: var(--color-border); }
+
+  /* Why-us variant A: bold numbered grid, no icons */
+  .why-block { border: 3px solid var(--color-primary); padding: var(--space-6); background:#fff; }
+  .why-block .big-num { font-family: var(--font-heading); font-size: 3rem; color: var(--color-accent); display:block; margin-bottom: var(--space-2); }
+
+  /* Why-us variant B: single black stat band */
+  .stat-band { background: var(--color-primary); display: grid; grid-template-columns: repeat(auto-fit, minmax(160px,1fr)); }
+  .stat-cell { padding: var(--space-8) var(--space-4); text-align: center; border-right: 1px solid #333; color: #fff; }
+  .stat-cell .num { font-family: var(--font-heading); font-size: 2.5rem; color: var(--color-accent); display: block; }
+
+  footer.note { text-align: center; padding: var(--space-8); color: var(--color-text-muted); font-size: var(--fs-small); }
+  @media (max-width: 760px) {
+    section { padding: var(--space-12) var(--space-4); }
+    header.hero::after { width: 60%; }
+  }
+</style>
+</head>
+<body>
+
+<section>
+  <div class="spec">
+    <strong>Konzept — Klare Kante</strong>
+    Maximal kontrastreich, direkt, selbstbewusst: Schwarz auf Weiß mit einem einzigen Signalton (Warnorange) als
+    Handlungsfarbe. Keine Radien, keine weichen Schatten — stattdessen harte Kanten, diagonale Schnitte und ein
+    versetzter "Sticker-Schatten" bei Buttons. Große, kompromisslose Versal-Headlines (Space Grotesk) wirken wie eine
+    Ansage, nicht wie eine Bitte. Für eine Marke, die sich klar von "soften" Wettbewerbern absetzen will.
+  </div>
+</section>
+
+<section>
+  <h2>Farbpalette &amp; Kontrast (WCAG)</h2>
+  <div class="grid grid-3">
+    <div class="swatch" style="background: var(--color-primary);">Primary #0B0B0C<small>Weißer Text darauf: <span class="ratio-pass">19.7:1 — AAA</span></small></div>
+    <div class="swatch" style="background: var(--color-accent); color:#0B0B0C;">Accent #FF5A1F<small style="color:#0B0B0C">Schwarzer Text darauf: <span class="ratio-pass">6.3:1 — AA</span></small></div>
+    <div class="swatch" style="background: var(--color-secondary);">Secondary #4A4F55<small>Weißer Text darauf: <span class="ratio-pass">7.9:1 — AAA</span></small></div>
+    <div class="swatch" style="background: var(--color-bg); color:#0B0B0C; border:3px solid var(--color-primary);">Background #FFFFFF<small style="color:#0B0B0C">Text #0B0B0C darauf: <span class="ratio-pass">19.7:1 — AAA</span></small></div>
+  </div>
+  <p style="margin-top: var(--space-4);">Wichtig: Weißer Text auf Accent-Orange erreicht nur <span class="ratio-note">3.1:1 — nicht AA-tauglich für Fließtext</span>. Deshalb wird Orange in diesem Direction nie als Textfläche für Buttons genutzt — primäre CTAs sind immer Schwarz/Weiß (19.7:1), Orange dient als Akzent-Rahmen, Tag oder Unterstreichung mit schwarzem Text darauf.</p>
+</section>
+
+<section>
+  <h2>Schriftpaarung</h2>
+  <p style="font-family: var(--font-heading); text-transform: uppercase; font-size: 2rem; color: var(--color-text); font-weight: 700;">Space Grotesk — Headline</p>
+  <p style="font-size: 1.125rem;">Inter — Fließtext. „Grüße aus Köln – Scheibenreparatur ohne Wartezeit. Punkt.“</p>
+</section>
+
+<section>
+  <h2>Type Scale (fluid, clamp)</h2>
+  <div class="card">
+    <h1 style="margin-bottom: var(--space-2); font-size: 2.5rem;">H1 Scheibe kaputt?</h1>
+    <h2 style="margin-bottom: var(--space-2);">H2 Unsere Leistungen</h2>
+    <h3 style="margin-bottom: var(--space-2);">H3 Steinschlagreparatur</h3>
+    <p style="margin-bottom: var(--space-2);">Body — Standardtext für Absätze und Beschreibungen.</p>
+    <p style="font-size: var(--fs-small); margin-bottom:0;">Small — Meta-Informationen, Zeitstempel, Fußnoten.</p>
+  </div>
+</section>
+
+<section>
+  <h2>Radius &amp; Schatten</h2>
+  <div class="grid grid-3">
+    <div class="card">radius: 0<br>shadow: none</div>
+    <div class="card" style="box-shadow: var(--shadow-md);">radius: 0<br>shadow-md (offset 6px)</div>
+    <div class="card" style="box-shadow: var(--shadow-lg);">radius: 0<br>shadow-lg (offset 10px, accent)</div>
+  </div>
+</section>
+
+<section>
+  <h2>Buttons</h2>
+  <div style="display:flex; gap: var(--space-6); flex-wrap:wrap; background: var(--color-surface); padding: var(--space-6);">
+    <a class="btn btn-primary" href="#">Termin buchen</a>
+    <a class="btn btn-secondary" href="#">Mehr erfahren</a>
+    <span class="btn btn-disabled">Nicht verfügbar</span>
+  </div>
+</section>
+
+<header class="hero">
+  <div class="hero-inner">
+    <span class="hero-badge">Sofort-Termin verfügbar</span>
+    <h1>Scheibe kaputt?<br>Heute repariert.</h1>
+    <p class="sub">Keine Umwege, keine Wartezeit. Direkte Versicherungsabrechnung, Termin in 2 Minuten online.</p>
+    <div class="cta-row">
+      <a class="btn btn-primary" href="#">Jetzt Termin sichern</a>
+      <span class="phone-block">📞 0800 123 456 7</span>
+    </div>
+    <div class="trust-row">
+      <div class="trust-item"><b>4,8/5</b>612 Bewertungen</div>
+      <div class="trust-item"><b>Allianz · HUK · AXA</b>Partnerwerkstatt</div>
+      <div class="trust-item"><b>24 Monate</b>Garantie</div>
+    </div>
+  </div>
+</header>
+
+<section>
+  <h2>Leistungen — Variante A (Blöcke mit Tag)</h2>
+  <span class="variant-label">Variant A</span>
+  <div class="grid grid-3">
+    <div class="svc-block"><span class="tag">Beliebt</span><h3>Steinschlagreparatur</h3><p>Ab 0 € bei Kaskoversicherung, in 30 Minuten.</p></div>
+    <div class="svc-block"><h3>Scheibenwechsel</h3><p>Kompletter Austausch inkl. Kalibrierung.</p></div>
+    <div class="svc-block"><h3>Sensor-Kalibrierung</h3><p>Für Fahrzeuge mit Assistenzsystemen.</p></div>
+  </div>
+</section>
+
+<section>
+  <h2>Leistungen — Variante B (Balkenliste)</h2>
+  <span class="variant-label">Variant B</span>
+  <div class="svc-bar"><span class="num">01</span><h3 style="margin:0;">Steinschlagreparatur</h3><a class="btn btn-secondary" href="#" style="min-height:40px; padding:0 20px;">Details</a></div>
+  <div class="svc-bar"><span class="num">02</span><h3 style="margin:0;">Scheibenwechsel</h3><a class="btn btn-secondary" href="#" style="min-height:40px; padding:0 20px;">Details</a></div>
+  <div class="svc-bar"><span class="num">03</span><h3 style="margin:0;">Sensor-Kalibrierung</h3><a class="btn btn-secondary" href="#" style="min-height:40px; padding:0 20px;">Details</a></div>
+</section>
+
+<section>
+  <h2>Warum wir — Variante A (Nummern-Grid)</h2>
+  <span class="variant-label">Variant A</span>
+  <div class="grid grid-3">
+    <div class="why-block"><span class="big-num">01</span><h3>Meisterqualität</h3><p>Zertifizierte Techniker, geprüfte Prozesse.</p></div>
+    <div class="why-block"><span class="big-num">02</span><h3>Direktabrechnung</h3><p>Wir klären alles mit Ihrer Versicherung.</p></div>
+    <div class="why-block"><span class="big-num">03</span><h3>Mobiler Service</h3><p>Wir kommen zu Ihnen, wenn gewünscht.</p></div>
+  </div>
+</section>
+
+<section style="border-bottom: none;">
+  <h2>Warum wir — Variante B (Stat-Band)</h2>
+  <span class="variant-label">Variant B</span>
+  <div class="stat-band">
+    <div class="stat-cell"><span class="num">12.400+</span>Reparaturen/Jahr</div>
+    <div class="stat-cell"><span class="num">4,8/5</span>Bewertung</div>
+    <div class="stat-cell"><span class="num">24 Mon.</span>Garantie</div>
+    <div class="stat-cell" style="border-right:none;"><span class="num">30 Min.</span>Ø Reparaturzeit</div>
+  </div>
+</section>
+
+<footer class="note">Direction 3 / 3 — Klare Kante — Statische Vorschau, kein Anwendungscode.</footer>
+
+</body>
+</html>

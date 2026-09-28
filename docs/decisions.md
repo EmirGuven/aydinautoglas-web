@@ -143,3 +143,54 @@ Real gap this surfaced and fixed in the same pass: the `faq_categories` table (a
 **Framework bug hit (and worked around, not just patched) while building the IndexNow key-verification file:** a Nitro/Nuxt file-based route whose filename mixes a bracket param with a literal suffix in the *same path segment* — `server/routes/[key].txt.get.ts`, intended to match `/:key.txt` — is not split by the underlying router (rou3) into a `key` param plus a static `.txt` suffix the way the generated `nitro-routes.d.ts` type (`'/:key.txt'`) implies: at runtime the entire bracket token becomes one parameter literally named `"key.txt"` (confirmed by logging `event.context.params` directly, since `getRouterParam(event, 'key')` silently returns `undefined`), and its *captured value* still carries the `.txt` suffix. Stripping the suffix by hand made the route *work*, but it did not explain a second, far more serious symptom found immediately after: **that same route file broke the entire public site — `GET /` (and every other page) started 404ing**, reproduced twice from a clean `pnpm dev` restart, and confirmed by mechanically deleting the one file: the homepage came back the instant `server/routes/[key].txt.get.ts` was removed. The most likely explanation is that Nitro's scanner, unable to correctly parse the mixed bracket+suffix filename into a proper single-segment dynamic route, registers something closer to a wildcard that outranks Nuxt's own catch-all page-render fallback in rou3's matching order — but the exact internal mechanism wasn't traced further once a safe fix was in hand. **Fix:** serve the key file from a `server/middleware/indexnow-key.ts` middleware instead (matching the existing `redirects.ts`/`markdown-export.ts` pattern) — it inspects `event.path` by hand with a regex and only ever `return`s a body for the one exact matching request, so it can't register a competing route pattern at all. **Takeaway for any future route:** never name a file-based server route `[param].<literal>.<method>.ts` (a bracket segment plus a literal suffix in one path segment) — even setting aside the param-name/value quirk above, it has been observed to break routing for unrelated paths sitewide. Use a middleware for that shape of match instead.
 
 **Not revisited:** given the admin UI already exists, is fully functional, tested (`e2e/admin-auth.spec.ts` and others run against it), and localized (ADR-0015), retrofitting it onto KTUI at this point would be a rewrite with no user-facing benefit — the risk of introducing regressions outweighs conforming to a spec detail about *how* the same visual result should have been achieved. If a future requirement genuinely needs a KTUI-specific behavior (e.g. a component KTUI has that would take significant effort to hand-roll), evaluate adopting it for that one component rather than a wholesale migration.
+
+## ADR-0018: Design tokens split into brand (DB) vs. structural (static) tiers
+
+**Context:** a site-owner-requested visual redesign pass (FAZ A-E: audit → 2-3 direction
+previews → design system → public site → admin) started with FAZ A auditing the actual
+running site against the owner's complaints (generic/template-like, weak hero/CTAs,
+monotonous cards, cluttered admin — see `docs/design-audit.md`), then FAZ B produced three
+static HTML direction previews (`docs/design/directions/`), of which "Werkstatt Präzision"
+(technical/precision: navy/graphite + amber, condensed headings, sharp small radii) was
+selected by the site owner. This ADR covers FAZ C — turning that direction into real tokens.
+
+**Decision:** the `theme` table (and its Zod schema / service layer) grew from 8 to 15
+fields, split conceptually into two tiers — see `docs/design-system.md` for the full token
+table:
+- **Brand tokens** (DB-backed, one row, re-seeded per sector template, admin-editable):
+  `colorPrimary/Secondary/Accent/Background/Text` (existing) plus new `colorSurface`,
+  `colorBorder`, `colorMuted`, `fontFamily` (existing) plus new `fontFamilyHeading`,
+  `borderRadius` (existing, stays the button radius) plus new `radiusCard`, and new
+  `shadowCard`/`shadowElevated` (raw `box-shadow` strings, following the same
+  raw-CSS-value pattern `borderRadius` already established rather than a `sm`/`md`/`lg` enum).
+- **Structural tokens** (static, defined once in `app/assets/css/theme.css`, identical
+  across every sector template): a fluid type scale (`--text-fluid-h1/h2/h3/body`, added
+  as new keys under Tailwind v4's `--text-*` namespace — additive, doesn't touch the
+  existing `text-sm`/`text-lg`/etc. scale the admin panel also depends on).
+
+**Why the split:** color/font/radius/shadow-color are genuine brand expression — they're
+exactly the fields a different sector template's admin should be able to set differently.
+Type scale, spacing, z-index, and transition duration are *systemic consistency* constants —
+letting them vary per template would fragment visual rhythm for no real benefit (a heading
+being 5% larger doesn't express brand identity the way a color does). Spacing, z-index, and
+transition duration were surveyed against actual existing usage in `app/components/**`
+(z-20 dropdowns / z-30 sticky-bars / z-40 modals-sidebar / z-50 toasts; sparse
+`duration-200`/`duration-300` usage) and left as Tailwind v4 defaults rather than given new
+named tokens — the existing numeric scale was already consistent enough that adding
+indirection on top of it would be pure ceremony.
+
+**Fonts:** the selected direction's IBM Plex Sans / IBM Plex Sans Condensed pairing is
+self-hosted via `@fontsource/ibm-plex-sans` and `@fontsource/ibm-plex-sans-condensed`
+(new dependencies, imported in `app/assets/css/main.css`) — both confirmed to ship a
+`latin-ext` unicode-range subset covering German diacritics (ä/ö/ü/ß) before adopting them.
+Importing the CSS is unconditional but cheap; a sector template (like `generic-service`,
+updated in the same pass to a deliberately different warm/rounded brand-token set proving
+the architecture generalizes) that sticks to a system-font stack pays no cost for fonts it
+never references.
+
+**Scope boundary, deliberately not crossed in this pass:** no component markup or layout
+changed. Existing components render with the new token *values* applied (verified live
+against the running dev site — the injected `<style>:root{...}</style>` block carries all 15
+`--site-*` variables with no FOUC) but still use their pre-existing class structure; visually
+adopting the new tokens into actual component redesigns (Hero, ServiceCards, WhyUs, the
+admin sidebar, etc.) is the following FAZ D/E phases, each gated on its own review.

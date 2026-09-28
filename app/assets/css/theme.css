@@ -22,6 +22,32 @@
   --color-accent: var(--site-color-accent);
   --color-background: var(--site-color-background);
   --color-text: var(--site-color-text);
+  --color-surface: var(--site-color-surface);
+  --color-border: var(--site-color-border);
+  --color-muted: var(--site-color-muted);
   --font-body: var(--site-font-family);
+  --font-heading: var(--site-font-family-heading);
   --radius-button: var(--site-radius-button);
+  --radius-card: var(--site-radius-card);
+  --shadow-card: var(--site-shadow-card);
+  --shadow-elevated: var(--site-shadow-elevated);
+}
+
+/*
+ * Structural tokens — fluid type scale (per-sector-template BRAND tokens
+ * are colors/fonts/radius/shadow above; these are systemic consistency
+ * constants shared by every template, see docs/design-system.md).
+ *
+ * These are new keys under Tailwind v4's `--text-*` namespace (which
+ * generates a `text-{key}` utility for any key, not just the built-in
+ * xs/sm/base/lg/... scale) — they do NOT override the default scale, so
+ * `text-sm`, `text-lg`, etc. keep working exactly as before everywhere,
+ * including the admin panel, which must stay independent of the public
+ * site's design system. Only public blocks opt in by using `text-fluid-*`.
+ */
+@theme {
+  --text-fluid-h1: clamp(2.25rem, 1.6rem + 3vw, 3.75rem);
+  --text-fluid-h2: clamp(1.5rem, 1.2rem + 1.4vw, 2.25rem);
+  --text-fluid-h3: clamp(1.15rem, 1.05rem + 0.5vw, 1.375rem);
+  --text-fluid-body: clamp(1rem, 0.97rem + 0.15vw, 1.0625rem);
 }

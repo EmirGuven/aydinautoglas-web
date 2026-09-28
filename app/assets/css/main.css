@@ -1,5 +1,19 @@
 @import "tailwindcss";
 @plugin "@tailwindcss/typography";
+
+/*
+ * Self-hosted fonts (DSGVO — never load from Google's CDN). These are the
+ * fonts referenced by the `autoglass` sector template's fontFamily /
+ * fontFamilyHeading theme values (see docs/design-system.md). A different
+ * sector template's admin can still type any system-font stack into the
+ * theme editor without needing a new font package — these imports simply
+ * make IBM Plex available as an option, they don't force its use.
+ */
+@import "@fontsource/ibm-plex-sans/400.css";
+@import "@fontsource/ibm-plex-sans/500.css";
+@import "@fontsource/ibm-plex-sans/700.css";
+@import "@fontsource/ibm-plex-sans-condensed/700.css";
+
 @import "./theme.css";
 
 /* Class-based dark mode (toggled by app/composables/useAdminUi.ts), instead of Tailwind v4's default media-query strategy. */

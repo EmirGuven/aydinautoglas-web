@@ -22,6 +22,13 @@
       "when": 1790356248545,
       "tag": "0002_bored_firelord",
       "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "7",
+      "when": 1790620328916,
+      "tag": "0003_chemical_natasha_romanoff",
+      "breakpoints": true
     }
   ]
 }

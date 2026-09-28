@@ -17,14 +17,26 @@ import type { Block } from '../../../../shared/schemas/blocks'
 
 export async function seedGenericServiceTemplate(): Promise<void> {
   console.log('[seed] generic-service: theme, settings...')
+  // A deliberately different brand-token set from `autoglass` (warm/rounded vs.
+  // technical/sharp) using the SAME design-system architecture, proving it
+  // generalizes across sector templates — see docs/design-system.md. Sticks to
+  // system font stacks (no @fontsource package needed here) since a rounded
+  // UI-native heading face already fits a soft, approachable service brand.
   await setTheme({
     colorPrimary: '#15803d',
     colorSecondary: '#14532d',
     colorAccent: '#facc15',
-    colorBackground: '#ffffff',
+    colorBackground: '#F6FAF7',
     colorText: '#14532d',
+    colorSurface: '#ffffff',
+    colorBorder: '#D9E5DC',
+    colorMuted: '#5B6B60',
     fontFamily: 'system-ui, sans-serif',
+    fontFamilyHeading: 'ui-rounded, system-ui, sans-serif',
     borderRadius: '0.75rem',
+    radiusCard: '1rem',
+    shadowCard: '0 2px 6px rgba(20, 83, 45, 0.10)',
+    shadowElevated: '0 16px 32px rgba(20, 83, 45, 0.20)',
     buttonStyle: 'pill',
   })
 

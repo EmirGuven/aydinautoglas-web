@@ -7,8 +7,15 @@ export interface ThemeValues {
   colorAccent: string
   colorBackground: string
   colorText: string
+  colorSurface: string
+  colorBorder: string
+  colorMuted: string
   fontFamily: string
+  fontFamilyHeading: string
   borderRadius: string
+  radiusCard: string
+  shadowCard: string
+  shadowElevated: string
   buttonStyle: string
 }
 
@@ -18,8 +25,15 @@ const DEFAULT_THEME: ThemeValues = {
   colorAccent: '#f59e0b',
   colorBackground: '#ffffff',
   colorText: '#0f172a',
+  colorSurface: '#ffffff',
+  colorBorder: '#e2e8f0',
+  colorMuted: '#64748b',
   fontFamily: 'system-ui, sans-serif',
+  fontFamilyHeading: 'system-ui, sans-serif',
   borderRadius: '0.5rem',
+  radiusCard: '0.5rem',
+  shadowCard: '0 1px 2px rgba(15, 23, 42, 0.08)',
+  shadowElevated: '0 12px 28px rgba(15, 23, 42, 0.18)',
   buttonStyle: 'solid',
 }
 

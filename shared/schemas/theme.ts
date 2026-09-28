@@ -8,8 +8,15 @@ export const themeSchema = z.object({
   colorAccent: hexColor,
   colorBackground: hexColor,
   colorText: hexColor,
+  colorSurface: hexColor,
+  colorBorder: hexColor,
+  colorMuted: hexColor,
   fontFamily: z.string().min(1),
+  fontFamilyHeading: z.string().min(1),
   borderRadius: z.string().min(1),
+  radiusCard: z.string().min(1),
+  shadowCard: z.string().min(1),
+  shadowElevated: z.string().min(1),
   buttonStyle: z.enum(['solid', 'outline', 'pill']),
 })
 
