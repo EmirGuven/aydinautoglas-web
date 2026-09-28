@@ -1,20 +1,42 @@
 services:
-  app:
-    build: .
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
     container_name: aydin-autoglas-web
     restart: unless-stopped
+
+    # Traefik yönlendirmesi
+    labels:
+      - "traefik.enable=true"
+      - "traefik.docker.network=proxy"
+    
+      - "traefik.http.routers.aydin-autoglas-web.rule=Host(`aydinautoglas.de`) || Host(`www.aydinautoglas.de`)"
+      - "traefik.http.routers.aydin-autoglas-web.entrypoints=web"
+      - "traefik.http.routers.aydin-autoglas-web.service=aydin-autoglas-web"
+    
+      - "traefik.http.routers.aydin-autoglas-web-secure.rule=Host(`aydinautoglas.de`) || Host(`www.aydinautoglas.de`)"
+      - "traefik.http.routers.aydin-autoglas-web-secure.entrypoints=websecure"
+      - "traefik.http.routers.aydin-autoglas-web-secure.tls=true"
+      - "traefik.http.routers.aydin-autoglas-web-secure.tls.certresolver=letsencrypt"
+      - "traefik.http.routers.aydin-autoglas-web-secure.service=aydin-autoglas-web"
+    
+      - "traefik.http.services.aydin-autoglas-web.loadbalancer.server.port=3000"
+
     environment:
       NODE_ENV: production
       HOST: "0.0.0.0"
       PORT: "3000"
-      ADMIN_JWT_SECRET: ${ADMIN_JWT_SECRET:?ADMIN_JWT_SECRET is required}
-      # Shared PostgreSQL instance on this server (network: db_internal below) — not a
-      # dedicated container for this app. See docs/deployment-shared-server.md for the
-      # one-time SQL to create this app's own database/user inside that shared instance.
-      DATABASE_URL: ${DATABASE_URL:?DATABASE_URL is required}
+      UPLOADS_DIR: /app/public/uploads
+      ADMIN_JWT_SECRET: ${ADMIN_JWT_SECRET:-change_me_in_production_use_strong_secret}
+      NUXT_PUBLIC_SITE_URL: ${NUXT_PUBLIC_SITE_URL:-https://www.aydinautoglas.de}
+      # PostgreSQL bağlantısı — kullanıcı adı/şifreyi burada değil,
+      # proje kökündeki .env dosyasında DATABASE_URL olarak tanımlayın.
+      DATABASE_URL: ${DATABASE_URL}
 
     volumes:
-      - uploads:/app/uploads
+      # Yüklenen görseller — deploy'lar arasında kalıcı Docker volume'unde tutulur.
+      - ev_mobil_uploads:/app/public/uploads
 
     healthcheck:
       test: ["CMD", "node", "-e", "fetch('http://localhost:3000/api/health').then(r=>{if(r.ok)process.exit(0);else process.exit(1)}).catch(()=>process.exit(1))"]
@@ -23,33 +45,10 @@ services:
       retries: 3
       start_period: 15s
 
-    # Traefik yönlendirmesi (bu sunucuda Caddy değil Traefik kullanılıyor — bkz.
-    # docs/deployment-shared-server.md). Port 80/443 host'ta zaten Traefik'e ait; bu servis
-    # host'ta hiçbir port yayınlamaz, Traefik'e sadece "proxy" network'ü üzerinden bağlanır.
-    labels:
-      - "traefik.enable=true"
-      - "traefik.docker.network=proxy"
-
-      - "traefik.http.routers.aydin-autoglas.rule=Host(`aydinautoglas.de`) || Host(`www.aydinautoglas.de`)"
-      - "traefik.http.routers.aydin-autoglas.entrypoints=web"
-      - "traefik.http.routers.aydin-autoglas.service=aydin-autoglas"
-
-      - "traefik.http.routers.aydin-autoglas-secure.rule=Host(`aydinautoglas.de`) || Host(`www.aydinautoglas.de`)"
-      - "traefik.http.routers.aydin-autoglas-secure.entrypoints=websecure"
-      - "traefik.http.routers.aydin-autoglas-secure.tls=true"
-      - "traefik.http.routers.aydin-autoglas-secure.tls.certresolver=letsencrypt"
-      - "traefik.http.routers.aydin-autoglas-secure.service=aydin-autoglas"
-
-      - "traefik.http.services.aydin-autoglas.loadbalancer.server.port=3000"
-
-      # Reverse-proxy-level gzip/br (closes the ADR-0013 compression gap — Nitro itself
-      # doesn't compress dynamic SSR HTML, see docs/decisions.md).
-      - "traefik.http.middlewares.aydin-autoglas-compress.compress=true"
-      - "traefik.http.routers.aydin-autoglas-secure.middlewares=aydin-autoglas-compress"
-
     networks:
       - proxy
-      # Shared PostgreSQL container's network on this server (same one ev-mobil uses).
+      # Paylaşılan PostgreSQL container'ının bulunduğu iç network.
+      # DATABASE_URL host'u bu network üzerindeki "postgres" servis adıdır.
       - db_internal
 
 networks:
@@ -60,4 +59,4 @@ networks:
     name: livaisitme_internal
 
 volumes:
-  uploads:
+  ev_mobil_uploads:

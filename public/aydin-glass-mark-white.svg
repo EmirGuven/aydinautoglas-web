@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 72 72" width="72" height="72">
+  <defs>
+    <mask id="agm">
+      <rect width="72" height="72" fill="black"/>
+      <path d="M12 14 H60 C58 30 54 44 36 62 C18 44 14 30 12 14 Z" fill="white"/>
+      <path d="M36 24 L40 34 L50 36 L41 41 L43 51 L36 45 L29 51 L31 41 L22 36 L32 34 Z" fill="black"/>
+    </mask>
+  </defs>
+  <rect width="72" height="72" fill="#FFFFFF" mask="url(#agm)"/>
+</svg>

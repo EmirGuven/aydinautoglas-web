@@ -1,33 +1,14 @@
-# Nuxt dev/build outputs
+node_modules
+.nuxt
 .output
 .data
-.nuxt
-.nitro
-.cache
 dist
-
-# Node dependencies
-node_modules
-
-# Logs
-logs
-*.log
-
-# Misc
 .DS_Store
-.fleet
-.idea
-
-# Local env files
 .env
-.env.*
-!.env.example
 
-# Uploaded media (served from server/routes/uploads)
-/uploads
+# Yüklenen görseller (klasör yapısını koru, içeriği ignore et)
+public/uploads/*
+!public/uploads/.gitkeep
 
-# Playwright output
-/test-results
-/playwright-report
-/blob-report
-/playwright/.cache
+# Seed verisi (gerçek admin şifre hash'i içerir, üretilen dosyadır)
+scripts/seed-data.json

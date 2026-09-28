@@ -1,12 +1,28 @@
-import { sql } from 'drizzle-orm'
-import { db } from '../db/client'
+import { setResponseStatus } from "h3"
+import { getDb } from "../utils/db"
 
 export default defineEventHandler(async (event) => {
   try {
-    await db.execute(sql`select 1`)
-    return { status: 'ok', db: 'ok' }
-  } catch {
+    const db = await getDb()
+    await db.prepare("SELECT 1 AS ok").get()
+
+    return {
+      status: "ok",
+      service: "backend",
+      timestamp: new Date().toISOString(),
+      uptime: Math.round(process.uptime()),
+      database: "ok",
+    }
+  } catch (error) {
     setResponseStatus(event, 503)
-    return { status: 'error', db: 'unreachable' }
+
+    return {
+      status: "error",
+      service: "backend",
+      timestamp: new Date().toISOString(),
+      uptime: Math.round(process.uptime()),
+      database: "error",
+      message: error instanceof Error ? error.message : "Unknown database error",
+    }
   }
 })

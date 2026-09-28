@@ -1,26 +1,20 @@
-import { SESSION_COOKIE, verifySessionToken } from '../utils/jwt'
+// server/middleware/admin-auth.ts
+// Admin API route'larını korur
+import { verifyToken, parseCookies } from "../utils/auth"
 
-const PUBLIC_ADMIN_ROUTES = new Set(['/api/admin/auth/login'])
-
-/**
- * Protects /api/admin/** with a JWT cookie check. On success, attaches the
- * verified session to event.context.user for services/routes to read.
- * Role checks happen in the service layer (server/utils/permissions.ts).
- */
 export default defineEventHandler(async (event) => {
-  const path = event.path.split('?')[0] ?? event.path
-  if (!path.startsWith('/api/admin/') || PUBLIC_ADMIN_ROUTES.has(path)) {
-    return
-  }
+  const path = event.path || ""
 
-  const token = getCookie(event, SESSION_COOKIE)
-  if (!token) {
-    throw createError({ statusCode: 401, statusMessage: 'Unauthorized' })
-  }
-
-  try {
-    event.context.user = await verifySessionToken(token)
-  } catch {
-    throw createError({ statusCode: 401, statusMessage: 'Unauthorized' })
+  // Sadece /api/admin/* route'larını koru (login hariç)
+  if (path.startsWith("/api/admin/") && !path.includes("/api/admin/login")) {
+    const cookies = parseCookies(getHeader(event, "cookie") || null)
+    const token = cookies.admin_token
+    if (!token) {
+      throw createError({ statusCode: 401, message: "Yetkisiz erişim." })
+    }
+    const payload = await verifyToken(token)
+    if (!payload) {
+      throw createError({ statusCode: 401, message: "Oturum süresi doldu." })
+    }
   }
 })

@@ -1,30 +1,78 @@
-import { appointmentSubmissionSchema } from '#shared/schemas/appointments'
-import { createAppointment } from '../services/appointments.service'
-import { sendTemplatedEmail } from '../services/email.service'
-import { getSetting } from '../services/site-settings.service'
-import { checkRateLimit } from '../utils/rate-limit'
+// POST /api/appointments — randevu formu gönderimi
+import { getDb } from "../utils/db"
+import { checkRateLimit, resolveClientIp } from "../utils/rate-limit"
 
 export default defineEventHandler(async (event) => {
-  checkRateLimit(event, 'appointment', 5, 60_000)
-
+  const runtimeConfig = useRuntimeConfig(event)
   const body = await readBody(event)
-  const parsed = appointmentSubmissionSchema.safeParse(body)
-  if (!parsed.success) {
-    throw createError({ statusCode: 400, statusMessage: 'Invalid input', data: parsed.error.flatten() })
+  const { name, phone, email, service, message } = body || {}
+
+  const rateLimit = checkRateLimit(event, {
+    keyPrefix: "contact-form",
+    windowMs: 10 * 60 * 1000,
+    maxRequests: 3,
+  })
+
+  if (!rateLimit.allowed) {
+    setHeader(event, "Retry-After", rateLimit.retryAfterSeconds)
+    throw createError({ statusCode: 429, message: "Zu viele Anfragen. Bitte versuchen Sie es in einigen Minuten erneut." })
   }
 
-  if (parsed.data.companyWebsite) {
+  const honeypot = String(body?.website || "").trim()
+  if (honeypot) {
     return { success: true }
   }
 
-  const created = await createAppointment(parsed.data)
-
-  const contactSettings = await getSetting('contact')
-  const vars = { name: parsed.data.contactName, email: parsed.data.contactEmail }
-  if (contactSettings?.email) {
-    await sendTemplatedEmail('appointmentAdminNotification', contactSettings.email, parsed.data.locale, vars)
+  const startedAt = Number(body?.form_started_at || 0)
+  if (Number.isFinite(startedAt) && startedAt > 0) {
+    const elapsed = Date.now() - startedAt
+    if (elapsed >= 0 && elapsed < 2500) {
+      throw createError({ statusCode: 400, message: "Formular wurde zu schnell gesendet. Bitte überprüfen Sie Ihre Angaben und versuchen Sie es erneut." })
+    }
   }
-  await sendTemplatedEmail('appointmentCustomerConfirmation', parsed.data.contactEmail, parsed.data.locale, vars)
 
-  return { success: true, id: created.id }
+  const turnstileSecret = String(runtimeConfig.turnstileSecret || "").trim()
+  if (turnstileSecret) {
+    const token = String(body?.turnstile_token || "").trim()
+    if (!token) {
+      throw createError({ statusCode: 400, message: "Bitte bestätigen Sie die Sicherheitsprüfung." })
+    }
+
+    const formData = new URLSearchParams()
+    formData.set("secret", turnstileSecret)
+    formData.set("response", token)
+    formData.set("remoteip", resolveClientIp(event))
+
+    let verification: any = null
+    try {
+      verification = await $fetch("https://challenges.cloudflare.com/turnstile/v0/siteverify", {
+        method: "POST",
+        body: formData,
+      })
+    } catch {
+      throw createError({ statusCode: 503, message: "Sicherheitsdienst nicht erreichbar. Bitte versuchen Sie es erneut." })
+    }
+
+    if (!verification?.success) {
+      throw createError({ statusCode: 400, message: "Sicherheitsprüfung fehlgeschlagen. Bitte versuchen Sie es erneut." })
+    }
+  }
+
+  if (!name || !email) {
+    throw createError({ statusCode: 400, message: "Name und E-Mail sind erforderlich." })
+  }
+
+  const db = await getDb()
+  const result = await db.prepare(`
+    INSERT INTO appointments (name, phone, email, service, message)
+    VALUES (?, ?, ?, ?, ?)
+  `).run(
+    String(name).slice(0, 200),
+    String(phone || "").slice(0, 50),
+    String(email).slice(0, 200),
+    String(service || "").slice(0, 100),
+    String(message || "").slice(0, 2000)
+  )
+
+  return { success: true, id: result.lastInsertRowid }
 })

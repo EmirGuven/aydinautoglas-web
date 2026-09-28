@@ -1,31 +1,43 @@
-import { join, normalize, sep, extname } from 'node:path'
-import { createReadStream, existsSync } from 'node:fs'
+import { access, stat } from "node:fs/promises"
+import { createReadStream } from "node:fs"
+import { join, normalize } from "node:path"
 
-const UPLOADS_ROOT = normalize(join(process.cwd(), 'uploads'))
-
-const CONTENT_TYPES: Record<string, string> = {
-  '.webp': 'image/webp',
-  '.jpg': 'image/jpeg',
-  '.jpeg': 'image/jpeg',
-  '.png': 'image/png',
-  '.gif': 'image/gif',
-  '.svg': 'image/svg+xml',
+const contentTypeByExt: Record<string, string> = {
+  ".jpg": "image/jpeg",
+  ".jpeg": "image/jpeg",
+  ".png": "image/png",
+  ".webp": "image/webp",
+  ".gif": "image/gif",
+  ".svg": "image/svg+xml",
 }
 
-/** Serves uploaded files, guarding against path traversal: the resolved path must stay inside UPLOADS_ROOT. */
-export default defineEventHandler((event) => {
-  const requestedPath = getRouterParam(event, 'path') ?? ''
-  const resolvedPath = normalize(join(UPLOADS_ROOT, requestedPath))
+export default defineEventHandler(async (event) => {
+  const requested = getRouterParam(event, "path") || ""
+  const decoded = decodeURIComponent(requested)
 
-  if (!resolvedPath.startsWith(UPLOADS_ROOT + sep) || !existsSync(resolvedPath)) {
-    throw createError({ statusCode: 404, statusMessage: 'Not found' })
+  const uploadsRoot = process.env.UPLOADS_DIR || join(process.cwd(), "public", "uploads")
+  const absoluteRoot = normalize(uploadsRoot)
+  const absoluteFile = normalize(join(absoluteRoot, decoded))
+
+  if (!absoluteFile.startsWith(absoluteRoot)) {
+    throw createError({ statusCode: 400, message: "Geçersiz dosya yolu." })
   }
 
-  const contentType = CONTENT_TYPES[extname(resolvedPath).toLowerCase()]
-  if (contentType) {
-    setResponseHeader(event, 'Content-Type', contentType)
+  try {
+    await access(absoluteFile)
+    const fileStat = await stat(absoluteFile)
+    if (!fileStat.isFile()) {
+      throw createError({ statusCode: 404, message: "Dosya bulunamadı." })
+    }
+  } catch {
+    throw createError({ statusCode: 404, message: "Dosya bulunamadı." })
   }
-  setResponseHeader(event, 'Cache-Control', 'public, max-age=31536000, immutable')
 
-  return sendStream(event, createReadStream(resolvedPath))
+  const ext = absoluteFile.slice(absoluteFile.lastIndexOf(".")).toLowerCase()
+  const contentType = contentTypeByExt[ext] || "application/octet-stream"
+
+  setHeader(event, "Content-Type", contentType)
+  setHeader(event, "Cache-Control", "public, max-age=31536000, immutable")
+
+  return sendStream(event, createReadStream(absoluteFile))
 })

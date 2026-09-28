@@ -1,1 +1,0 @@
-ALTER TABLE "locations" ADD COLUMN "slug" jsonb DEFAULT '{}'::jsonb NOT NULL;

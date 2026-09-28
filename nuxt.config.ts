@@ -1,77 +1,59 @@
-import tailwindcss from '@tailwindcss/vite'
+import { defineNuxtConfig } from "nuxt/config"
 
-// https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
-  compatibilityDate: '2025-07-15',
-  devtools: { enabled: true },
-
-  modules: ['@nuxt/eslint', '@nuxtjs/i18n'],
-
-  css: ['~/assets/css/main.css'],
-
-  vite: {
-    plugins: [tailwindcss()],
+  compatibilityDate: "2025-03-01",
+  devtools: { enabled: false },
+  ssr: true,
+  modules: ["@nuxtjs/seo"],
+  css: ["~/assets/css/main.css"],
+  seo: {
+    // favicon admin panelden dinamik yönetiliyor (app.vue) — otomatik statik favicon taraması kapalı
+    metaDataFiles: false
   },
-
-  typescript: {
-    strict: true,
-    typeCheck: false,
-  },
-
-  i18n: {
-    strategy: 'prefix_except_default',
-    defaultLocale: 'de',
-    locales: [
-      { code: 'de', language: 'de-DE', name: 'Deutsch', file: 'de.json' },
-      { code: 'en', language: 'en-US', name: 'English', file: 'en.json' },
-      { code: 'tr', language: 'tr-TR', name: 'Türkçe', file: 'tr.json' },
-    ],
-    // No automatic redirect on browser language (bad for SEO — see prompt.md §14): a
-    // dismissible suggestion banner (UiLanguageSuggestionBanner) offers the switch instead.
-    detectBrowserLanguage: false,
-  },
-
   runtimeConfig: {
-    databaseUrl: '',
-    adminJwtSecret: '',
-    public: {},
+    turnstileSecret: process.env.TURNSTILE_SECRET_KEY || "",
+    public: {
+      siteUrl: process.env.NUXT_PUBLIC_SITE_URL || "https://www.aydinautoglas.de",
+      turnstileSiteKey: process.env.NUXT_PUBLIC_TURNSTILE_SITE_KEY || ""
+    }
   },
-
-  nitro: {
-    // Pre-compresses built static assets (_nuxt/* JS/CSS) with gzip/brotli at build time.
-    // Dynamic SSR HTML responses are NOT compressed by this — that's expected to come from
-    // the Caddy reverse proxy in front of the app in production (Phase 10's deployment
-    // architecture), not from Nitro itself. See docs/decisions.md ADR-0013.
-    compressPublicAssets: { gzip: true, brotli: true },
-  },
-
-  routeRules: {
-    // Security headers (prompt.md §9). CSP's script-src needs 'unsafe-inline' because Nuxt
-    // itself embeds the hydration payload as an inline <script> on every page and the
-    // Google Analytics loader (UiAnalyticsLoader) injects a short inline init script — a
-    // strict nonce-based CSP would need the `nuxt-security` module (or equivalent) wired
-    // through Nitro's render pipeline, which is out of scope for this pass; revisit if that
-    // module is added later. style-src needs 'unsafe-inline' for the same reason (Vue's
-    // `:style` bindings and the SSR theme `<style>` tag in app/composables/useTheme.ts).
-    '/**': {
-      headers: {
-        'X-Frame-Options': 'SAMEORIGIN',
-        'X-Content-Type-Options': 'nosniff',
-        'Referrer-Policy': 'strict-origin-when-cross-origin',
-        'Permissions-Policy': 'camera=(), microphone=(), geolocation=()',
-        'Strict-Transport-Security': 'max-age=31536000; includeSubDomains',
-        'Content-Security-Policy': [
-          "default-src 'self'",
-          "script-src 'self' 'unsafe-inline' https://www.googletagmanager.com",
-          "style-src 'self' 'unsafe-inline'",
-          "img-src 'self' data: https:",
-          "font-src 'self' data:",
-          "frame-src 'self' https://www.openstreetmap.org",
-          "connect-src 'self' https://www.google-analytics.com https://www.googletagmanager.com",
-          "object-src 'none'",
-          "base-uri 'self'",
-        ].join('; '),
+  app: {
+    head: {
+      htmlAttrs: {
+        lang: "de"
       },
-    },
+      viewport: "width=device-width, initial-scale=1",
+      titleTemplate: "%s | Aydin Autoglas"
+    }
   },
+  // @ts-ignore - @nuxtjs/seo module augments this type at runtime
+  site: {
+    url: process.env.NUXT_PUBLIC_SITE_URL || "https://www.aydinautoglas.de",
+    name: "Aydin Autoglas",
+    description: "Aydin Autoglas — Steinschlagreparatur, Frontscheibenaustausch, Seiten- und Heckscheiben sowie mobiler Service in Hildrizhausen und dem Landkreis Böblingen.",
+    defaultLocale: "de"
+  },
+  robots: {
+    disallow: process.env.NODE_ENV === "production" ? [] : ["/"],
+    sitemap: "/sitemap.xml"
+  },
+  sitemap: {
+    autoLastmod: true,
+    sources: ["/api/sitemap-urls"]
+  },
+  routeRules: {
+    "/": { ssr: true },
+    "/ueber-uns": { ssr: true },
+    "/kontakt": { ssr: true },
+    "/haeufige-fragen": { ssr: true },
+    "/datenschutz": { ssr: true },
+    "/agb": { ssr: true },
+    "/impressum": { ssr: true },
+    "/admin/**": { ssr: false }
+  },
+  nitro: {
+    prerender: {
+      routes: ["/robots.txt"]
+    }
+  }
 })
