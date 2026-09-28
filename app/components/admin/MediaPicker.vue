@@ -62,6 +62,14 @@ async function onFileChosen(event: Event) {
 }
 
 watch(search, () => loadItems())
+
+watch(
+  () => props.modelValue,
+  (id) => {
+    if (id && !items.value.length) loadItems()
+  },
+  { immediate: true },
+)
 </script>
 
 <template>
