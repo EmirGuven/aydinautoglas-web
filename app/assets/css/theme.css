@@ -1,18 +1,15 @@
 /**
- * Default fallback values for theme custom properties.
- * The actual values are injected server-side per request from the `theme`
- * table (see app/composables/useTheme.ts) as an inline <style> in <head>,
- * overriding these defaults before first paint (no FOUC).
+ * No static fallback values here on purpose: useTheme() (app/composables/useTheme.ts)
+ * always injects a `:root{--site-color-*:...}` <style> tag server-side, synchronously,
+ * before first paint (no FOUC) — getActiveTheme() falls back to DEFAULT_THEME itself
+ * when the `theme` table is empty, so a value is always present.
+ *
+ * A static `:root` block was previously duplicated here as a "design-time fallback",
+ * but Tailwind bakes it into the compiled stylesheet, whose <link> is emitted AFTER
+ * the dynamic <style> tag in <head> — same selector, same specificity, so the static
+ * values always won the cascade and silently overrode every admin theme change. Do not
+ * reintroduce a `:root { --site-color-*: ... }` block in this file.
  */
-:root {
-  --site-color-primary: #1d4ed8;
-  --site-color-secondary: #0f172a;
-  --site-color-accent: #f59e0b;
-  --site-color-background: #ffffff;
-  --site-color-text: #0f172a;
-  --site-font-family: system-ui, sans-serif;
-  --site-radius-button: 0.5rem;
-}
 
 /*
  * `@theme inline` maps our runtime-controlled custom properties onto

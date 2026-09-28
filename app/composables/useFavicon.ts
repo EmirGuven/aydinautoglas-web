@@ -11,8 +11,9 @@ export function useFavicon() {
   )
 
   const faviconUrl = computed(() => mediaUrl(faviconMedia.value?.[faviconMediaId.value ?? ''], 'thumb'))
+  const faviconLinks = computed(() => (faviconUrl.value ? [{ rel: 'icon' as const, href: faviconUrl.value }] : []))
 
   useHead({
-    link: () => (faviconUrl.value ? [{ rel: 'icon', href: faviconUrl.value }] : []),
+    link: faviconLinks,
   })
 }

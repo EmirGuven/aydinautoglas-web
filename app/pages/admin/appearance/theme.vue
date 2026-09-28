@@ -54,6 +54,7 @@ async function save() {
   saving.value = true
   try {
     await $fetch('/api/admin/theme', { method: 'PUT', body: form })
+    await refreshNuxtData('active-theme')
     isDirty.value = false
     toast.success(t('appearance.theme.themeSaved'))
   } catch (error) {
