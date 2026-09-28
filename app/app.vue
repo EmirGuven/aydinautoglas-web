@@ -1,6 +1,6 @@
 <script setup lang="ts">
 useTheme()
-await useFavicon()
+useFavicon()
 useDbTranslations()
 
 const { locale } = useI18n()

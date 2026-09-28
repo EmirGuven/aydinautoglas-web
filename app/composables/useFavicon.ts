@@ -1,26 +1,23 @@
 /**
  * Resolves site_settings.logo.faviconMediaId to a <link rel="icon"> tag, falling back to
- * none when unset. Must `await` usePublicSettings() before computing faviconMediaId — Nuxt
- * only reliably tracks a dependent useAsyncData's *initial* fetch for SSR; a value that only
- * becomes correct after its `watch` option re-fires (i.e. reading it before settings has
- * resolved) races the response and can lose, exactly like app/components/ui/Header.vue's
- * logo lookup does it correctly by awaiting settings first.
+ * none when unset. Deliberately a single self-contained useAsyncData call (settings + media
+ * lookup fetched imperatively with $fetch inside one handler), not `usePublicSettings()` plus
+ * a second `useAsyncData` gated behind a reactive `watch` — that two-step chain raced Nuxt's
+ * SSR response (the dependent fetch's *initial* run saw settings as still unresolved, and the
+ * later `watch`-triggered refetch isn't reliably awaited before the HTML is sent). Not `async`
+ * either: an async composable with awaits before further composable calls loses Nuxt's
+ * instance context (NUXT_E1001) the moment its caller `await`s it in `<script setup>`.
  */
-export async function useFavicon() {
-  const { data: settings } = await usePublicSettings()
-
-  const faviconMediaId = computed(() => settings.value?.logo?.faviconMediaId)
-  const { data: faviconMedia } = await useAsyncData(
-    'favicon-media',
-    (): Promise<Awaited<ReturnType<typeof fetchMediaMap>>> =>
-      faviconMediaId.value ? fetchMediaMap([faviconMediaId.value]) : Promise.resolve({}),
-    { watch: [faviconMediaId] },
-  )
-
-  const faviconUrl = computed(() => mediaUrl(faviconMedia.value?.[faviconMediaId.value ?? ''], 'thumb'))
-  const faviconLinks = computed(() => (faviconUrl.value ? [{ rel: 'icon' as const, href: faviconUrl.value }] : []))
+export function useFavicon() {
+  const { data: faviconUrl } = useAsyncData('favicon-link', async () => {
+    const settings = await $fetch<{ logo: { faviconMediaId?: string } | null }>('/api/settings/public')
+    const faviconMediaId = settings.logo?.faviconMediaId
+    if (!faviconMediaId) return null
+    const media = await fetchMediaMap([faviconMediaId])
+    return mediaUrl(media[faviconMediaId], 'thumb') || null
+  })
 
   useHead({
-    link: faviconLinks,
+    link: computed(() => (faviconUrl.value ? [{ rel: 'icon' as const, href: faviconUrl.value }] : [])),
   })
 }
