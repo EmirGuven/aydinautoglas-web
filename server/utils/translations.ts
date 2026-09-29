@@ -59,6 +59,30 @@ export async function getAllTranslations(contentType: string, contentId: number)
   ).all(contentType, contentId) as Array<{ locale: string; field: string; value: string }>
 }
 
+// Menü gibi JSON dizi alanlarındaki her öğenin "label" alanı için sözde alan adı üretir.
+export function arrayLabelField(arrayField: string, index: number): string {
+  return `${arrayField}.${index}.label`
+}
+
+// Bir JSON dizi metnini parse edip, çeviri haritasındaki label çevirilerini üzerine yazar.
+export function applyArrayLabelTranslations(jsonText: string, translations: Record<string, string>, arrayField: string): string {
+  let items: any[]
+  try {
+    items = JSON.parse(jsonText)
+  } catch {
+    return jsonText
+  }
+  if (!Array.isArray(items)) return jsonText
+  const translated = items.map((item, i) => {
+    const key = arrayLabelField(arrayField, i)
+    if (item && typeof item === "object" && translations[key]) {
+      return { ...item, label: translations[key] }
+    }
+    return item
+  })
+  return JSON.stringify(translated)
+}
+
 // Admin: bir alanın çevirisini kaydeder/günceller.
 export async function saveTranslation(contentType: string, contentId: number, locale: string, field: string, value: string) {
   if (locale === DEFAULT_LOCALE) return

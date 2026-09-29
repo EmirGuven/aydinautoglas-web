@@ -9,7 +9,17 @@ export interface TranslatableContentConfig {
   titleField?: string
 }
 
+export const MENU_ARRAY_FIELDS = ["header_menu_items", "footer_menu_items", "footer_legal_links"] as const
+
 export const TRANSLATABLE_CONTENT: Record<string, TranslatableContentConfig> = {
+  site_settings: {
+    table: "site_settings",
+    label: "Site Ayarları (Menü ve Başlıklar)",
+    fields: [
+      "logo_tagline", "footer_tagline", "header_cta_label",
+      "footer_services_title", "footer_menu_title", "footer_contact_title", "footer_bottom_text",
+    ],
+  },
   homepage: {
     table: "homepage",
     label: "Anasayfa",

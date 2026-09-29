@@ -5,7 +5,8 @@ import { useSchemaOrg } from "@unhead/schema-org/vue"
 import { buildCustomThemeColors, defaultThemePaletteId, resolveThemePalette } from "./utils/theme-palettes"
 
 // Canlı site ayarlarını yükle ve global state'e koy
-const { data: apiSettings } = await useFetch('/api/settings')
+const { locale } = useI18n()
+const { data: apiSettings } = await useFetch('/api/settings', { query: { locale } })
 const siteSettings = useState('siteSettings', () => apiSettings.value)
 watch(apiSettings, (v) => { if (v) siteSettings.value = v })
 

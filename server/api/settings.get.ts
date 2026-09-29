@@ -16,11 +16,24 @@ import {
   parsePhoneItems,
 } from "../../utils/site-settings"
 import { defaultThemePaletteId } from "../../utils/theme-palettes"
+import { normalizeLocale, getTranslationMap, applyTranslations, applyArrayLabelTranslations } from "../utils/translations"
 
-export default defineEventHandler(async () => {
+const TRANSLATABLE_FIELDS = [
+  "logo_tagline", "footer_tagline", "header_cta_label",
+  "footer_services_title", "footer_menu_title", "footer_contact_title", "footer_bottom_text",
+]
+
+export default defineEventHandler(async (event) => {
   const db = await getDb()
-  const row = await db.prepare("SELECT * FROM site_settings WHERE id = 1").get() as any
+  const locale = normalizeLocale(getQuery(event).locale)
+  let row = await db.prepare("SELECT * FROM site_settings WHERE id = 1").get() as any
   if (!row) return {}
+
+  const translations = await getTranslationMap("site_settings", 1, locale)
+  row = applyTranslations(row, translations, TRANSLATABLE_FIELDS)
+  row.header_menu_items = applyArrayLabelTranslations(row.header_menu_items, translations, "header_menu_items")
+  row.footer_menu_items = applyArrayLabelTranslations(row.footer_menu_items, translations, "footer_menu_items")
+  row.footer_legal_links = applyArrayLabelTranslations(row.footer_legal_links, translations, "footer_legal_links")
 
   return {
     name: row.name,
