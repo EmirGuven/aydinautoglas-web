@@ -1,11 +1,21 @@
 // GET /api/about — public
 import { getDb } from "../utils/db"
 import { aboutCtaDefaults, resolvePageCtaButtons } from "../../utils/page-cta"
+import { normalizeLocale, getTranslationMap, applyTranslations } from "../utils/translations"
 
-export default defineEventHandler(async () => {
+const TRANSLATABLE_FIELDS = [
+  "hero_eyebrow", "hero_title", "hero_lead", "bio_title", "bio_badge_label",
+  "approach_title", "approach_lead", "cta_title", "cta_text",
+  "cta_primary_label", "cta_secondary_label",
+]
+
+export default defineEventHandler(async (event) => {
   const db  = await getDb()
-  const row = await db.prepare("SELECT * FROM about_page WHERE id = 1").get() as any
+  const locale = normalizeLocale(getQuery(event).locale)
+  let row = await db.prepare("SELECT * FROM about_page WHERE id = 1").get() as any
   if (!row) return {}
+  const translations = await getTranslationMap("about_page", 1, locale)
+  row = applyTranslations(row, translations, TRANSLATABLE_FIELDS)
 
   const parse = (field: string) => {
     try { return JSON.parse(field) } catch { return [] }

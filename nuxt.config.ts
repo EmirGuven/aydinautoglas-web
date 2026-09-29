@@ -4,11 +4,22 @@ export default defineNuxtConfig({
   compatibilityDate: "2025-03-01",
   devtools: { enabled: false },
   ssr: true,
-  modules: ["@nuxtjs/seo"],
+  modules: ["@nuxtjs/seo", "@nuxtjs/i18n"],
   css: ["~/assets/css/main.css"],
   seo: {
     // favicon admin panelden dinamik yönetiliyor (app.vue) — otomatik statik favicon taraması kapalı
     metaDataFiles: false
+  },
+  i18n: {
+    strategy: "no_prefix",
+    defaultLocale: "de",
+    locales: [
+      { code: "de", language: "de-DE", name: "Deutsch" },
+      { code: "en", language: "en-US", name: "English" },
+      { code: "tr", language: "tr-TR", name: "Türkçe" }
+    ],
+    vueI18n: "./i18n.config.ts",
+    detectBrowserLanguage: false
   },
   runtimeConfig: {
     turnstileSecret: process.env.TURNSTILE_SECRET_KEY || "",

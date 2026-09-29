@@ -280,6 +280,17 @@ async function initSchema(db: Db) {
       created_at TEXT NOT NULL DEFAULT (now()::text)
     );
 
+    -- Çeviriler (EN/TR — varsayılan dil olan Almanca ana tablolarda saklanır)
+    CREATE TABLE IF NOT EXISTS translations (
+      id SERIAL PRIMARY KEY,
+      content_type TEXT NOT NULL,
+      content_id INTEGER NOT NULL,
+      locale TEXT NOT NULL,
+      field TEXT NOT NULL,
+      value TEXT NOT NULL DEFAULT '',
+      UNIQUE(content_type, content_id, locale, field)
+    );
+
     -- Admin kullanıcı (tek kullanıcı)
     CREATE TABLE IF NOT EXISTS admin_user (
       id INTEGER PRIMARY KEY CHECK (id = 1),

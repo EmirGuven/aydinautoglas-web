@@ -9,6 +9,7 @@ import {
 } from "../utils/site-settings"
 
 const siteSettings = useState<any>("siteSettings")
+const { t } = useI18n()
 
 const name = computed(() => siteSettings.value?.name || siteMeta.name)
 const phone = computed(() => siteSettings.value?.phone || siteMeta.phone)
@@ -36,10 +37,11 @@ const footerLegalLinks = computed(() =>
   Array.isArray(siteSettings.value?.footerLegalLinks) ? siteSettings.value.footerLegalLinks : defaultFooterLegalLinks
 )
 const footerBottomText = computed(() =>
-  siteSettings.value?.footerBottomText || `© ${new Date().getFullYear()} ${name.value}. Alle Rechte vorbehalten.`
+  siteSettings.value?.footerBottomText || `© ${new Date().getFullYear()} ${name.value}. ${t('footer.rightsReserved')}.`
 )
 
-const { data: servicesData } = await useFetch("/api/services")
+const { locale } = useI18n()
+const { data: servicesData } = await useFetch("/api/services", { query: { locale } })
 const serviceLinks = computed(() =>
   ((servicesData.value as any[])?.length ? (servicesData.value as any[]) : defaultServices).map((service: any) => ({
     slug: service.slug,

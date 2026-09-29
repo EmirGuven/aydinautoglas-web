@@ -1,10 +1,16 @@
 // GET /api/blog-page — public
 import { getDb } from "../utils/db"
+import { normalizeLocale, getTranslationMap, applyTranslations } from "../utils/translations"
 
-export default defineEventHandler(async () => {
+const TRANSLATABLE_FIELDS = ["hero_eyebrow", "hero_title", "hero_lead"]
+
+export default defineEventHandler(async (event) => {
   const db  = await getDb()
-  const row = await db.prepare("SELECT * FROM blog_page WHERE id = 1").get() as any
+  const locale = normalizeLocale(getQuery(event).locale)
+  let row = await db.prepare("SELECT * FROM blog_page WHERE id = 1").get() as any
   if (!row) return {}
+  const translations = await getTranslationMap("blog_page", 1, locale)
+  row = applyTranslations(row, translations, TRANSLATABLE_FIELDS)
   return {
     heroEyebrow: row.hero_eyebrow,
     heroTitle:   row.hero_title,

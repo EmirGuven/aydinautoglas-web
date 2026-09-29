@@ -4,6 +4,8 @@ import { siteMeta } from "../data/site"
 import { usePageSeo } from "../composables/usePageSeo"
 import { buildPageCtaBackgroundStyle } from "../utils/page-cta"
 
+const { t, locale } = useI18n()
+
 interface ContactData {
   heroEyebrow: string; heroTitle: string; heroLead: string; heroBgImage: string
   infoTitle: string; infoLead: string
@@ -14,7 +16,7 @@ interface ContactData {
   email: string
 }
 
-const { data: contact } = await useFetch<ContactData>('/api/contact')
+const { data: contact } = await useFetch<ContactData>('/api/contact', { query: { locale } })
 
 usePageSeo({
   title: "Kontakt & Terminanfrage – Aydin Autoglas",
@@ -178,7 +180,7 @@ async function handleSubmit() {
 
   if (turnstileEnabled.value && !turnstileToken.value) {
     submitting.value = false
-    submitError.value = 'Bitte bestätigen Sie die Sicherheitsprüfung.'
+    submitError.value = t('wizard.securityRequired')
     return
   }
 
@@ -214,7 +216,7 @@ async function handleSubmit() {
     })
     submitted.value = true
   } catch (err: any) {
-    submitError.value = err?.data?.message || 'Ein Fehler ist aufgetreten. Bitte versuchen Sie es erneut.'
+    submitError.value = err?.data?.message || t('wizard.genericError')
   } finally {
     submitting.value = false
   }
@@ -299,7 +301,7 @@ async function handleSubmit() {
           </ul>
 
           <div class="contact-info-social">
-            <p class="contact-info-social__label">Folgen Sie uns in den sozialen Medien</p>
+            <p class="contact-info-social__label">{{ $t('footer.followUs') }}</p>
             <div class="contact-info-social__actions">
               <a
                 :href="instagram"
@@ -343,7 +345,7 @@ async function handleSubmit() {
 
               <!-- Schritt: Scheibe -->
               <div v-if="step === 'glass'" class="wiz-step">
-                <h3 class="wiz-step__title">Welche Scheibe ist beschädigt?</h3>
+                <h3 class="wiz-step__title">{{ $t('wizard.stepGlassTitle') }}</h3>
                 <div class="wiz-options">
                   <button
                     type="button"
@@ -351,8 +353,8 @@ async function handleSubmit() {
                     :class="{ 'wiz-option--active': form.glassType === 'windschutzscheibe' }"
                     @click="form.glassType = 'windschutzscheibe'; next()"
                   >
-                    <strong>Windschutzscheibe</strong>
-                    <span>Die meisten Schäden reparieren wir in ca. 30 Minuten.</span>
+                    <strong>{{ $t('wizard.windshield') }}</strong>
+                    <span>{{ $t('wizard.windshieldDesc') }}</span>
                   </button>
                   <button
                     type="button"
@@ -360,15 +362,15 @@ async function handleSubmit() {
                     :class="{ 'wiz-option--active': form.glassType === 'andere' }"
                     @click="form.glassType = 'andere'; next()"
                   >
-                    <strong>Andere Scheibe</strong>
-                    <span>Seiten- oder Heckscheibe — muss meist ausgetauscht werden.</span>
+                    <strong>{{ $t('wizard.otherGlass') }}</strong>
+                    <span>{{ $t('wizard.otherGlassDesc') }}</span>
                   </button>
                 </div>
               </div>
 
               <!-- Schritt: Schadensausmaß -->
               <div v-else-if="step === 'extent'" class="wiz-step">
-                <h3 class="wiz-step__title">Welches Ausmaß hat der Schaden?</h3>
+                <h3 class="wiz-step__title">{{ $t('wizard.stepExtentTitle') }}</h3>
                 <div class="wiz-options">
                   <button
                     type="button"
@@ -376,8 +378,8 @@ async function handleSubmit() {
                     :class="{ 'wiz-option--active': form.damageExtent === 'steinschlag' }"
                     @click="form.damageExtent = 'steinschlag'; next()"
                   >
-                    <strong>Steinschlag</strong>
-                    <span>Kleiner als eine Zwei-Euro-Münze</span>
+                    <strong>{{ $t('wizard.chip') }}</strong>
+                    <span>{{ $t('wizard.chipDesc') }}</span>
                   </button>
                   <button
                     type="button"
@@ -385,16 +387,16 @@ async function handleSubmit() {
                     :class="{ 'wiz-option--active': form.damageExtent === 'groesser' }"
                     @click="form.damageExtent = 'groesser'; next()"
                   >
-                    <strong>Größerer Schaden</strong>
-                    <span>Schaden größer als 2-Euro-Münze oder Riss</span>
+                    <strong>{{ $t('wizard.biggerDamage') }}</strong>
+                    <span>{{ $t('wizard.biggerDamageDesc') }}</span>
                   </button>
                 </div>
-                <button type="button" class="wiz-back" @click="back()">← Zurück</button>
+                <button type="button" class="wiz-back" @click="back()">← {{ $t('common.back') }}</button>
               </div>
 
               <!-- Schritt: Position des Steinschlags -->
               <div v-else-if="step === 'location'" class="wiz-step">
-                <h3 class="wiz-step__title">Wo befindet sich der Steinschlag?</h3>
+                <h3 class="wiz-step__title">{{ $t('wizard.stepLocationTitle') }}</h3>
                 <div class="wiz-options">
                   <button
                     type="button"
@@ -402,7 +404,7 @@ async function handleSubmit() {
                     :class="{ 'wiz-option--active': form.damageLocation === 'sichtfeld' }"
                     @click="form.damageLocation = 'sichtfeld'; next()"
                   >
-                    <strong>Im Sichtfeld des Fahrers</strong>
+                    <strong>{{ $t('wizard.inSightline') }}</strong>
                   </button>
                   <button
                     type="button"
@@ -410,10 +412,10 @@ async function handleSubmit() {
                     :class="{ 'wiz-option--active': form.damageLocation === 'ausserhalb' }"
                     @click="form.damageLocation = 'ausserhalb'; next()"
                   >
-                    <strong>Außerhalb des Sichtfelds</strong>
+                    <strong>{{ $t('wizard.outsideSightline') }}</strong>
                   </button>
                 </div>
-                <button type="button" class="wiz-back" @click="back()">← Zurück</button>
+                <button type="button" class="wiz-back" @click="back()">← {{ $t('common.back') }}</button>
               </div>
 
               <!-- Schritt: Einschätzung -->
@@ -422,30 +424,28 @@ async function handleSubmit() {
                   <div class="wiz-diagnosis__icon">{{ diagnosis === 'repair' ? '🔧' : '🔄' }}</div>
                   <div>
                     <h3 class="wiz-step__title" style="margin:0 0 0.35rem;">
-                      {{ diagnosis === 'repair' ? 'Ihre Scheibe kann voraussichtlich repariert werden.' : 'Ihre Scheibe muss voraussichtlich ausgetauscht werden.' }}
+                      {{ diagnosis === 'repair' ? $t('wizard.diagnosisRepairTitle') : $t('wizard.diagnosisReplaceTitle') }}
                     </h3>
                     <p style="margin:0;">
-                      {{ diagnosis === 'repair'
-                        ? 'Steinschläge, die kleiner als eine Zwei-Euro-Münze sind und außerhalb des Sichtfelds liegen, können repariert werden. Die Reparatur dauert ca. 30 Minuten.'
-                        : 'Aus Sicherheitsgründen ist in diesem Fall ein fachgerechter Austausch nötig — inklusive Kalibrierung, falls Ihr Fahrzeug über entsprechende Assistenzsysteme verfügt.' }}
+                      {{ diagnosis === 'repair' ? $t('wizard.diagnosisRepairText') : $t('wizard.diagnosisReplaceText') }}
                     </p>
                   </div>
                 </div>
                 <div class="wiz-step__actions">
-                  <button type="button" class="wiz-back" @click="back()">← Zurück</button>
-                  <button type="button" class="button button--large" @click="next()">Termin wählen →</button>
+                  <button type="button" class="wiz-back" @click="back()">← {{ $t('common.back') }}</button>
+                  <button type="button" class="button button--large" @click="next()">{{ $t('wizard.chooseDate') }} →</button>
                 </div>
               </div>
 
               <!-- Schritt: Termin -->
               <div v-else-if="step === 'schedule'" class="wiz-step">
-                <h3 class="wiz-step__title">Bitte wählen Sie Ihren Wunschtermin!</h3>
+                <h3 class="wiz-step__title">{{ $t('wizard.stepScheduleTitle') }}</h3>
                 <div class="form-group">
-                  <label for="preferredDate">Datum</label>
+                  <label for="preferredDate">{{ $t('wizard.date') }}</label>
                   <input id="preferredDate" v-model="form.preferredDate" type="date" :min="todayIso" required>
                 </div>
                 <div class="form-group">
-                  <label>Uhrzeit</label>
+                  <label>{{ $t('wizard.time') }}</label>
                   <div class="wiz-slots">
                     <button
                       v-for="slot in timeSlots"
@@ -458,62 +458,62 @@ async function handleSubmit() {
                   </div>
                 </div>
                 <div class="wiz-step__actions">
-                  <button type="button" class="wiz-back" @click="back()">← Zurück</button>
+                  <button type="button" class="wiz-back" @click="back()">← {{ $t('common.back') }}</button>
                   <button type="button" class="button button--large" :disabled="!canContinue" @click="next()">Weiter →</button>
                 </div>
               </div>
 
               <!-- Schritt: Kontaktdaten -->
               <div v-else-if="step === 'contact'" class="wiz-step">
-                <h3 class="wiz-step__title">Wie lauten Ihre Kontaktdaten?</h3>
+                <h3 class="wiz-step__title">{{ $t('wizard.stepContactTitle') }}</h3>
                 <div class="form-row">
                   <div class="form-group">
-                    <label for="name">Name</label>
-                    <input id="name" v-model="form.name" type="text" placeholder="Ihr Name" required>
+                    <label for="name">{{ $t('wizard.name') }}</label>
+                    <input id="name" v-model="form.name" type="text" :placeholder="$t('wizard.namePlaceholder')" required>
                   </div>
                   <div class="form-group">
-                    <label for="phone">Telefon</label>
+                    <label for="phone">{{ $t('wizard.phone') }}</label>
                     <input id="phone" v-model="form.phone" type="tel" placeholder="+49 ...">
                   </div>
                 </div>
                 <div class="form-group">
-                  <label for="email">E-Mail-Adresse</label>
+                  <label for="email">{{ $t('wizard.email') }}</label>
                   <input id="email" v-model="form.email" type="email" placeholder="name@beispiel.de" required>
                 </div>
                 <div class="wiz-step__actions">
-                  <button type="button" class="wiz-back" @click="back()">← Zurück</button>
+                  <button type="button" class="wiz-back" @click="back()">← {{ $t('common.back') }}</button>
                   <button type="button" class="button button--large" :disabled="!canContinue" @click="next()">Weiter →</button>
                 </div>
               </div>
 
               <!-- Schritt: Fahrzeugdaten -->
               <div v-else-if="step === 'vehicle'" class="wiz-step">
-                <h3 class="wiz-step__title">Wie lautet Ihr Kfz-Kennzeichen?</h3>
+                <h3 class="wiz-step__title">{{ $t('wizard.stepVehicleTitle') }}</h3>
                 <div class="form-group">
-                  <label for="licensePlate">Kennzeichen</label>
+                  <label for="licensePlate">{{ $t('wizard.licensePlate') }}</label>
                   <input id="licensePlate" v-model="form.licensePlate" type="text" placeholder="z. B. BB-AB 123" required>
                 </div>
                 <div class="form-group">
-                  <label for="insurance">Versicherung (optional)</label>
+                  <label for="insurance">{{ $t('wizard.insuranceOptional') }}</label>
                   <select id="insurance" v-model="form.insuranceCompany">
-                    <option value="">Bitte wählen</option>
+                    <option value="">{{ $t('wizard.choosePlaceholder') }}</option>
                     <option v-for="ins in insuranceOptions" :key="ins" :value="ins">{{ ins }}</option>
                   </select>
                 </div>
                 <div class="form-group">
-                  <label for="vin">Fahrzeug-Identifikationsnummer / FIN (optional)</label>
+                  <label for="vin">{{ $t('wizard.vinOptional') }}</label>
                   <input id="vin" v-model="form.vin" type="text" placeholder="17-stellige FIN">
-                  <p class="form-note">Hilft uns, direkt das passende Ersatzglas für Ihr Fahrzeug vorzubereiten.</p>
+                  <p class="form-note">{{ $t('wizard.vinHint') }}</p>
                 </div>
                 <div class="wiz-step__actions">
-                  <button type="button" class="wiz-back" @click="back()">← Zurück</button>
+                  <button type="button" class="wiz-back" @click="back()">← {{ $t('common.back') }}</button>
                   <button type="button" class="button button--large" :disabled="!canContinue" @click="next()">Weiter →</button>
                 </div>
               </div>
 
               <!-- Schritt: Zusatz-Service -->
               <div v-else-if="step === 'extra'" class="wiz-step">
-                <h3 class="wiz-step__title">Wie möchten Sie den Termin wahrnehmen?</h3>
+                <h3 class="wiz-step__title">{{ $t('wizard.stepExtraTitle') }}</h3>
                 <div class="wiz-options">
                   <button
                     type="button"
@@ -521,8 +521,8 @@ async function handleSubmit() {
                     :class="{ 'wiz-option--active': form.additionalService === 'werkstatt' }"
                     @click="form.additionalService = 'werkstatt'; next()"
                   >
-                    <strong>In der Werkstatt</strong>
-                    <span>Sie bringen Ihr Fahrzeug zu uns nach Hildrizhausen.</span>
+                    <strong>{{ $t('wizard.atWorkshop') }}</strong>
+                    <span>{{ $t('wizard.atWorkshopDesc') }}</span>
                   </button>
                   <button
                     type="button"
@@ -530,37 +530,37 @@ async function handleSubmit() {
                     :class="{ 'wiz-option--active': form.additionalService === 'mobil' }"
                     @click="form.additionalService = 'mobil'; next()"
                   >
-                    <strong>Mobiler Service</strong>
-                    <span>Wir kommen zu Ihnen nach Hause oder zur Arbeit.</span>
+                    <strong>{{ $t('wizard.mobileService') }}</strong>
+                    <span>{{ $t('wizard.mobileServiceDesc') }}</span>
                   </button>
                 </div>
-                <button type="button" class="wiz-back" @click="back()">← Zurück</button>
+                <button type="button" class="wiz-back" @click="back()">← {{ $t('common.back') }}</button>
               </div>
 
               <!-- Schritt: Nachricht & Abschluss -->
               <div v-else-if="step === 'message'" class="wiz-step">
-                <h3 class="wiz-step__title">Fast geschafft!</h3>
+                <h3 class="wiz-step__title">{{ $t('wizard.stepMessageTitle') }}</h3>
                 <div class="form-group">
-                  <label for="message">Ihre Nachricht (optional)</label>
+                  <label for="message">{{ $t('wizard.messageOptional') }}</label>
                   <textarea
                     id="message"
                     v-model="form.message"
-                    placeholder="Weitere Hinweise zu Ihrem Fahrzeug oder Schaden..."
+                    :placeholder="$t('wizard.messagePlaceholder')"
                   />
                 </div>
                 <div class="form-group">
-                  <label for="referral">Wie sind Sie auf uns aufmerksam geworden? (optional)</label>
+                  <label for="referral">{{ $t('wizard.referralOptional') }}</label>
                   <select id="referral" v-model="form.referralSource">
-                    <option value="">Bitte auswählen</option>
-                    <option value="suchmaschine">Suchmaschine</option>
-                    <option value="empfehlung">Persönliche Empfehlung</option>
-                    <option value="social-media">Social Media</option>
-                    <option value="versicherung">Versicherung</option>
-                    <option value="sonstiges">Sonstiges</option>
+                    <option value="">{{ $t('wizard.choosePlaceholder') }}</option>
+                    <option value="suchmaschine">{{ $t('wizard.referralSearch') }}</option>
+                    <option value="empfehlung">{{ $t('wizard.referralPersonal') }}</option>
+                    <option value="social-media">{{ $t('wizard.referralSocial') }}</option>
+                    <option value="versicherung">{{ $t('wizard.referralInsurance') }}</option>
+                    <option value="sonstiges">{{ $t('wizard.referralOther') }}</option>
                   </select>
                 </div>
                 <p class="form-note">
-                  🔒 Ihre Daten werden vertraulich behandelt und nicht an Dritte weitergegeben.
+                  {{ $t('wizard.privacyNote') }}
                 </p>
 
                 <div v-if="turnstileEnabled" class="form-group">
@@ -574,9 +574,9 @@ async function handleSubmit() {
                 </div>
 
                 <div class="wiz-step__actions">
-                  <button type="button" class="wiz-back" @click="back()">← Zurück</button>
+                  <button type="button" class="wiz-back" @click="back()">← {{ $t('common.back') }}</button>
                   <button type="submit" class="button button--large contact-form-submit" :disabled="submitting">
-                    {{ submitting ? 'Wird gesendet…' : 'Terminanfrage senden' }}
+                    {{ submitting ? $t('wizard.submitting') : $t('wizard.submit') }}
                   </button>
                 </div>
                 <p v-if="submitError" class="contact-form-error">{{ submitError }}</p>
@@ -586,11 +586,8 @@ async function handleSubmit() {
 
           <div v-else class="contact-form-success">
             <div class="contact-form-success__icon">✓</div>
-            <h2>Ihre Anfrage ist eingegangen!</h2>
-            <p>
-              Wir melden uns so schnell wie möglich bei Ihnen.
-              Bei dringenden Fällen können Sie uns auch direkt kontaktieren.
-            </p>
+            <h2>{{ $t('wizard.successTitle') }}</h2>
+            <p>{{ $t('wizard.successText') }}</p>
             <a :href="`tel:${phone}`" class="button button--outline">
               {{ phoneDisplay }}
             </a>

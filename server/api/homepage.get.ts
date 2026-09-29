@@ -2,11 +2,25 @@
 import { getDb } from "../utils/db"
 import { homepageCtaDefaults, resolvePageCtaButtons } from "../../utils/page-cta"
 import { normalizeHomepageServiceItems } from "../../utils/homepage-service-icons"
+import { normalizeLocale, getTranslationMap, applyTranslations } from "../utils/translations"
 
-export default defineEventHandler(async () => {
+const TRANSLATABLE_FIELDS = [
+  "hero_eyebrow", "hero_title", "hero_description", "hero_badge1", "hero_badge2", "hero_badge3",
+  "hero_primary_label", "hero_secondary_label",
+  "about_eyebrow", "about_title", "about_role", "about_paragraph1", "about_paragraph2",
+  "services_eyebrow", "services_title", "services_description",
+  "process_eyebrow", "process_title", "process_description",
+  "testimonials_eyebrow", "testimonials_title", "testimonials_description",
+  "cta_title", "cta_description", "cta_primary_label", "cta_secondary_label",
+]
+
+export default defineEventHandler(async (event) => {
   const db = await getDb()
-  const row = await db.prepare("SELECT * FROM homepage WHERE id = 1").get() as any
+  const locale = normalizeLocale(getQuery(event).locale)
+  let row = await db.prepare("SELECT * FROM homepage WHERE id = 1").get() as any
   if (!row) return {}
+  const translations = await getTranslationMap("homepage", 1, locale)
+  row = applyTranslations(row, translations, TRANSLATABLE_FIELDS)
   const legacySettings = await db.prepare("SELECT hero_image FROM site_settings WHERE id = 1").get() as any
   const fallbackHeroImage = row.hero_bg_image || legacySettings?.hero_image || ""
   const heroImages = normalizeHeroImages(row.hero_images, fallbackHeroImage)

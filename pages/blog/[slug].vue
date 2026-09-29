@@ -4,13 +4,14 @@ import { usePageSeo } from "../../composables/usePageSeo"
 const route = useRoute()
 const slug = route.params.slug as string
 
-const { data: post } = await useFetch<any>(`/api/blog?slug=${slug}`)
+const { locale } = useI18n()
+const { data: post } = await useFetch<any>(`/api/blog?slug=${slug}`, { query: { locale } })
 
 if (!post.value) {
   throw createError({ statusCode: 404, statusMessage: "Beitrag nicht gefunden" })
 }
 
-const { data: allPosts } = await useFetch<any[]>('/api/blog')
+const { data: allPosts } = await useFetch<any[]>('/api/blog', { query: { locale } })
 const relatedPosts = computed(() => allPosts.value?.filter((p: any) => p.slug !== slug).slice(0, 3) ?? [])
 
 // Bu yazının etiketleri: önce kendi tags alanı, sonra category'si

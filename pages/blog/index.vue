@@ -3,9 +3,10 @@ import { usePageSeo } from "../../composables/usePageSeo"
 
 interface BlogPageData { heroEyebrow: string; heroTitle: string; heroLead: string; heroBgImage: string }
 
-const { data: blogPage } = await useFetch<BlogPageData>('/api/blog-page', { key: 'blog-page', server: true, lazy: false })
+const { locale } = useI18n()
+const { data: blogPage } = await useFetch<BlogPageData>('/api/blog-page', { key: 'blog-page', server: true, lazy: false, query: { locale } })
 const route = useRoute()
-const { data: posts } = await useFetch<any[]>('/api/blog')
+const { data: posts } = await useFetch<any[]>('/api/blog', { query: { locale } })
 
 usePageSeo({
   title: blogPage.value?.heroTitle || "Blog",

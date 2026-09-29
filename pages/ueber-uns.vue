@@ -21,7 +21,8 @@ function resolveHeroBadgeSvg(icon?: string) {
   return heroBadgeIconSvgMap[resolveHeroBadgeIcon(icon)]
 }
 
-const { data: about } = await useFetch<AboutData>('/api/about')
+const { locale } = useI18n()
+const { data: about } = await useFetch<AboutData>('/api/about', { query: { locale } })
 
 usePageSeo({
   title: about.value?.heroTitle || "Über uns – Aydin Autoglas",

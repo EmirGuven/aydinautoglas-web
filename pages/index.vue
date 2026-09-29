@@ -14,7 +14,8 @@ usePageSeo({
   path: "/"
 })
 
-const { data: hp } = await useFetch('/api/homepage')
+const { locale } = useI18n()
+const { data: hp } = await useFetch('/api/homepage', { query: { locale } })
 const h = computed(() => (hp.value as any) || {})
 
 const hero             = computed(() => h.value.hero            || {})
@@ -98,7 +99,7 @@ const heroSecondaryLabel = computed(() => hero.value.secondaryLabel === '' ? '' 
 const heroSecondaryUrl = computed(() => hero.value.secondaryUrl || '/ueber-uns')
 const heroSecondaryEnabled = computed(() => hero.value.secondaryEnabled !== false)
 
-const { data: blogData } = await useFetch('/api/blog')
+const { data: blogData } = await useFetch('/api/blog', { query: { locale } })
 const recentPosts = computed(() => ((blogData.value as any) || []).slice(0, 3))
 
 const heroStyle = computed(() => ({

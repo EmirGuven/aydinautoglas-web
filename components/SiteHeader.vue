@@ -68,7 +68,8 @@ const headerMenuItems = computed(() =>
   Array.isArray(siteSettings.value?.headerMenuItems) ? siteSettings.value.headerMenuItems : defaultHeaderMenuItems
 )
 
-const { data: servicesData } = await useFetch("/api/services")
+const { locale } = useI18n()
+const { data: servicesData } = await useFetch("/api/services", { query: { locale } })
 const servicesItems = computed(() => (servicesData.value as any[]) || [])
 const servicesMenuActive = computed(() =>
   servicesOpen.value || servicesItems.value.some((svc) => route.path === `/${svc.slug}`)
@@ -157,6 +158,7 @@ function truncate(text: string, max = 50): string {
         </nav>
 
         <div class="nh__actions">
+          <LanguageSwitcher />
           <AppSmartLink
             :to="headerCtaUrl"
             class="nh__cta"

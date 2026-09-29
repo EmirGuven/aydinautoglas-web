@@ -1,11 +1,17 @@
 // GET /api/sss-page — public
 import { getDb } from "../utils/db"
 import { faqCtaDefaults, resolvePageCtaButtons } from "../../utils/page-cta"
+import { normalizeLocale, getTranslationMap, applyTranslations } from "../utils/translations"
 
-export default defineEventHandler(async () => {
+const TRANSLATABLE_FIELDS = ["hero_eyebrow", "hero_title", "hero_lead", "cta_title", "cta_lead", "cta_primary_label", "cta_secondary_label"]
+
+export default defineEventHandler(async (event) => {
   const db  = await getDb()
-  const row = await db.prepare("SELECT * FROM sss_page WHERE id = 1").get() as any
+  const locale = normalizeLocale(getQuery(event).locale)
+  let row = await db.prepare("SELECT * FROM sss_page WHERE id = 1").get() as any
   if (!row) return {}
+  const translations = await getTranslationMap("sss_page", 1, locale)
+  row = applyTranslations(row, translations, TRANSLATABLE_FIELDS)
 
   const ctaButtons = resolvePageCtaButtons({
     primaryLabel: row.cta_primary_label || '',

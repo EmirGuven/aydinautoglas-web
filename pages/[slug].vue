@@ -5,7 +5,9 @@ import { buildPageCtaBackgroundStyle } from "../utils/page-cta"
 const route = useRoute()
 const slug = computed(() => route.params.slug as string)
 
+const { locale } = useI18n()
 const { data: s, error } = await useFetch<any>(() => `/api/service/${slug.value}`, {
+  query: { locale },
   key: () => `service-${slug.value}`,
 })
 

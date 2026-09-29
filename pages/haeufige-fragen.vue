@@ -12,8 +12,8 @@ interface SssPage  {
 }
 
 const [{ data: page }, { data: faqs }] = await Promise.all([
-  useFetch<SssPage>('/api/sss-page'),
-  useFetch<FaqGroup[]>('/api/faq'),
+  useFetch<SssPage>('/api/sss-page', { query: { locale: useI18n().locale } }),
+  useFetch<FaqGroup[]>('/api/faq', { query: { locale: useI18n().locale } }),
 ])
 
 usePageSeo({
