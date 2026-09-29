@@ -1,0 +1,171 @@
+{
+  "faq_group:1": {
+    "type": "faq_group",
+    "key": { "category": "Reparatur & Austausch" },
+    "en": { "category": "Repair & Replacement" },
+    "tr": { "category": "Onarım ve Değişim" }
+  },
+  "faq_group:2": {
+    "type": "faq_group",
+    "key": { "category": "Versicherung & Kosten" },
+    "en": { "category": "Insurance & Costs" },
+    "tr": { "category": "Sigorta ve Maliyet" }
+  },
+  "faq_group:3": {
+    "type": "faq_group",
+    "key": { "category": "Termin & Ablauf" },
+    "en": { "category": "Appointment & Process" },
+    "tr": { "category": "Randevu ve Süreç" }
+  },
+  "faq_group:4": {
+    "type": "faq_group",
+    "key": { "category": "Kontakt & Anfahrt" },
+    "en": { "category": "Contact & Directions" },
+    "tr": { "category": "İletişim ve Ulaşım" }
+  },
+
+  "faq_item:1": {
+    "type": "faq_item",
+    "key": { "question": "Wird mein Steinschlag repariert oder muss die Scheibe getauscht werden?" },
+    "en": {
+      "question": "Will my stone chip be repaired or does the windshield need replacing?",
+      "answer": "That depends on the size, position and type of the damage. If the damage is smaller than a 2-euro coin, outside the field of vision and not at the edge of the windshield, a repair is usually enough. Otherwise a replacement is required for safety reasons."
+    },
+    "tr": {
+      "question": "Taş çarpmam onarılacak mı yoksa camın değişmesi mi gerekiyor?",
+      "answer": "Bu, hasarın boyutuna, konumuna ve türüne bağlıdır. Hasar 2 Euro madeni parasından küçükse, görüş alanı dışındaysa ve camın kenarında değilse genellikle onarım yeterlidir. Aksi halde güvenlik nedeniyle değişim gerekir."
+    }
+  },
+  "faq_item:2": {
+    "type": "faq_item",
+    "key": { "question": "Wie lange dauert eine Steinschlagreparatur?" },
+    "en": {
+      "question": "How long does a chip repair take?",
+      "answer": "Usually only a few minutes per chip. With an appointment you're normally back on the road within a short time."
+    },
+    "tr": {
+      "question": "Taş çarpması onarımı ne kadar sürer?",
+      "answer": "Genellikle hasar başına yalnızca birkaç dakika. Randevuyla geldiğinizde kısa süre içinde tekrar yola çıkabilirsiniz."
+    }
+  },
+  "faq_item:3": {
+    "type": "faq_item",
+    "key": { "question": "Ist nach einem Scheibenaustausch eine Kalibrierung nötig?" },
+    "en": {
+      "question": "Is calibration needed after a windshield replacement?",
+      "answer": "For vehicles with driver-assistance systems (camera behind the windshield), an ADAS calibration is required after a replacement so the systems work reliably again. We carry this out directly as part of the job."
+    },
+    "tr": {
+      "question": "Cam değişiminden sonra kalibrasyon gerekli mi?",
+      "answer": "Sürücü destek sistemi bulunan araçlarda (ön camın arkasındaki kamera), değişimden sonra sistemlerin güvenilir çalışması için ADAS kalibrasyonu gereklidir. Bunu işin bir parçası olarak doğrudan biz yapıyoruz."
+    }
+  },
+  "faq_item:4": {
+    "type": "faq_item",
+    "key": { "question": "Übernimmt meine Versicherung die Kosten?" },
+    "en": {
+      "question": "Will my insurance cover the costs?",
+      "answer": "Most glass damage is covered by partial coverage insurance — a repair often even without a deductible. For a full replacement a deductible may apply depending on your policy."
+    },
+    "tr": {
+      "question": "Sigortam masrafları karşılıyor mu?",
+      "answer": "Cam hasarlarının çoğu kasko sigortası kapsamındadır — onarımda çoğu zaman muafiyet bile uygulanmaz. Komple değişimde poliçenize bağlı olarak muafiyet söz konusu olabilir."
+    }
+  },
+  "faq_item:5": {
+    "type": "faq_item",
+    "key": { "question": "Kümmern Sie sich um die Abwicklung mit der Versicherung?" },
+    "en": {
+      "question": "Do you handle the paperwork with the insurance company?",
+      "answer": "Yes. We take care of the communication with your motor insurer directly — you don't have to deal with forms yourself."
+    },
+    "tr": {
+      "question": "Sigorta işlemlerini siz mi hallediyorsunuz?",
+      "answer": "Evet. Kasko sigortanızla iletişimi doğrudan biz yürütüyoruz — formlarla kendiniz uğraşmak zorunda kalmazsınız."
+    }
+  },
+  "faq_item:6": {
+    "type": "faq_item",
+    "key": { "question": "Was kostet eine Reparatur oder ein Austausch ohne Versicherung?" },
+    "en": {
+      "question": "What does a repair or replacement cost without insurance?",
+      "answer": "The cost depends on the vehicle model and the type of damage. Send us the details and we'll give you a price range before the appointment."
+    },
+    "tr": {
+      "question": "Sigortasız onarım veya değişim ne kadar tutar?",
+      "answer": "Maliyet, araç modeline ve hasarın türüne bağlıdır. Detayları bize iletin, randevu öncesinde size bir fiyat aralığı verelim."
+    }
+  },
+  "faq_item:7": {
+    "type": "faq_item",
+    "key": { "question": "Wie schnell bekomme ich einen Termin?" },
+    "en": {
+      "question": "How quickly can I get an appointment?",
+      "answer": "We try to offer appointments as soon as possible — chip repairs in particular can often still be done within the same week."
+    },
+    "tr": {
+      "question": "Ne kadar hızlı randevu alabilirim?",
+      "answer": "Randevuları mümkün olan en kısa sürede vermeye çalışıyoruz — özellikle taş çarpması onarımları çoğu zaman aynı hafta içinde yapılabiliyor."
+    }
+  },
+  "faq_item:8": {
+    "type": "faq_item",
+    "key": { "question": "Bieten Sie auch mobilen Service an?" },
+    "en": {
+      "question": "Do you also offer a mobile service?",
+      "answer": "Yes. If needed we come to you at home, at work or in the car park — throughout the Böblingen district and the surrounding area."
+    },
+    "tr": {
+      "question": "Mobil servis de sunuyor musunuz?",
+      "answer": "Evet. Gerektiğinde evinize, iş yerinize veya otoparka geliyoruz — tüm Böblingen bölgesi ve çevresinde."
+    }
+  },
+  "faq_item:9": {
+    "type": "faq_item",
+    "key": { "question": "Muss ich mein Fahrzeug vorher anmelden?" },
+    "en": {
+      "question": "Do I need to register my vehicle in advance?",
+      "answer": "A short enquiry via the contact form or by email is enough so we can prepare the right material and an appointment for you."
+    },
+    "tr": {
+      "question": "Aracımı önceden bildirmem gerekiyor mu?",
+      "answer": "İletişim formu veya e-posta ile kısa bir ön bildirim yeterli; böylece doğru malzemeyi ve size uygun bir randevuyu hazırlayabiliriz."
+    }
+  },
+  "faq_item:10": {
+    "type": "faq_item",
+    "key": { "question": "Wo befindet sich Ihre Werkstatt?" },
+    "en": {
+      "question": "Where is your workshop located?",
+      "answer": "Our workshop is at Hans Klemm Straße 2, 71157 Hildrizhausen, in the Böblingen district."
+    },
+    "tr": {
+      "question": "Atölyeniz nerede?",
+      "answer": "Atölyemiz Böblingen bölgesindeki Hans Klemm Straße 2, 71157 Hildrizhausen adresinde bulunuyor."
+    }
+  },
+  "faq_item:11": {
+    "type": "faq_item",
+    "key": { "question": "Wie erreiche ich Sie am besten?" },
+    "en": {
+      "question": "What's the best way to reach you?",
+      "answer": "The fastest way is by email at Autoglas@auto-bb.de or via the contact form on this website."
+    },
+    "tr": {
+      "question": "Size en iyi nasıl ulaşabilirim?",
+      "answer": "En hızlı yol Autoglas@auto-bb.de adresine e-posta göndermek veya bu sitedeki iletişim formunu kullanmaktır."
+    }
+  },
+  "faq_item:12": {
+    "type": "faq_item",
+    "key": { "question": "In welchen Orten sind Sie mobil im Einsatz?" },
+    "en": {
+      "question": "Which areas does your mobile service cover?",
+      "answer": "Our mobile service covers Hildrizhausen and the surrounding Böblingen district, including Herrenberg, Böblingen, Sindelfingen and the greater Stuttgart area."
+    },
+    "tr": {
+      "question": "Mobil olarak hangi bölgelerde hizmet veriyorsunuz?",
+      "answer": "Mobil servisimiz Hildrizhausen ve çevresindeki Böblingen bölgesini kapsıyor; Herrenberg, Böblingen, Sindelfingen ve Stuttgart çevresi dahil."
+    }
+  }
+}

@@ -1,7 +1,8 @@
 // GET /api/service/[slug] — public
 import { getDb } from "../../utils/db"
 import { mapServiceRow } from "../../utils/services"
-import { normalizeLocale, getTranslationMap, applyTranslations } from "../../utils/translations"
+import { normalizeLocale, getTranslationMap, applyTranslations, applyAllJsonArrayTranslations } from "../../utils/translations"
+import { TRANSLATABLE_CONTENT } from "../../utils/translatable-content"
 
 const TRANSLATABLE_FIELDS = [
   "hero_eyebrow", "hero_title", "hero_lead", "what_title", "what_lead",
@@ -16,5 +17,10 @@ export default defineEventHandler(async (event) => {
   const row  = await db.prepare("SELECT * FROM service_pages WHERE slug = ?").get(slug) as any
   if (!row) throw createError({ statusCode: 404, message: "Seite nicht gefunden." })
   const translations = await getTranslationMap("service_page", row.id, locale)
-  return mapServiceRow(applyTranslations(row, translations, TRANSLATABLE_FIELDS))
+  const translated = applyAllJsonArrayTranslations(
+    applyTranslations(row, translations, TRANSLATABLE_FIELDS),
+    translations,
+    TRANSLATABLE_CONTENT.service_page.jsonArrays || {},
+  )
+  return mapServiceRow(translated)
 })

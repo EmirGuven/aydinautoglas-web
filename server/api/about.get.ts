@@ -1,7 +1,8 @@
 // GET /api/about — public
 import { getDb } from "../utils/db"
 import { aboutCtaDefaults, resolvePageCtaButtons } from "../../utils/page-cta"
-import { normalizeLocale, getTranslationMap, applyTranslations } from "../utils/translations"
+import { normalizeLocale, getTranslationMap, applyTranslations, applyAllJsonArrayTranslations } from "../utils/translations"
+import { TRANSLATABLE_CONTENT } from "../utils/translatable-content"
 
 const TRANSLATABLE_FIELDS = [
   "hero_eyebrow", "hero_title", "hero_lead", "bio_title", "bio_badge_label",
@@ -16,6 +17,7 @@ export default defineEventHandler(async (event) => {
   if (!row) return {}
   const translations = await getTranslationMap("about_page", 1, locale)
   row = applyTranslations(row, translations, TRANSLATABLE_FIELDS)
+  row = applyAllJsonArrayTranslations(row, translations, TRANSLATABLE_CONTENT.about_page.jsonArrays || {})
 
   const parse = (field: string) => {
     try { return JSON.parse(field) } catch { return [] }

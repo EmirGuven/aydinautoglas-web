@@ -2,7 +2,8 @@
 import { getDb } from "../utils/db"
 import { homepageCtaDefaults, resolvePageCtaButtons } from "../../utils/page-cta"
 import { normalizeHomepageServiceItems } from "../../utils/homepage-service-icons"
-import { normalizeLocale, getTranslationMap, applyTranslations } from "../utils/translations"
+import { normalizeLocale, getTranslationMap, applyTranslations, applyAllJsonArrayTranslations } from "../utils/translations"
+import { TRANSLATABLE_CONTENT } from "../utils/translatable-content"
 
 const TRANSLATABLE_FIELDS = [
   "hero_eyebrow", "hero_title", "hero_description", "hero_badge1", "hero_badge2", "hero_badge3",
@@ -21,6 +22,7 @@ export default defineEventHandler(async (event) => {
   if (!row) return {}
   const translations = await getTranslationMap("homepage", 1, locale)
   row = applyTranslations(row, translations, TRANSLATABLE_FIELDS)
+  row = applyAllJsonArrayTranslations(row, translations, TRANSLATABLE_CONTENT.homepage.jsonArrays || {})
   const legacySettings = await db.prepare("SELECT hero_image FROM site_settings WHERE id = 1").get() as any
   const fallbackHeroImage = row.hero_bg_image || legacySettings?.hero_image || ""
   const heroImages = normalizeHeroImages(row.hero_images, fallbackHeroImage)

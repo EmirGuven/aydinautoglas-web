@@ -1,0 +1,64 @@
+{
+  "blog_post:steinschlag-reparatur-oder-austausch": {
+    "type": "blog_post",
+    "key": { "slug": "steinschlag-reparatur-oder-austausch" },
+    "en": {
+      "title": "Stone chip in the windshield: repair or replace?",
+      "excerpt": "Not every stone chip means a new windshield. We explain when a repair is enough and when a replacement becomes necessary.",
+      "content": "<p>A stone chip on the motorway happens quickly — and the question usually follows immediately: is a repair enough, or does the whole windshield have to be replaced?</p><p>As a rule of thumb: if the damage is smaller than a 2-euro coin, lies outside the driver's direct field of vision and is not at the edge of the windshield, it can usually be repaired. The crack is filled with a special resin that cures under UV light, preventing the damage from spreading further.</p><p>If the damage is in the field of vision, larger, or located at the edge of the glass, a complete replacement is usually necessary for safety reasons. On modern vehicles with assistance systems (camera, rain sensor), an ADAS calibration must also be carried out after a replacement.</p><p>Our tip: the sooner you have a stone chip repaired, the greater the chance that a repair will be enough and that your partial coverage insurance will cover the full cost.</p>",
+      "category": "Repair",
+      "quote": "The sooner a stone chip is repaired, the greater the chance that a repair will be enough.",
+      "read_time": "4 min"
+    },
+    "tr": {
+      "title": "Ön camda taş çarpması: onarım mı, değişim mi?",
+      "excerpt": "Her taş çarpması yeni bir cam gerektirmez. Onarımın ne zaman yeterli olduğunu, değişimin ne zaman gerektiğini açıklıyoruz.",
+      "content": "<p>Otoyolda taş çarpması bir anda olur — ve hemen ardından şu soru gelir: onarım yeterli mi, yoksa camın tamamı mı değişmeli?</p><p>Genel kural şudur: hasar 2 Euro madeni parasından küçükse, sürücünün doğrudan görüş alanı dışındaysa ve camın kenarında değilse genellikle onarılabilir. Çatlak, UV ışığında sertleşen özel bir reçineyle doldurulur ve hasarın yayılması önlenir.</p><p>Hasar görüş alanındaysa, daha büyükse veya camın kenarında bulunuyorsa güvenlik nedeniyle genellikle komple değişim gerekir. Sürücü destek sistemleri (kamera, yağmur sensörü) bulunan modern araçlarda değişimden sonra ayrıca ADAS kalibrasyonu yapılmalıdır.</p><p>Tavsiyemiz: taş çarpmasını ne kadar erken onarırsanız, onarımın yeterli olma ve kasko sigortanızın masrafın tamamını karşılama ihtimali o kadar yüksek olur.</p>",
+      "category": "Onarım",
+      "quote": "Taş çarpması ne kadar erken onarılırsa, onarımın yeterli olma ihtimali o kadar yüksektir.",
+      "read_time": "4 dk"
+    }
+  },
+
+  "blog_post:adas-kalibrierung-nach-scheibenwechsel": {
+    "type": "blog_post",
+    "key": { "slug": "adas-kalibrierung-nach-scheibenwechsel" },
+    "en": {
+      "title": "ADAS calibration after a windshield replacement: why it matters",
+      "excerpt": "Modern vehicles have cameras and sensors built into the windshield. After a replacement the calibration has to be right — here's why.",
+      "content": "<p>Many modern vehicles are equipped with driver-assistance systems (ADAS) — such as lane-keeping assist, adaptive cruise control or emergency brake assist. The camera these systems rely on often sits directly behind the windshield.</p><p>When the windshield is replaced, the exact alignment of the camera inevitably changes slightly — even if the difference is invisible to the eye. Without recalibration the assistance systems can react incorrectly or fail completely.</p><p>That's why, after every windshield replacement on a vehicle with the relevant equipment, we carry out the ADAS calibration prescribed by the manufacturer. Only then can you be sure your assistance systems work reliably again.</p>",
+      "category": "Safety",
+      "quote": "Without recalibration, assistance systems can react incorrectly after a windshield replacement.",
+      "read_time": "3 min"
+    },
+    "tr": {
+      "title": "Cam değişimi sonrası ADAS kalibrasyonu: neden önemli?",
+      "excerpt": "Modern araçlarda ön camın içine kamera ve sensörler yerleştirilmiştir. Değişimden sonra kalibrasyonun doğru olması gerekir — nedenini açıklıyoruz.",
+      "content": "<p>Modern araçların çoğu sürücü destek sistemleriyle (ADAS) donatılmıştır — şerit takip asistanı, adaptif hız sabitleyici veya acil fren asistanı gibi. Bu sistemlerin kullandığı kamera çoğu zaman doğrudan ön camın arkasında bulunur.</p><p>Ön cam değiştirildiğinde kameranın tam hizası kaçınılmaz olarak çok az değişir — bu fark gözle görülmese bile. Yeniden kalibrasyon yapılmazsa destek sistemleri yanlış tepki verebilir veya tamamen devre dışı kalabilir.</p><p>Bu nedenle, ilgili donanıma sahip araçlarda her ön cam değişiminden sonra üreticinin öngördüğü ADAS kalibrasyonunu uyguluyoruz. Ancak bundan sonra destek sistemlerinizin yeniden güvenilir çalıştığından emin olabilirsiniz.</p>",
+      "category": "Güvenlik",
+      "quote": "Yeniden kalibrasyon yapılmazsa, cam değişimi sonrası destek sistemleri yanlış tepki verebilir.",
+      "read_time": "3 dk"
+    }
+  },
+
+  "blog_post:kaskoversicherung-glasschaden": {
+    "type": "blog_post",
+    "key": { "slug": "kaskoversicherung-glasschaden" },
+    "en": {
+      "title": "Comprehensive insurance and glass damage: what does the insurer cover?",
+      "excerpt": "Who pays for a stone chip or a windshield replacement — you or your insurer? An overview of partial and fully comprehensive cover for glass damage.",
+      "content": "<p>Most glass damage to a vehicle is covered by partial comprehensive insurance — and often without a deductible if a repair is possible instead of a replacement. That makes reporting a stone chip quickly especially worthwhile.</p><p>If the windshield has to be replaced completely, partial comprehensive cover usually applies as well, although a deductible may apply depending on your policy. Without comprehensive cover the vehicle owner bears the cost themselves.</p><p>We handle the process with your insurance company directly for you: you don't have to deal with forms or follow-up questions yourself. Simply bring your insurance details along or share them with us when booking your appointment.</p>",
+      "category": "Insurance",
+      "quote": "We handle the process with your insurance company directly for you.",
+      "read_time": "3 min"
+    },
+    "tr": {
+      "title": "Kasko sigortası ve cam hasarı: sigorta neyi karşılıyor?",
+      "excerpt": "Taş çarpması veya cam değişiminin bedelini kim öder — siz mi, sigorta mı? Cam hasarlarında kasko ve tam kaskoya genel bakış.",
+      "content": "<p>Araçtaki cam hasarlarının çoğu kasko sigortası kapsamındadır — ve değişim yerine onarım mümkünse çoğu zaman muafiyet bile uygulanmaz. Bu nedenle taş çarpmasını hızlıca bildirmek özellikle avantajlıdır.</p><p>Camın komple değişmesi gerekiyorsa genellikle yine kasko devreye girer, ancak poliçenize bağlı olarak muafiyet söz konusu olabilir. Kasko sigortası yoksa masrafı araç sahibi kendisi üstlenir.</p><p>Sigortanızla olan işlemleri doğrudan sizin adınıza yürütüyoruz: formlarla veya geri dönüşlerle kendiniz uğraşmak zorunda kalmazsınız. Randevu alırken sigorta bilgilerinizi yanınızda getirmeniz veya bize iletmeniz yeterli.</p>",
+      "category": "Sigorta",
+      "quote": "Sigortanızla olan işlemleri doğrudan sizin adınıza yürütüyoruz.",
+      "read_time": "3 dk"
+    }
+  }
+}

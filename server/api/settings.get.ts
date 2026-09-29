@@ -16,7 +16,8 @@ import {
   parsePhoneItems,
 } from "../../utils/site-settings"
 import { defaultThemePaletteId } from "../../utils/theme-palettes"
-import { normalizeLocale, getTranslationMap, applyTranslations, applyArrayLabelTranslations } from "../utils/translations"
+import { normalizeLocale, getTranslationMap, applyTranslations, applyAllJsonArrayTranslations } from "../utils/translations"
+import { TRANSLATABLE_CONTENT } from "../utils/translatable-content"
 
 const TRANSLATABLE_FIELDS = [
   "logo_tagline", "footer_tagline", "header_cta_label",
@@ -31,9 +32,7 @@ export default defineEventHandler(async (event) => {
 
   const translations = await getTranslationMap("site_settings", 1, locale)
   row = applyTranslations(row, translations, TRANSLATABLE_FIELDS)
-  row.header_menu_items = applyArrayLabelTranslations(row.header_menu_items, translations, "header_menu_items")
-  row.footer_menu_items = applyArrayLabelTranslations(row.footer_menu_items, translations, "footer_menu_items")
-  row.footer_legal_links = applyArrayLabelTranslations(row.footer_legal_links, translations, "footer_legal_links")
+  row = applyAllJsonArrayTranslations(row, translations, TRANSLATABLE_CONTENT.site_settings.jsonArrays || {})
 
   return {
     name: row.name,

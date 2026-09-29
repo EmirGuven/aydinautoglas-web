@@ -4,12 +4,13 @@ export interface TranslatableContentConfig {
   table: string
   fields: string[]
   label: string
+  // JSON dizi alanları: { alanAdı: [çevrilebilir öğe özellikleri] }
+  // Düz metin dizileri için boş dizi verilir (ör. bio_paragraphs).
+  jsonArrays?: Record<string, string[]>
   // Birden fazla kayıt varsa (blog, hizmet, SSS gibi) — listelemek için:
   listable?: boolean
   titleField?: string
 }
-
-export const MENU_ARRAY_FIELDS = ["header_menu_items", "footer_menu_items", "footer_legal_links"] as const
 
 export const TRANSLATABLE_CONTENT: Record<string, TranslatableContentConfig> = {
   site_settings: {
@@ -19,6 +20,11 @@ export const TRANSLATABLE_CONTENT: Record<string, TranslatableContentConfig> = {
       "logo_tagline", "footer_tagline", "header_cta_label",
       "footer_services_title", "footer_menu_title", "footer_contact_title", "footer_bottom_text",
     ],
+    jsonArrays: {
+      header_menu_items: ["label"],
+      footer_menu_items: ["label"],
+      footer_legal_links: ["label"],
+    },
   },
   homepage: {
     table: "homepage",
@@ -32,6 +38,11 @@ export const TRANSLATABLE_CONTENT: Record<string, TranslatableContentConfig> = {
       "testimonials_eyebrow", "testimonials_title", "testimonials_description",
       "cta_title", "cta_description", "cta_primary_label", "cta_secondary_label",
     ],
+    jsonArrays: {
+      accreditations: ["title", "description"],
+      process_steps: ["title", "description"],
+      services_items: ["title", "description"],
+    },
   },
   about_page: {
     table: "about_page",
@@ -41,6 +52,13 @@ export const TRANSLATABLE_CONTENT: Record<string, TranslatableContentConfig> = {
       "approach_title", "approach_lead", "cta_title", "cta_text",
       "cta_primary_label", "cta_secondary_label",
     ],
+    jsonArrays: {
+      bio_paragraphs: [],
+      specialties: ["title", "desc"],
+      hero_badges: ["title", "description"],
+      timeline: ["title", "desc"],
+      approach_values: ["title", "desc"],
+    },
   },
   contact_page: {
     table: "contact_page",
@@ -81,6 +99,11 @@ export const TRANSLATABLE_CONTENT: Record<string, TranslatableContentConfig> = {
       "issues_title", "issues_lead", "process_title", "process_lead",
       "cta_title", "cta_lead", "cta_primary_label", "cta_secondary_label",
     ],
+    jsonArrays: {
+      benefits: ["title", "text"],
+      issues: [],
+      process_steps: ["title", "text"],
+    },
     listable: true,
     titleField: "hero_title",
   },

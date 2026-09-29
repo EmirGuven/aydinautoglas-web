@@ -59,28 +59,58 @@ export async function getAllTranslations(contentType: string, contentId: number)
   ).all(contentType, contentId) as Array<{ locale: string; field: string; value: string }>
 }
 
-// Menü gibi JSON dizi alanlarındaki her öğenin "label" alanı için sözde alan adı üretir.
-export function arrayLabelField(arrayField: string, index: number): string {
-  return `${arrayField}.${index}.label`
+// JSON dizi alanlarındaki tek tek öğeler için sözde alan adı üretir.
+// Nesne dizileri: "services_items.0.title" — düz metin dizileri: "bio_paragraphs.0"
+export function jsonArrayField(arrayField: string, index: number, prop?: string): string {
+  return prop ? `${arrayField}.${index}.${prop}` : `${arrayField}.${index}`
 }
 
-// Bir JSON dizi metnini parse edip, çeviri haritasındaki label çevirilerini üzerine yazar.
-export function applyArrayLabelTranslations(jsonText: string, translations: Record<string, string>, arrayField: string): string {
+// Bir JSON dizi metnini parse edip, çeviri haritasındaki öğe çevirilerini üzerine yazar.
+export function applyJsonArrayTranslations(
+  jsonText: string,
+  translations: Record<string, string>,
+  arrayField: string,
+  props: string[],
+): string {
   let items: any[]
   try {
-    items = JSON.parse(jsonText)
+    items = JSON.parse(jsonText || "[]")
   } catch {
     return jsonText
   }
   if (!Array.isArray(items)) return jsonText
+
   const translated = items.map((item, i) => {
-    const key = arrayLabelField(arrayField, i)
-    if (item && typeof item === "object" && translations[key]) {
-      return { ...item, label: translations[key] }
+    if (typeof item === "string") {
+      return translations[jsonArrayField(arrayField, i)] || item
+    }
+    if (item && typeof item === "object") {
+      const copy: any = { ...item }
+      for (const prop of props) {
+        const value = translations[jsonArrayField(arrayField, i, prop)]
+        if (value) copy[prop] = value
+      }
+      return copy
     }
     return item
   })
   return JSON.stringify(translated)
+}
+
+// Bir kaydın tüm yapılandırılmış JSON dizi alanlarına çevirileri uygular.
+export function applyAllJsonArrayTranslations<T extends Record<string, any>>(
+  row: T,
+  translations: Record<string, string>,
+  arrayConfig: Record<string, string[]>,
+): T {
+  if (!translations || !Object.keys(translations).length) return row
+  const result: any = { ...row }
+  for (const [field, props] of Object.entries(arrayConfig)) {
+    if (typeof result[field] === "string") {
+      result[field] = applyJsonArrayTranslations(result[field], translations, field, props)
+    }
+  }
+  return result
 }
 
 // Admin: bir alanın çevirisini kaydeder/günceller.

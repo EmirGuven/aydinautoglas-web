@@ -4,25 +4,41 @@
 // PUT  /api/admin/translations?type=X&id=Y            — bir dildeki alan çevirilerini kaydeder
 import { getDb } from "../../utils/db"
 import { verifyToken, parseCookies } from "../../utils/auth"
-import { TRANSLATABLE_CONTENT, MENU_ARRAY_FIELDS } from "../../utils/translatable-content"
-import { getAllTranslations, saveTranslation, SUPPORTED_LOCALES, arrayLabelField } from "../../utils/translations"
+import { TRANSLATABLE_CONTENT } from "../../utils/translatable-content"
+import { getAllTranslations, saveTranslation, SUPPORTED_LOCALES, jsonArrayField } from "../../utils/translations"
 
-// site_settings için menü dizilerindeki (header_menu_items vb.) her öğenin "label"ı da
-// dinamik olarak çevrilebilir alan listesine eklenir (ör. "header_menu_items.0.label").
-function resolveFields(type: string, row: any): string[] {
+// JSON dizi alanlarındaki (menü öğeleri, hizmet kartları, süreç adımları vb.) her öğe
+// dinamik olarak çevrilebilir alan listesine eklenir — ör. "services_items.0.title".
+// Dönen değer: { field, base } çiftleri (base = Almanca kaynak metin).
+function resolveFieldEntries(type: string, row: any): Array<{ field: string; base: string }> {
   const cfg = TRANSLATABLE_CONTENT[type]
-  const fields = [...cfg.fields]
-  if (type === "site_settings" && row) {
-    for (const arrayField of MENU_ARRAY_FIELDS) {
-      try {
-        const items = JSON.parse(row[arrayField] || "[]")
-        if (Array.isArray(items)) {
-          items.forEach((_: any, i: number) => fields.push(arrayLabelField(arrayField, i)))
-        }
-      } catch { /* yok say */ }
+  const entries = cfg.fields.map(field => ({ field, base: row?.[field] || "" }))
+
+  for (const [arrayField, props] of Object.entries(cfg.jsonArrays || {})) {
+    let items: any[]
+    try {
+      items = JSON.parse(row?.[arrayField] || "[]")
+    } catch {
+      continue
     }
+    if (!Array.isArray(items)) continue
+
+    items.forEach((item, i) => {
+      if (typeof item === "string") {
+        entries.push({ field: jsonArrayField(arrayField, i), base: item })
+        return
+      }
+      if (item && typeof item === "object") {
+        for (const prop of props) {
+          if (typeof item[prop] === "string" && item[prop]) {
+            entries.push({ field: jsonArrayField(arrayField, i, prop), base: item[prop] })
+          }
+        }
+      }
+    })
   }
-  return fields
+
+  return entries
 }
 
 async function checkAuth(event: any) {
@@ -60,19 +76,10 @@ export default defineEventHandler(async (event) => {
     const row = await db.prepare(`SELECT * FROM ${cfg.table} WHERE id = ?`).get(id) as any
     if (!row) throw createError({ statusCode: 404, message: "Kayıt bulunamadı." })
 
-    const fields = resolveFields(type, row)
+    const entries = resolveFieldEntries(type, row)
+    const fields = entries.map(e => e.field)
     const base: Record<string, string> = {}
-    for (const f of fields) {
-      if (f.includes(".")) {
-        const [arrayField, indexStr] = f.split(".")
-        try {
-          const items = JSON.parse(row[arrayField] || "[]")
-          base[f] = items[Number(indexStr)]?.label || ""
-        } catch { base[f] = "" }
-      } else {
-        base[f] = row[f] || ""
-      }
-    }
+    for (const entry of entries) base[entry.field] = entry.base
 
     const allTranslations = await getAllTranslations(type, id)
     const byLocale: Record<string, Record<string, string>> = {}
@@ -98,7 +105,7 @@ export default defineEventHandler(async (event) => {
     }
 
     const row = await db.prepare(`SELECT * FROM ${cfg.table} WHERE id = ?`).get(id) as any
-    const fields = resolveFields(type, row)
+    const fields = resolveFieldEntries(type, row).map(e => e.field)
 
     const values = body.values || {}
     for (const field of fields) {
