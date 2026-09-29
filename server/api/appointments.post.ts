@@ -5,7 +5,13 @@ import { checkRateLimit, resolveClientIp } from "../utils/rate-limit"
 export default defineEventHandler(async (event) => {
   const runtimeConfig = useRuntimeConfig(event)
   const body = await readBody(event)
-  const { name, phone, email, service, message } = body || {}
+  const {
+    name, phone, email, service, message,
+    glassType, damageExtent, damageLocation,
+    licensePlate, insuranceCompany, vin,
+    additionalService, referralSource,
+    preferredDate, preferredTime,
+  } = body || {}
 
   const rateLimit = checkRateLimit(event, {
     keyPrefix: "contact-form",
@@ -64,14 +70,30 @@ export default defineEventHandler(async (event) => {
 
   const db = await getDb()
   const result = await db.prepare(`
-    INSERT INTO appointments (name, phone, email, service, message)
-    VALUES (?, ?, ?, ?, ?)
+    INSERT INTO appointments (
+      name, phone, email, service, message,
+      glass_type, damage_extent, damage_location,
+      license_plate, insurance_company, vin,
+      additional_service, referral_source,
+      preferred_date, preferred_time
+    )
+    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
   `).run(
     String(name).slice(0, 200),
     String(phone || "").slice(0, 50),
     String(email).slice(0, 200),
     String(service || "").slice(0, 100),
-    String(message || "").slice(0, 2000)
+    String(message || "").slice(0, 2000),
+    String(glassType || "").slice(0, 50),
+    String(damageExtent || "").slice(0, 50),
+    String(damageLocation || "").slice(0, 50),
+    String(licensePlate || "").slice(0, 20),
+    String(insuranceCompany || "").slice(0, 100),
+    String(vin || "").slice(0, 20),
+    String(additionalService || "").slice(0, 50),
+    String(referralSource || "").slice(0, 50),
+    String(preferredDate || "").slice(0, 20),
+    String(preferredTime || "").slice(0, 20)
   )
 
   return { success: true, id: result.lastInsertRowid }

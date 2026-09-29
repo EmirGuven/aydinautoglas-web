@@ -6,7 +6,7 @@
         <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.9)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a10 10 0 1 0 10 10"/><path d="M12 6v6l4 2"/><circle cx="18" cy="6" r="4" fill="rgba(184,134,11,0.8)" stroke="none"/></svg>
         <div>
           <strong>Admin Panel</strong>
-          <small>Ev-Mobil</small>
+          <small>Aydin Autoglas</small>
         </div>
       </div>
 

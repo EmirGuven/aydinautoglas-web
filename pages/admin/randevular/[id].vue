@@ -56,6 +56,30 @@
           </span>
           <span class="apt-info-val">{{ formatDate(apt.created_at) }}</span>
         </div>
+        <div class="apt-info-row" v-if="apt.license_plate">
+          <span class="apt-info-label">Kennzeichen</span>
+          <span class="apt-info-val">{{ apt.license_plate }}</span>
+        </div>
+        <div class="apt-info-row" v-if="apt.insurance_company">
+          <span class="apt-info-label">Versicherung</span>
+          <span class="apt-info-val">{{ apt.insurance_company }}</span>
+        </div>
+        <div class="apt-info-row" v-if="apt.vin">
+          <span class="apt-info-label">FIN</span>
+          <span class="apt-info-val">{{ apt.vin }}</span>
+        </div>
+        <div class="apt-info-row" v-if="apt.damage_extent">
+          <span class="apt-info-label">Schaden</span>
+          <span class="apt-info-val">
+            {{ apt.glass_type === 'andere' ? 'Andere Scheibe' : 'Windschutzscheibe' }} ·
+            {{ apt.damage_extent === 'steinschlag' ? 'Steinschlag' : 'Größerer Schaden' }}
+            <template v-if="apt.damage_location"> · {{ apt.damage_location === 'sichtfeld' ? 'Im Sichtfeld' : 'Außerhalb des Sichtfelds' }}</template>
+          </span>
+        </div>
+        <div class="apt-info-row" v-if="apt.additional_service">
+          <span class="apt-info-label">Ausführung</span>
+          <span class="apt-info-val">{{ apt.additional_service === 'mobil' ? 'Mobiler Service' : 'In der Werkstatt' }}</span>
+        </div>
 
         <div v-if="apt.message" class="apt-message-box">
           <div class="apt-card__section">Başvuru Mesajı</div>
@@ -156,6 +180,14 @@ interface Appointment {
   issue_date: string
   session_count: number
   created_at: string
+  glass_type: string
+  damage_extent: string
+  damage_location: string
+  license_plate: string
+  insurance_company: string
+  vin: string
+  additional_service: string
+  referral_source: string
 }
 
 const route = useRoute()

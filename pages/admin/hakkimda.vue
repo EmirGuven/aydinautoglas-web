@@ -34,7 +34,7 @@
           </div>
           <div class="form-group">
             <label>Ana Başlık</label>
-            <input v-model="form.hero_title" type="text" placeholder="Ev-Mobil" />
+            <input v-model="form.hero_title" type="text" placeholder="Aydin Autoglas" />
           </div>
           <div class="form-group" style="grid-column:1/-1">
             <label>Öncü Metin</label>

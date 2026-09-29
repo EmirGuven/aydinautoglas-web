@@ -91,6 +91,47 @@
                 <span class="xls-info-lbl">Başvuru:</span>
                 <span>{{ formatDate(req.created_at) }}</span>
               </div>
+
+              <div class="xls-detail__stitle" style="margin-top:0.75rem;">Autoglas-Schaden</div>
+              <div class="xls-info-row" v-if="req.glass_type">
+                <span class="xls-info-lbl">Scheibe:</span>
+                <span>{{ glassTypeLabel(req.glass_type) }}</span>
+              </div>
+              <div class="xls-info-row" v-if="req.damage_extent">
+                <span class="xls-info-lbl">Ausmaß:</span>
+                <span>{{ damageExtentLabel(req.damage_extent) }}</span>
+              </div>
+              <div class="xls-info-row" v-if="req.damage_location">
+                <span class="xls-info-lbl">Position:</span>
+                <span>{{ damageLocationLabel(req.damage_location) }}</span>
+              </div>
+              <div class="xls-info-row" v-if="req.preferred_date">
+                <span class="xls-info-lbl">Wunschtermin:</span>
+                <span>{{ req.preferred_date }}{{ req.preferred_time ? ' · ' + req.preferred_time : '' }}</span>
+              </div>
+              <div class="xls-info-row" v-if="req.additional_service">
+                <span class="xls-info-lbl">Ausführung:</span>
+                <span>{{ additionalServiceLabel(req.additional_service) }}</span>
+              </div>
+
+              <div class="xls-detail__stitle" style="margin-top:0.75rem;" v-if="req.license_plate || req.insurance_company || req.vin">Fahrzeug</div>
+              <div class="xls-info-row" v-if="req.license_plate">
+                <span class="xls-info-lbl">Kennzeichen:</span>
+                <span>{{ req.license_plate }}</span>
+              </div>
+              <div class="xls-info-row" v-if="req.insurance_company">
+                <span class="xls-info-lbl">Versicherung:</span>
+                <span>{{ req.insurance_company }}</span>
+              </div>
+              <div class="xls-info-row" v-if="req.vin">
+                <span class="xls-info-lbl">FIN:</span>
+                <span>{{ req.vin }}</span>
+              </div>
+              <div class="xls-info-row" v-if="req.referral_source">
+                <span class="xls-info-lbl">Quelle:</span>
+                <span>{{ req.referral_source }}</span>
+              </div>
+
               <div v-if="req.message" class="xls-message-box">
                 <div class="xls-info-lbl" style="margin-bottom:4px;">Mesaj:</div>
                 <div class="xls-message-text">{{ req.message }}</div>
@@ -175,7 +216,22 @@ interface Req {
   notes: string
   type: string
   created_at: string
+  glass_type: string
+  damage_extent: string
+  damage_location: string
+  license_plate: string
+  insurance_company: string
+  vin: string
+  additional_service: string
+  referral_source: string
+  preferred_date: string
+  preferred_time: string
 }
+
+const glassTypeLabel = (v: string) => v === 'andere' ? 'Andere Scheibe' : (v === 'windschutzscheibe' ? 'Windschutzscheibe' : '')
+const damageExtentLabel = (v: string) => v === 'steinschlag' ? 'Steinschlag' : (v === 'groesser' ? 'Größerer Schaden' : '')
+const damageLocationLabel = (v: string) => v === 'sichtfeld' ? 'Im Sichtfeld' : (v === 'ausserhalb' ? 'Außerhalb des Sichtfelds' : '')
+const additionalServiceLabel = (v: string) => v === 'mobil' ? 'Mobiler Service' : (v === 'werkstatt' ? 'In der Werkstatt' : '')
 
 const { data: requests, pending, refresh } = await useFetch<Req[]>('/api/admin/appointments?type=request', {
   headers: useRequestHeaders(['cookie'])
@@ -254,7 +310,7 @@ async function deleteReq(id: number) {
 
 function openConvert(req: Req) {
   convertModal.value = req
-  convertForm.value = { date: '', time: '', notes: req.notes || '' }
+  convertForm.value = { date: req.preferred_date || '', time: req.preferred_time || '', notes: req.notes || '' }
 }
 
 async function doConvert() {

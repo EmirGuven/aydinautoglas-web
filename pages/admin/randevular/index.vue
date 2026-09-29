@@ -126,6 +126,26 @@
                 <span class="xls-detail__info-label">Başvuru</span>
                 <span class="xls-detail__info-val">{{ formatDate(apt.created_at) }}</span>
               </div>
+              <div class="xls-detail__info-row" v-if="apt.license_plate">
+                <span class="xls-detail__info-label">Kennzeichen</span>
+                <span class="xls-detail__info-val">{{ apt.license_plate }}</span>
+              </div>
+              <div class="xls-detail__info-row" v-if="apt.insurance_company">
+                <span class="xls-detail__info-label">Versicherung</span>
+                <span class="xls-detail__info-val">{{ apt.insurance_company }}</span>
+              </div>
+              <div class="xls-detail__info-row" v-if="apt.vin">
+                <span class="xls-detail__info-label">FIN</span>
+                <span class="xls-detail__info-val">{{ apt.vin }}</span>
+              </div>
+              <div class="xls-detail__info-row" v-if="apt.damage_extent">
+                <span class="xls-detail__info-label">Schaden</span>
+                <span class="xls-detail__info-val">{{ glassTypeLabel(apt.glass_type) }} · {{ damageExtentLabel(apt.damage_extent) }}<template v-if="apt.damage_location"> · {{ damageLocationLabel(apt.damage_location) }}</template></span>
+              </div>
+              <div class="xls-detail__info-row" v-if="apt.additional_service">
+                <span class="xls-detail__info-label">Ausführung</span>
+                <span class="xls-detail__info-val">{{ additionalServiceLabel(apt.additional_service) }}</span>
+              </div>
               <div v-if="apt.message" class="xls-detail__message">
                 <div class="xls-detail__info-label" style="margin-bottom:4px;">Mesaj</div>
                 <div class="xls-detail__message-text">{{ apt.message }}</div>
@@ -205,7 +225,20 @@ interface Appointment {
   issue_date: string
   session_count: number
   created_at: string
+  glass_type: string
+  damage_extent: string
+  damage_location: string
+  license_plate: string
+  insurance_company: string
+  vin: string
+  additional_service: string
+  referral_source: string
 }
+
+const glassTypeLabel = (v: string) => v === 'andere' ? 'Andere Scheibe' : (v === 'windschutzscheibe' ? 'Windschutzscheibe' : '')
+const damageExtentLabel = (v: string) => v === 'steinschlag' ? 'Steinschlag' : (v === 'groesser' ? 'Größerer Schaden' : '')
+const damageLocationLabel = (v: string) => v === 'sichtfeld' ? 'Im Sichtfeld' : (v === 'ausserhalb' ? 'Außerhalb des Sichtfelds' : '')
+const additionalServiceLabel = (v: string) => v === 'mobil' ? 'Mobiler Service' : (v === 'werkstatt' ? 'In der Werkstatt' : '')
 
 const { data: appointments, pending, refresh } = await useFetch<Appointment[]>('/api/admin/appointments?type=appointment', {
   headers: useRequestHeaders(['cookie'])

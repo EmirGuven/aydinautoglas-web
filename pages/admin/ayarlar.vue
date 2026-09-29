@@ -32,7 +32,7 @@
           </div>
           <div class="form-group">
             <label>Başlık Sonu</label>
-            <input v-model="form.title_suffix" type="text" placeholder="Ev-Mobil" />
+            <input v-model="form.title_suffix" type="text" placeholder="Aydin Autoglas" />
           </div>
           <div class="form-group" style="grid-column:1/-1">
             <label>Meta Açıklama</label>

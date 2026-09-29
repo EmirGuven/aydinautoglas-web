@@ -410,6 +410,18 @@ async function initSchema(db: Db) {
   await db.exec("ALTER TABLE appointments ADD COLUMN IF NOT EXISTS appointment_date TEXT NOT NULL DEFAULT ''")
   await db.exec("ALTER TABLE appointments ADD COLUMN IF NOT EXISTS appointment_time TEXT NOT NULL DEFAULT ''")
 
+  // Autoglas-Schadenformular: zusätzliche Felder
+  await db.exec("ALTER TABLE appointments ADD COLUMN IF NOT EXISTS glass_type TEXT NOT NULL DEFAULT ''")
+  await db.exec("ALTER TABLE appointments ADD COLUMN IF NOT EXISTS damage_extent TEXT NOT NULL DEFAULT ''")
+  await db.exec("ALTER TABLE appointments ADD COLUMN IF NOT EXISTS damage_location TEXT NOT NULL DEFAULT ''")
+  await db.exec("ALTER TABLE appointments ADD COLUMN IF NOT EXISTS license_plate TEXT NOT NULL DEFAULT ''")
+  await db.exec("ALTER TABLE appointments ADD COLUMN IF NOT EXISTS insurance_company TEXT NOT NULL DEFAULT ''")
+  await db.exec("ALTER TABLE appointments ADD COLUMN IF NOT EXISTS vin TEXT NOT NULL DEFAULT ''")
+  await db.exec("ALTER TABLE appointments ADD COLUMN IF NOT EXISTS additional_service TEXT NOT NULL DEFAULT ''")
+  await db.exec("ALTER TABLE appointments ADD COLUMN IF NOT EXISTS referral_source TEXT NOT NULL DEFAULT ''")
+  await db.exec("ALTER TABLE appointments ADD COLUMN IF NOT EXISTS preferred_date TEXT NOT NULL DEFAULT ''")
+  await db.exec("ALTER TABLE appointments ADD COLUMN IF NOT EXISTS preferred_time TEXT NOT NULL DEFAULT ''")
+
   // Blog migration: yeni sütunlar
   await db.exec("ALTER TABLE blog_posts ADD COLUMN IF NOT EXISTS hero_bg_image TEXT NOT NULL DEFAULT ''")
 

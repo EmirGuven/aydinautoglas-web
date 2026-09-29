@@ -2,7 +2,7 @@
   <div class="admin-login-page">
     <div class="admin-login-card">
       <div class="admin-login-card__logo">
-        <strong>Ev-Mobil</strong>
+        <strong>Aydin Autoglas</strong>
         <small>Admin Girişi</small>
       </div>
 
