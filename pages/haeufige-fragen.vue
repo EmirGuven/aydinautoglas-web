@@ -88,8 +88,8 @@ function selectGroup(id: number) {
               <strong>{{ faqs?.length }}</strong> Themenbereiche
             </p>
             <div class="faq-topbar__pills">
-              <span class="faq-topbar__pill">Alle Antworten auf einer Seite</span>
-              <span class="faq-topbar__pill">Einfache Navigation nach Thema</span>
+              <span class="faq-topbar__pill">{{ $t('faq.allAnswersOnOnePage') }}</span>
+              <span class="faq-topbar__pill">{{ $t('faq.easyNavigation') }}</span>
             </div>
           </div>
           <div class="faq-topbar__right">
@@ -97,7 +97,7 @@ function selectGroup(id: number) {
         <div class="faq-search-wrap">
           <div class="faq-search">
             <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
-            <input v-model="searchQuery" type="text" placeholder="Frage oder Thema suchen..." class="faq-search__input" />
+            <input v-model="searchQuery" type="text" :placeholder="$t('faq.searchPlaceholder')" class="faq-search__input" />
             <button v-if="searchQuery" class="faq-search__clear" @click="searchQuery = ''">
               <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
             </button>
@@ -139,7 +139,7 @@ function selectGroup(id: number) {
 
           <!-- Sol: Kategori tabları -->
           <nav class="faq-tabs faq-tabs--sticky">
-            <div class="faq-tabs__label">Themen</div>
+            <div class="faq-tabs__label">{{ $t('faq.topics') }}</div>
             <button
               v-for="group in faqs"
               :key="group.id"
@@ -195,8 +195,8 @@ function selectGroup(id: number) {
           <h2 class="sss-cta__title">{{ page?.ctaTitle || 'Ihre Frage war nicht dabei?' }}</h2>
           <p class="sss-cta__lead">{{ page?.ctaLead || 'Schreiben Sie uns direkt, wenn Ihre Frage hier nicht beantwortet wurde.' }}</p>
           <div class="sss-cta__signals">
-            <span class="sss-cta__signal">Werkstatt oder mobiler Service</span>
-            <span class="sss-cta__signal">Terminplanung nach Ihrem Zeitplan</span>
+            <span class="sss-cta__signal">{{ $t('faq.workshopOrMobile') }}</span>
+            <span class="sss-cta__signal">{{ $t('faq.flexibleScheduling') }}</span>
           </div>
           <div class="sss-cta__actions">
             <AppSmartLink

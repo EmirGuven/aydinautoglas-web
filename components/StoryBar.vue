@@ -13,6 +13,7 @@ interface Story {
 }
 
 const { data: stories } = await useFetch<Story[]>('/api/stories')
+const { t } = useI18n()
 const displayStories = computed(() => (stories.value ?? []).slice(0, 5))
 
 const siteSettings = useState<any>('siteSettings')
@@ -35,13 +36,13 @@ function timeAgo(dateStr?: string) {
   if (!dateStr) return ''
   const diffMs = Date.now() - new Date(dateStr).getTime()
   const mins = Math.floor(diffMs / 60000)
-  if (mins < 1) return 'jetzt'
-  if (mins < 60) return `${mins}dk`
+  if (mins < 1) return t('timeAgo.now')
+  if (mins < 60) return t('timeAgo.minutesAgo', { n: mins })
   const hours = Math.floor(mins / 60)
-  if (hours < 24) return `${hours}sa`
+  if (hours < 24) return t('timeAgo.hoursAgo', { n: hours })
   const days = Math.floor(hours / 24)
-  if (days < 7) return `${days}g`
-  return `${Math.floor(days / 7)}h`
+  if (days < 7) return t('timeAgo.daysAgo', { n: days })
+  return t('timeAgo.weeksAgo', { n: Math.floor(days / 7) })
 }
 
 const viewerOpen = ref(false)
@@ -197,14 +198,14 @@ onBeforeUnmount(() => {
         <div class="story-viewer__nav">
           <button
             class="story-viewer__nav-zone story-viewer__nav-zone--left"
-            aria-label="Zurück"
+            :aria-label="$t('common.back')"
             @pointerdown="onHoldStart"
             @pointerup="onHoldEnd(prev)"
             @pointerleave="paused && resumeTimer()"
           />
           <button
             class="story-viewer__nav-zone story-viewer__nav-zone--right"
-            aria-label="Sonraki"
+            :aria-label="$t('common.next')"
             @pointerdown="onHoldStart"
             @pointerup="onHoldEnd(next)"
             @pointerleave="paused && resumeTimer()"

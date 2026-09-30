@@ -119,5 +119,52 @@
       "translations": "Çeviriler",
       "logout": "Çıkış Yap"
     }
+  },
+  "contactInfo": {
+    "address": "Adres",
+    "phone": "Telefon",
+    "email": "E-posta",
+    "workingHours": "Çalışma Saatleri"
+  },
+  "timeAgo": {
+    "now": "şimdi",
+    "minutesAgo": "{n} dk",
+    "hoursAgo": "{n} sa",
+    "daysAgo": "{n} g",
+    "weeksAgo": "{n} h"
+  },
+  "about": {
+    "ourApproach": "Çalışma Şeklimiz",
+    "ourStory": "Hikayemiz",
+    "storyTitle": "Aydin Autoglas'ın Yolculuğu",
+    "principles": "İlkelerimiz"
+  },
+  "faq": {
+    "allAnswersOnOnePage": "Tüm yanıtlar tek sayfada",
+    "easyNavigation": "Konuya göre kolay gezinme",
+    "searchPlaceholder": "Soru veya konu ara...",
+    "workshopOrMobile": "Atölye veya mobil servis",
+    "flexibleScheduling": "Programınıza uygun randevu",
+    "topics": "Konular"
+  },
+  "blog": {
+    "featured": "Öne Çıkan",
+    "searchPlaceholder": "Konu veya anahtar kelime ara...",
+    "tags": "Etiketler",
+    "noTags": "Etiket yok",
+    "categories": "Kategoriler",
+    "relatedPosts": "Benzer Yazılar",
+    "recentPosts": "Son Yazılar",
+    "appointmentCta": "Camınız için randevu ister misiniz?",
+    "appointmentCtaText": "İletişim formu üzerinden bize yazın — size bir randevu önerisiyle dönelim.",
+    "allPosts": "Tüm Yazılar",
+    "noCategoryYet": "Henüz kategori yok"
+  },
+  "service": {
+    "applicationAreas": "Kullanım Alanları",
+    "process": "Süreç"
+  },
+  "legal": {
+    "legalTag": "Yasal"
   }
 }

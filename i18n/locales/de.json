@@ -119,5 +119,52 @@
       "translations": "Übersetzungen",
       "logout": "Abmelden"
     }
+  },
+  "contactInfo": {
+    "address": "Adresse",
+    "phone": "Telefon",
+    "email": "E-Mail",
+    "workingHours": "Öffnungszeiten"
+  },
+  "timeAgo": {
+    "now": "jetzt",
+    "minutesAgo": "{n} Min.",
+    "hoursAgo": "{n} Std.",
+    "daysAgo": "{n} T.",
+    "weeksAgo": "{n} Wo."
+  },
+  "about": {
+    "ourApproach": "Unsere Arbeitsweise",
+    "ourStory": "Unsere Geschichte",
+    "storyTitle": "Der Weg von Aydin Autoglas",
+    "principles": "Prinzipien"
+  },
+  "faq": {
+    "allAnswersOnOnePage": "Alle Antworten auf einer Seite",
+    "easyNavigation": "Einfache Navigation nach Thema",
+    "searchPlaceholder": "Frage oder Thema suchen...",
+    "workshopOrMobile": "Werkstatt oder mobiler Service",
+    "flexibleScheduling": "Terminplanung nach Ihrem Zeitplan",
+    "topics": "Themen"
+  },
+  "blog": {
+    "featured": "Hervorgehoben",
+    "searchPlaceholder": "Thema oder Stichwort suchen...",
+    "tags": "Etiketten",
+    "noTags": "Keine Etiketten",
+    "categories": "Kategorien",
+    "relatedPosts": "Ähnliche Beiträge",
+    "recentPosts": "Neueste Beiträge",
+    "appointmentCta": "Termin für Ihre Scheibe?",
+    "appointmentCtaText": "Schreiben Sie uns über das Kontaktformular — wir melden uns mit einem Terminvorschlag.",
+    "allPosts": "Alle Beiträge",
+    "noCategoryYet": "Noch keine Kategorie"
+  },
+  "service": {
+    "applicationAreas": "Anwendungsbereiche",
+    "process": "Ablauf"
+  },
+  "legal": {
+    "legalTag": "Rechtliches"
   }
 }

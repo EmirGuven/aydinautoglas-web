@@ -51,7 +51,7 @@ usePageSeo({
     <div class="container article-layout">
       <main>
         <nav class="breadcrumb">
-          <NuxtLink to="/">Ana Sayfa</NuxtLink>
+          <NuxtLink to="/">{{ $t('nav.home') }}</NuxtLink>
           <span>/</span>
           <NuxtLink to="/blog">Blog</NuxtLink>
           <span>/</span>
@@ -86,7 +86,7 @@ usePageSeo({
         </div>
 
         <div class="sidebar-card">
-          <h3>Etiketler</h3>
+          <h3>{{ $t('blog.tags') }}</h3>
           <div class="tag-list">
             <NuxtLink
               v-for="tag in postTags"
@@ -94,33 +94,33 @@ usePageSeo({
               :to="`/blog?kategori=${encodeURIComponent(tag)}`"
               class="tag-link"
             >{{ tag }}</NuxtLink>
-            <span v-if="!postTags.length" style="color:#94a3b8;font-size:.85rem">Etiket yok</span>
+            <span v-if="!postTags.length" style="color:#94a3b8;font-size:.85rem">{{ $t('blog.noTags') }}</span>
           </div>
         </div>
 
         <div class="sidebar-card">
-          <h3>Kategoriler</h3>
+          <h3>{{ $t('blog.categories') }}</h3>
           <ul class="category-list">
             <li v-for="[cat, count] in allCategories" :key="cat">
               <NuxtLink :to="`/blog?kategori=${encodeURIComponent(cat)}`">{{ cat }}</NuxtLink>
               <em>{{ count }}</em>
             </li>
-            <li v-if="!allCategories.length" style="color:#94a3b8;font-size:.85rem">Noch keine Kategorie</li>
+            <li v-if="!allCategories.length" style="color:#94a3b8;font-size:.85rem">{{ $t('blog.noCategoryYet') }}</li>
           </ul>
         </div>
 
         <div class="sidebar-card sidebar-card--dark">
-          <h3>Termin für Ihre Scheibe?</h3>
-          <p>Schreiben Sie uns über das Kontaktformular — wir melden uns mit einem Terminvorschlag.</p>
-          <NuxtLink to="/kontakt" class="button">Termin vereinbaren</NuxtLink>
+          <h3>{{ $t('blog.appointmentCta') }}</h3>
+          <p>{{ $t('blog.appointmentCtaText') }}</p>
+          <NuxtLink to="/kontakt" class="button">{{ $t('nav.bookAppointment') }}</NuxtLink>
         </div>
       </aside>
     </div>
 
     <section class="container related-posts">
       <div class="section__split section__split--compact">
-        <h2 class="subheading">Ähnliche Beiträge</h2>
-        <NuxtLink to="/blog" class="section__link">Alle Beiträge</NuxtLink>
+        <h2 class="subheading">{{ $t('blog.relatedPosts') }}</h2>
+        <NuxtLink to="/blog" class="section__link">{{ $t('blog.allPosts') }}</NuxtLink>
       </div>
       <div class="grid grid--3">
         <BlogCard

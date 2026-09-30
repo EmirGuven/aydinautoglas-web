@@ -27,7 +27,7 @@ function renderMarkdown(text: string): string {
   <div>
     <section class="page-hero">
       <div class="container">
-        <p class="eyebrow">Rechtliches</p>
+        <p class="eyebrow">{{ $t('legal.legalTag') }}</p>
         <div class="section-divider" />
         <h1>{{ page?.title }}</h1>
       </div>

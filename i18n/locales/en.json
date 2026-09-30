@@ -119,5 +119,52 @@
       "translations": "Translations",
       "logout": "Log out"
     }
+  },
+  "contactInfo": {
+    "address": "Address",
+    "phone": "Phone",
+    "email": "Email",
+    "workingHours": "Opening hours"
+  },
+  "timeAgo": {
+    "now": "now",
+    "minutesAgo": "{n}m",
+    "hoursAgo": "{n}h",
+    "daysAgo": "{n}d",
+    "weeksAgo": "{n}w"
+  },
+  "about": {
+    "ourApproach": "Our Approach",
+    "ourStory": "Our Story",
+    "storyTitle": "The Journey of Aydin Autoglas",
+    "principles": "Principles"
+  },
+  "faq": {
+    "allAnswersOnOnePage": "All answers on one page",
+    "easyNavigation": "Easy navigation by topic",
+    "searchPlaceholder": "Search for a question or topic...",
+    "workshopOrMobile": "Workshop or mobile service",
+    "flexibleScheduling": "Scheduling that fits your day",
+    "topics": "Topics"
+  },
+  "blog": {
+    "featured": "Featured",
+    "searchPlaceholder": "Search by topic or keyword...",
+    "tags": "Tags",
+    "noTags": "No tags",
+    "categories": "Categories",
+    "relatedPosts": "Related Posts",
+    "recentPosts": "Latest Posts",
+    "appointmentCta": "Need an appointment for your windshield?",
+    "appointmentCtaText": "Write to us via the contact form — we'll get back to you with a proposed appointment.",
+    "allPosts": "All Posts",
+    "noCategoryYet": "No category yet"
+  },
+  "service": {
+    "applicationAreas": "Application Areas",
+    "process": "Process"
+  },
+  "legal": {
+    "legalTag": "Legal"
   }
 }

@@ -49,7 +49,7 @@ const serviceCtaStyle = computed(() => buildPageCtaBackgroundStyle(s.value?.ctaB
           <h1 class="svc-hero__h1">{{ s?.heroTitle || "Hizmet" }}</h1>
           <p class="svc-hero__lead">{{ s?.heroLead }}</p>
           <div class="svc-hero__actions">
-            <NuxtLink to="/kontakt" class="svc-hero__btn-primary">Termin vereinbaren</NuxtLink>
+            <NuxtLink to="/kontakt" class="svc-hero__btn-primary">{{ $t('nav.bookAppointment') }}</NuxtLink>
             <NuxtLink to="/kontakt" class="svc-hero__btn-sec">Mehr erfahren →</NuxtLink>
           </div>
         </div>
@@ -80,7 +80,7 @@ const serviceCtaStyle = computed(() => buildPageCtaBackgroundStyle(s.value?.ctaB
     <section class="svc-section svc-section--dark">
       <div class="container">
         <div class="svc-section__head svc-section__head--center">
-          <span class="svc-tag svc-tag--on-dark">Anwendungsbereiche</span>
+          <span class="svc-tag svc-tag--on-dark">{{ $t('service.applicationAreas') }}</span>
           <h2>{{ s?.issuesTitle }}</h2>
           <p>{{ s?.issuesLead }}</p>
         </div>
@@ -96,7 +96,7 @@ const serviceCtaStyle = computed(() => buildPageCtaBackgroundStyle(s.value?.ctaB
     <section class="svc-section svc-section--warm">
       <div class="container">
         <div class="svc-section__head svc-section__head--center">
-          <span class="svc-tag">Ablauf</span>
+          <span class="svc-tag">{{ $t('service.process') }}</span>
           <h2>{{ s?.processTitle }}</h2>
           <p>{{ s?.processLead }}</p>
         </div>

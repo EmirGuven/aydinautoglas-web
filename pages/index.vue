@@ -179,7 +179,7 @@ function resolveHomepageServiceSvg(icon?: string, slug?: string) {
       <div class="container">
         <div class="hp-section__head hp-section__head--center">
           <div>
-            <span class="hp-tag hp-tag--light">{{ servicesHead.eyebrow || 'Hizmetler' }}</span>
+            <span class="hp-tag hp-tag--light">{{ servicesHead.eyebrow || 'Leistungen' }}</span>
             <h2>{{ servicesHead.title || 'Welche Leistungen bieten wir an?' }}</h2>
             <p v-if="servicesHead.description">{{ servicesHead.description }}</p>
           </div>
@@ -222,8 +222,8 @@ function resolveHomepageServiceSvg(icon?: string, slug?: string) {
           <p v-if="about.paragraph1">{{ about.paragraph1 }}</p>
           <p v-if="about.paragraph2">{{ about.paragraph2 }}</p>
           <div class="hp-btnrow">
-            <NuxtLink to="/ueber-uns" class="hp-btn hp-btn--outline">Über uns</NuxtLink>
-            <NuxtLink to="/kontakt" class="hp-btn hp-btn--gold">Termin vereinbaren</NuxtLink>
+            <NuxtLink to="/ueber-uns" class="hp-btn hp-btn--outline">{{ $t('nav.about') }}</NuxtLink>
+            <NuxtLink to="/kontakt" class="hp-btn hp-btn--gold">{{ $t('nav.bookAppointment') }}</NuxtLink>
           </div>
         </div>
       </div>
@@ -253,7 +253,7 @@ function resolveHomepageServiceSvg(icon?: string, slug?: string) {
         <div class="hp-section__head">
           <div>
             <span class="hp-tag">Blog</span>
-            <h2>Neueste Beiträge</h2>
+            <h2>{{ $t('blog.recentPosts') }}</h2>
           </div>
           <NuxtLink to="/blog" class="hp-link">Alle ansehen →</NuxtLink>
         </div>

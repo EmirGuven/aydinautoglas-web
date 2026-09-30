@@ -96,7 +96,7 @@ const searchResults = computed(() => {
             <NuxtLink :to="`/blog/${featuredPost.slug}`" class="bl-featured__img-wrap">
               <img v-if="featuredPost.image" :src="featuredPost.image" :alt="featuredPost.title" class="bl-featured__img" />
               <div v-else class="bl-featured__img-placeholder" />
-              <span class="bl-featured__badge">Hervorgehoben</span>
+              <span class="bl-featured__badge">{{ $t('blog.featured') }}</span>
             </NuxtLink>
             <div class="bl-featured__body">
               <span v-if="featuredPost.category" class="bl-tag">{{ featuredPost.category }}</span>
@@ -159,7 +159,7 @@ const searchResults = computed(() => {
               Ara
             </h3>
             <div class="bl-search">
-              <input v-model="searchQuery" type="text" placeholder="Konu veya anahtar kelime…" class="bl-search__input" />
+              <input v-model="searchQuery" type="text" :placeholder="$t('blog.searchPlaceholder')" class="bl-search__input" />
             </div>
             <ul v-if="searchResults.length" class="bl-search__results">
               <li v-for="r in searchResults" :key="r.slug">
@@ -182,7 +182,7 @@ const searchResults = computed(() => {
                   <em>{{ count }}</em>
                 </NuxtLink>
               </li>
-              <li v-if="!categories.length" class="bl-cats__empty">Noch keine Kategorie</li>
+              <li v-if="!categories.length" class="bl-cats__empty">{{ $t('blog.noCategoryYet') }}</li>
             </ul>
           </div>
 
@@ -190,7 +190,7 @@ const searchResults = computed(() => {
           <!-- <div class="bl-sidebar__card bl-sidebar__card--dark">
             <h3>Haben Sie Fragen?</h3>
             <p>Rund um Reparatur, Kosten und Versicherungsabwicklung — schreiben Sie uns, wir helfen gerne weiter.</p>
-            <NuxtLink to="/kontakt" class="bl-btn bl-btn--white">Termin vereinbaren</NuxtLink>
+            <NuxtLink to="/kontakt" class="bl-btn bl-btn--white">{{ $t('nav.bookAppointment') }}</NuxtLink>
           </div> --> 
 
         </aside>

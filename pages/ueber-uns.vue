@@ -56,7 +56,7 @@ const aboutCtaStyle = computed(() => buildPageCtaBackgroundStyle(about.value?.ct
           <h1 class="ab-hero__h1">{{ about?.heroTitle || 'Über uns' }}</h1>
           <p v-if="about?.heroLead" class="ab-hero__lead">{{ about.heroLead }}</p>
           <div class="ab-hero__actions">
-            <a href="#egitim" class="ab-hero__btn-primary">Unsere Arbeitsweise</a>
+            <a href="#egitim" class="ab-hero__btn-primary">{{ $t('about.ourApproach') }}</a>
             <NuxtLink to="/kontakt" class="ab-hero__btn-sec">Termin vereinbaren →</NuxtLink>
           </div>
         </div>
@@ -119,8 +119,8 @@ const aboutCtaStyle = computed(() => buildPageCtaBackgroundStyle(about.value?.ct
     <section class="ab-section ab-section--warm">
       <div class="container">
         <div class="ab-section__head ab-section__head--center">
-          <span class="ab-tag">Unsere Geschichte</span>
-          <h2>Der Weg von Aydin Autoglas</h2>
+          <span class="ab-tag">{{ $t('about.ourStory') }}</span>
+          <h2>{{ $t('about.storyTitle') }}</h2>
         </div>
         <div class="ab-tl">
           <div v-for="(item, i) in about?.timeline" :key="i" class="ab-tl__item">
@@ -144,7 +144,7 @@ const aboutCtaStyle = computed(() => buildPageCtaBackgroundStyle(about.value?.ct
     <section class="ab-section ab-section--light">
       <div class="container">
         <div class="ab-section__head ab-section__head--center">
-          <span class="ab-tag">Prinzipien</span>
+          <span class="ab-tag">{{ $t('about.principles') }}</span>
           <h2>{{ about?.approachTitle || 'So arbeiten wir' }}</h2>
           <p>{{ about?.approachLead }}</p>
         </div>

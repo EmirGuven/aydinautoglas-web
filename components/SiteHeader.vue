@@ -111,7 +111,7 @@ function truncate(text: string, max = 50): string {
           </template>
         </NuxtLink>
 
-        <nav class="nh__nav" aria-label="Hauptnavigation">
+        <nav class="nh__nav" :aria-label="$t('nav.menu')">
           <template v-for="item in headerMenuItems" :key="`${item.type}-${item.label}-${item.to}`">
             <div
               v-if="item.type === 'services'"
@@ -166,7 +166,7 @@ function truncate(text: string, max = 50): string {
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
             {{ headerCtaLabel }}
           </AppSmartLink>
-          <button class="nh__burger" @click="isOpen = !isOpen" :aria-expanded="isOpen" aria-label="Menü öffnen">
+          <button class="nh__burger" @click="isOpen = !isOpen" :aria-expanded="isOpen" :aria-label="$t('nav.openMenu')">
             <span class="nh__burger-line" :class="{ 'nh__burger-line--top-open': isOpen }"></span>
             <span class="nh__burger-line" :class="{ 'nh__burger-line--mid-open': isOpen }"></span>
             <span class="nh__burger-line" :class="{ 'nh__burger-line--bot-open': isOpen }"></span>
@@ -180,8 +180,8 @@ function truncate(text: string, max = 50): string {
         <div v-if="isOpen" class="nh__overlay" @click.self="isOpen = false">
           <div class="nh__panel">
             <div class="nh__panel-head">
-              <span class="nh__panel-title">Menü</span>
-              <button class="nh__panel-close" @click="isOpen = false" aria-label="Schließen">
+              <span class="nh__panel-title">{{ $t('nav.menu') }}</span>
+              <button class="nh__panel-close" @click="isOpen = false" :aria-label="$t('common.close')">
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
               </button>
             </div>
