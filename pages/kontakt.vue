@@ -53,7 +53,9 @@ if (turnstileEnabled.value) {
   useHead({
     script: [
       {
-        src: "https://challenges.cloudflare.com/turnstile/v0/api.js",
+        // Widget sihirbazın son adımında DOM'a geldiği için otomatik (implicit) render
+        // çalışmaz — script yüklendiği anda tarama yapar. Bu yüzden explicit render.
+        src: "https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit",
         async: true,
         defer: true,
       },
@@ -61,21 +63,41 @@ if (turnstileEnabled.value) {
   })
 }
 
-onMounted(() => {
-  if (!turnstileEnabled.value || !process.client) return
-  ;(window as any).onTurnstileSuccess = (token: string) => {
-    turnstileToken.value = token
-  }
-  ;(window as any).onTurnstileExpired = () => {
-    turnstileToken.value = ""
-  }
-})
+const turnstileEl = ref<HTMLElement | null>(null)
+let turnstileWidgetId: string | null = null
 
-onBeforeUnmount(() => {
-  if (!process.client) return
-  if ((window as any).onTurnstileSuccess) delete (window as any).onTurnstileSuccess
-  if ((window as any).onTurnstileExpired) delete (window as any).onTurnstileExpired
-})
+function getTurnstile(): any {
+  return import.meta.client ? (window as any).turnstile : null
+}
+
+async function renderTurnstile() {
+  if (!turnstileEnabled.value || !import.meta.client || turnstileWidgetId !== null) return
+
+  await nextTick()
+  // Script asenkron yüklendiği için hazır olmasını bekle (maks. ~10 sn).
+  for (let i = 0; i < 100 && !getTurnstile(); i++) {
+    await new Promise((resolve) => setTimeout(resolve, 100))
+  }
+
+  const turnstile = getTurnstile()
+  if (!turnstile || !turnstileEl.value || turnstileWidgetId !== null) return
+
+  turnstileWidgetId = turnstile.render(turnstileEl.value, {
+    sitekey: turnstileSiteKey,
+    callback: (token: string) => { turnstileToken.value = token },
+    "expired-callback": () => { turnstileToken.value = "" },
+    "error-callback": () => { turnstileToken.value = "" },
+  })
+}
+
+function removeTurnstile() {
+  const turnstile = getTurnstile()
+  if (turnstile && turnstileWidgetId !== null) turnstile.remove(turnstileWidgetId)
+  turnstileWidgetId = null
+  turnstileToken.value = ""
+}
+
+onBeforeUnmount(removeTurnstile)
 
 const form = reactive({
   name: "",
@@ -140,6 +162,14 @@ const stepOrder = computed(() => {
 })
 
 const step = ref('glass')
+
+// Turnstile widget'ı yalnızca son adımda DOM'da olduğu için orada render edilir,
+// adımdan çıkılınca temizlenir (aksi halde tekrar girildiğinde boş kalır).
+watch(step, (current) => {
+  if (current === 'message') renderTurnstile()
+  else if (turnstileWidgetId !== null) removeTurnstile()
+})
+
 const stepIndex = computed(() => Math.max(0, stepOrder.value.indexOf(step.value)))
 const progress = computed(() => Math.round((stepIndex.value / (stepOrder.value.length - 1)) * 100))
 
@@ -217,6 +247,12 @@ async function handleSubmit() {
     submitted.value = true
   } catch (err: any) {
     submitError.value = err?.data?.message || t('wizard.genericError')
+    // Turnstile token'ları tek kullanımlıktır — tekrar denemek için widget sıfırlanmalı.
+    const turnstile = getTurnstile()
+    if (turnstile && turnstileWidgetId !== null) {
+      turnstile.reset(turnstileWidgetId)
+      turnstileToken.value = ""
+    }
   } finally {
     submitting.value = false
   }
@@ -564,13 +600,7 @@ async function handleSubmit() {
                 </p>
 
                 <div v-if="turnstileEnabled" class="form-group">
-                  <div
-                    class="cf-turnstile"
-                    :data-sitekey="turnstileSiteKey"
-                    data-callback="onTurnstileSuccess"
-                    data-expired-callback="onTurnstileExpired"
-                    data-error-callback="onTurnstileExpired"
-                  />
+                  <div ref="turnstileEl" />
                 </div>
 
                 <div class="wiz-step__actions">

@@ -30,6 +30,10 @@ services:
       UPLOADS_DIR: /app/public/uploads
       ADMIN_JWT_SECRET: ${ADMIN_JWT_SECRET:-change_me_in_production_use_strong_secret}
       NUXT_PUBLIC_SITE_URL: ${NUXT_PUBLIC_SITE_URL:-https://www.aydinautoglas.de}
+      # Cloudflare Turnstile (iletişim formu bot koruması) — .env'den gelir.
+      # Boş bırakılırsa koruma tamamen devre dışı kalır.
+      TURNSTILE_SECRET_KEY: ${TURNSTILE_SECRET_KEY}
+      NUXT_PUBLIC_TURNSTILE_SITE_KEY: ${NUXT_PUBLIC_TURNSTILE_SITE_KEY}
       # PostgreSQL bağlantısı — kullanıcı adı/şifreyi burada değil,
       # proje kökündeki .env dosyasında DATABASE_URL olarak tanımlayın.
       DATABASE_URL: ${DATABASE_URL}
