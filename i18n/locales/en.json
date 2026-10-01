@@ -161,6 +161,8 @@
     "noCategoryYet": "No category yet"
   },
   "service": {
+    "title": "Service",
+    "whatIsIt": "What is it?",
     "applicationAreas": "Application Areas",
     "process": "Process"
   },

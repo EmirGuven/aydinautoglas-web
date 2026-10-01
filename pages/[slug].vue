@@ -23,7 +23,7 @@ if (!s.value) {
 }
 
 usePageSeo({
-  title: s.value?.heroTitle || "Hizmet",
+  title: s.value?.heroTitle || "Leistung",
   description: s.value?.heroLead || "Details zu dieser Leistung.",
   path: `/${slug.value}`,
 })
@@ -44,9 +44,9 @@ const serviceCtaStyle = computed(() => buildPageCtaBackgroundStyle(s.value?.ctaB
         <div class="svc-hero__copy">
           <div class="svc-hero__kicker">
             <span class="svc-hero__dot"></span>
-            {{ s?.heroEyebrow || "Hizmet" }}
+            {{ s?.heroEyebrow || $t('service.title') }}
           </div>
-          <h1 class="svc-hero__h1">{{ s?.heroTitle || "Hizmet" }}</h1>
+          <h1 class="svc-hero__h1">{{ s?.heroTitle || $t('service.title') }}</h1>
           <p class="svc-hero__lead">{{ s?.heroLead }}</p>
           <div class="svc-hero__actions">
             <NuxtLink to="/kontakt" class="svc-hero__btn-primary">{{ $t('nav.bookAppointment') }}</NuxtLink>
@@ -59,7 +59,7 @@ const serviceCtaStyle = computed(() => buildPageCtaBackgroundStyle(s.value?.ctaB
     <section class="svc-section svc-section--light">
       <div class="container">
         <div class="svc-section__head svc-section__head--center">
-          <span class="svc-tag">Nedir?</span>
+          <span class="svc-tag">{{ $t('service.whatIsIt') }}</span>
           <h2>{{ s?.whatTitle }}</h2>
           <p>{{ s?.whatLead }}</p>
         </div>
@@ -118,14 +118,14 @@ const serviceCtaStyle = computed(() => buildPageCtaBackgroundStyle(s.value?.ctaB
         </div>
         <div class="svc-cta__actions">
           <AppSmartLink :to="s?.ctaPrimaryUrl || '/kontakt'" class="svc-btn svc-btn--white">
-            {{ s?.ctaPrimaryLabel || 'Randevu Al' }}
+            {{ s?.ctaPrimaryLabel || $t('nav.bookAppointment') }}
           </AppSmartLink>
           <AppSmartLink
             v-if="s?.ctaSecondaryLabel"
             :to="s?.ctaSecondaryUrl || '/ueber-uns'"
             class="svc-btn svc-btn--ghost"
           >
-            {{ s?.ctaSecondaryLabel || 'Kurumsal' }}
+            {{ s?.ctaSecondaryLabel || $t('nav.about') }}
           </AppSmartLink>
         </div>
       </div>

@@ -161,6 +161,8 @@
     "noCategoryYet": "Henüz kategori yok"
   },
   "service": {
+    "title": "Hizmet",
+    "whatIsIt": "Nedir?",
     "applicationAreas": "Kullanım Alanları",
     "process": "Süreç"
   },

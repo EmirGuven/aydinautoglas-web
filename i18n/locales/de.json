@@ -161,6 +161,8 @@
     "noCategoryYet": "Noch keine Kategorie"
   },
   "service": {
+    "title": "Leistung",
+    "whatIsIt": "Was ist das?",
     "applicationAreas": "Anwendungsbereiche",
     "process": "Ablauf"
   },
