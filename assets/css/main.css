@@ -3230,7 +3230,7 @@ h1, h2, h3, h4 {
 
 .nh__inner {
   position: relative;
-  width: min(calc(100% - 2rem), var(--container));
+  width: min(calc(100% - 2rem), 1440px);
   margin: 0 auto;
   display: flex;
   align-items: center;
@@ -3304,6 +3304,7 @@ h1, h2, h3, h4 {
   align-items: center;
   gap: 0.5rem;
   margin-left: auto;
+  flex-wrap: nowrap;
 }
 .nh__nav-link {
   position: relative;
@@ -3313,6 +3314,7 @@ h1, h2, h3, h4 {
   text-decoration: none;
   padding: 0.45rem 0.8rem;
   border-radius: 8px;
+  white-space: nowrap;
   transition: color 140ms, background 140ms;
 }
 .nh__nav-link:hover { color: var(--primary-deep); background: var(--primary-soft); }
@@ -3374,7 +3376,7 @@ h1, h2, h3, h4 {
 .nh__burger-line--mid-open  { opacity: 0; transform: scaleX(0); }
 .nh__burger-line--bot-open  { transform: translateY(-7px) rotate(-45deg); }
 
-@media (max-width: 960px) {
+@media (max-width: 1100px) {
   .nh__nav    { display: none; }
   .nh__burger { display: flex; }
   .nh__actions .nh__cta { padding: 0.55rem 1rem; font-size: 0.82rem; }
@@ -7751,6 +7753,7 @@ h1, h2, h3, h4 {
   color: inherit;
   font-weight: inherit;
   font-family: inherit;
+  white-space: nowrap;
   transition: color 140ms, background 140ms;
 }
 
@@ -8096,7 +8099,7 @@ html.is-locked {
   margin-top: 2rem;
 }
 
-@media (max-width: 960px) {
+@media (max-width: 1100px) {
   .nh__inner {
     justify-content: space-between;
   }
