@@ -1,32 +1,57 @@
 {
   "faq_group:1": {
     "type": "faq_group",
-    "key": { "category": "Reparatur & Austausch" },
-    "en": { "category": "Repair & Replacement" },
-    "tr": { "category": "Onarım ve Değişim" }
+    "key": {
+      "category": "Reparatur & Austausch"
+    },
+    "en": {
+      "category": "Repair & Replacement"
+    },
+    "tr": {
+      "category": "Onarım ve Değişim"
+    }
   },
   "faq_group:2": {
     "type": "faq_group",
-    "key": { "category": "Versicherung & Kosten" },
-    "en": { "category": "Insurance & Costs" },
-    "tr": { "category": "Sigorta ve Maliyet" }
+    "key": {
+      "category": "Versicherung & Kosten"
+    },
+    "en": {
+      "category": "Insurance & Costs"
+    },
+    "tr": {
+      "category": "Sigorta ve Maliyet"
+    }
   },
   "faq_group:3": {
     "type": "faq_group",
-    "key": { "category": "Termin & Ablauf" },
-    "en": { "category": "Appointment & Process" },
-    "tr": { "category": "Randevu ve Süreç" }
+    "key": {
+      "category": "Termin & Ablauf"
+    },
+    "en": {
+      "category": "Appointment & Process"
+    },
+    "tr": {
+      "category": "Randevu ve Süreç"
+    }
   },
   "faq_group:4": {
     "type": "faq_group",
-    "key": { "category": "Kontakt & Anfahrt" },
-    "en": { "category": "Contact & Directions" },
-    "tr": { "category": "İletişim ve Ulaşım" }
+    "key": {
+      "category": "Kontakt & Anfahrt"
+    },
+    "en": {
+      "category": "Contact & Directions"
+    },
+    "tr": {
+      "category": "İletişim ve Ulaşım"
+    }
   },
-
   "faq_item:1": {
     "type": "faq_item",
-    "key": { "question": "Wird mein Steinschlag repariert oder muss die Scheibe getauscht werden?" },
+    "key": {
+      "question": "Wird mein Steinschlag repariert oder muss die Scheibe getauscht werden?"
+    },
     "en": {
       "question": "Will my stone chip be repaired or does the windshield need replacing?",
       "answer": "That depends on the size, position and type of the damage. If the damage is smaller than a 2-euro coin, outside the field of vision and not at the edge of the windshield, a repair is usually enough. Otherwise a replacement is required for safety reasons."
@@ -38,7 +63,9 @@
   },
   "faq_item:2": {
     "type": "faq_item",
-    "key": { "question": "Wie lange dauert eine Steinschlagreparatur?" },
+    "key": {
+      "question": "Wie lange dauert eine Steinschlagreparatur?"
+    },
     "en": {
       "question": "How long does a chip repair take?",
       "answer": "Usually only a few minutes per chip. With an appointment you're normally back on the road within a short time."
@@ -50,19 +77,23 @@
   },
   "faq_item:3": {
     "type": "faq_item",
-    "key": { "question": "Ist nach einem Scheibenaustausch eine Kalibrierung nötig?" },
+    "key": {
+      "question": "Wie lange muss ich nach einem Scheibenwechsel warten, bevor ich losfahren kann?"
+    },
     "en": {
-      "question": "Is calibration needed after a windshield replacement?",
-      "answer": "For vehicles with driver-assistance systems (camera behind the windshield), an ADAS calibration is required after a replacement so the systems work reliably again. We carry this out directly as part of the job."
+      "question": "How long do I need to wait after a windshield replacement before driving?",
+      "answer": "The curing time of the adhesive depends on the material used and the weather. As a rule, you should wait at least one hour after a replacement before driving. We will tell you the exact waiting time for your vehicle when we hand it back to you."
     },
     "tr": {
-      "question": "Cam değişiminden sonra kalibrasyon gerekli mi?",
-      "answer": "Sürücü destek sistemi bulunan araçlarda (ön camın arkasındaki kamera), değişimden sonra sistemlerin güvenilir çalışması için ADAS kalibrasyonu gereklidir. Bunu işin bir parçası olarak doğrudan biz yapıyoruz."
+      "question": "Cam değişiminden sonra yola çıkmadan önce ne kadar beklemeliyim?",
+      "answer": "Yapıştırıcının sertleşme süresi kullanılan malzemeye ve hava koşullarına bağlıdır. Genel olarak, değişimden sonra yola çıkmadan önce en az bir saat beklemelisiniz. Aracınızı teslim ederken size tam bekleme süresini bildiriyoruz."
     }
   },
   "faq_item:4": {
     "type": "faq_item",
-    "key": { "question": "Übernimmt meine Versicherung die Kosten?" },
+    "key": {
+      "question": "Übernimmt meine Versicherung die Kosten?"
+    },
     "en": {
       "question": "Will my insurance cover the costs?",
       "answer": "Most glass damage is covered by partial coverage insurance — a repair often even without a deductible. For a full replacement a deductible may apply depending on your policy."
@@ -74,7 +105,9 @@
   },
   "faq_item:5": {
     "type": "faq_item",
-    "key": { "question": "Kümmern Sie sich um die Abwicklung mit der Versicherung?" },
+    "key": {
+      "question": "Kümmern Sie sich um die Abwicklung mit der Versicherung?"
+    },
     "en": {
       "question": "Do you handle the paperwork with the insurance company?",
       "answer": "Yes. We take care of the communication with your motor insurer directly — you don't have to deal with forms yourself."
@@ -86,7 +119,9 @@
   },
   "faq_item:6": {
     "type": "faq_item",
-    "key": { "question": "Was kostet eine Reparatur oder ein Austausch ohne Versicherung?" },
+    "key": {
+      "question": "Was kostet eine Reparatur oder ein Austausch ohne Versicherung?"
+    },
     "en": {
       "question": "What does a repair or replacement cost without insurance?",
       "answer": "The cost depends on the vehicle model and the type of damage. Send us the details and we'll give you a price range before the appointment."
@@ -98,7 +133,9 @@
   },
   "faq_item:7": {
     "type": "faq_item",
-    "key": { "question": "Wie schnell bekomme ich einen Termin?" },
+    "key": {
+      "question": "Wie schnell bekomme ich einen Termin?"
+    },
     "en": {
       "question": "How quickly can I get an appointment?",
       "answer": "We try to offer appointments as soon as possible — chip repairs in particular can often still be done within the same week."
@@ -110,7 +147,9 @@
   },
   "faq_item:8": {
     "type": "faq_item",
-    "key": { "question": "Bieten Sie auch mobilen Service an?" },
+    "key": {
+      "question": "Bieten Sie auch mobilen Service an?"
+    },
     "en": {
       "question": "Do you also offer a mobile service?",
       "answer": "Yes. If needed we come to you at home, at work or in the car park — throughout the Stuttgart district and the surrounding area."
@@ -122,7 +161,9 @@
   },
   "faq_item:9": {
     "type": "faq_item",
-    "key": { "question": "Muss ich mein Fahrzeug vorher anmelden?" },
+    "key": {
+      "question": "Muss ich mein Fahrzeug vorher anmelden?"
+    },
     "en": {
       "question": "Do I need to register my vehicle in advance?",
       "answer": "A short enquiry via the contact form or by email is enough so we can prepare the right material and an appointment for you."
@@ -134,7 +175,9 @@
   },
   "faq_item:10": {
     "type": "faq_item",
-    "key": { "question": "Wo befindet sich Ihre Werkstatt?" },
+    "key": {
+      "question": "Wo befindet sich Ihre Werkstatt?"
+    },
     "en": {
       "question": "Where is your workshop located?",
       "answer": "Our workshop is at Hans Klemm Straße 2, 71157 Hildrizhausen, in the Stuttgart district."
@@ -146,7 +189,9 @@
   },
   "faq_item:11": {
     "type": "faq_item",
-    "key": { "question": "Wie erreiche ich Sie am besten?" },
+    "key": {
+      "question": "Wie erreiche ich Sie am besten?"
+    },
     "en": {
       "question": "What's the best way to reach you?",
       "answer": "The fastest way is by email at Autoglas@auto-bb.de or via the contact form on this website."
@@ -158,7 +203,9 @@
   },
   "faq_item:12": {
     "type": "faq_item",
-    "key": { "question": "In welchen Orten sind Sie mobil im Einsatz?" },
+    "key": {
+      "question": "In welchen Orten sind Sie mobil im Einsatz?"
+    },
     "en": {
       "question": "Which areas does your mobile service cover?",
       "answer": "Our mobile service covers Hildrizhausen and the surrounding Stuttgart district, including Herrenberg, Böblingen, Sindelfingen and the greater Stuttgart area."

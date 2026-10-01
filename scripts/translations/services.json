@@ -1,7 +1,9 @@
 {
   "service_page:steinschlagreparatur": {
     "type": "service_page",
-    "key": { "slug": "steinschlagreparatur" },
+    "key": {
+      "slug": "steinschlagreparatur"
+    },
     "en": {
       "hero_eyebrow": "Repair",
       "hero_title": "Chip Repair",
@@ -65,14 +67,15 @@
       "process_steps.2.text": "Hasar doldurulur, sertleştirilir ve son olarak kontrol edilir."
     }
   },
-
   "service_page:frontscheibenaustausch": {
     "type": "service_page",
-    "key": { "slug": "frontscheibenaustausch" },
+    "key": {
+      "slug": "frontscheibenaustausch"
+    },
     "en": {
       "hero_eyebrow": "Replacement",
       "hero_title": "Windshield Replacement",
-      "hero_lead": "Professional replacement of your windshield including bonding to manufacturer specifications and ADAS calibration where required.",
+      "hero_lead": "Professional replacement of your windshield including bonding to manufacturer specifications.",
       "what_title": "What does a windshield replacement include?",
       "what_lead": "If a repair is no longer possible we replace your windshield completely — with matching glass, professional bonding and, if your vehicle has the relevant driver-assistance systems, the required camera calibration.",
       "issues_title": "When is a replacement necessary?",
@@ -84,8 +87,8 @@
       "cta_secondary_label": "About us",
       "benefits.0.title": "Professional bonding",
       "benefits.0.text": "Bonding to manufacturer specifications for the full structural stability of your vehicle.",
-      "benefits.1.title": "ADAS calibration",
-      "benefits.1.text": "Camera and sensor calibration so your assistance systems work reliably again.",
+      "benefits.1.title": "Quality glass",
+      "benefits.1.text": "We use high-quality replacement glass that matches original specifications.",
       "benefits.2.title": "Insurance handling",
       "benefits.2.text": "We clarify the cost coverage directly with your comprehensive insurance.",
       "issues.0": "Damage in the driver's direct field of vision",
@@ -97,13 +100,13 @@
       "process_steps.0.text": "We identify the correct windshield for your vehicle model.",
       "process_steps.1.title": "Replacement & bonding",
       "process_steps.1.text": "The old windshield is removed and the new one professionally fitted and bonded.",
-      "process_steps.2.title": "Calibration & handover",
-      "process_steps.2.text": "Where required we perform the ADAS calibration, then hand your vehicle back ready to drive."
+      "process_steps.2.title": "Inspection & handover",
+      "process_steps.2.text": "After a final quality check, we hand your vehicle back ready to drive."
     },
     "tr": {
       "hero_eyebrow": "Değişim",
       "hero_title": "Ön Cam Değişimi",
-      "hero_lead": "Üretici talimatlarına uygun yapıştırma ve gerektiğinde ADAS kalibrasyonu dahil profesyonel ön cam değişimi.",
+      "hero_lead": "Üretici talimatlarına uygun yapıştırma dahil profesyonel ön cam değişimi.",
       "what_title": "Ön cam değişimi neleri kapsar?",
       "what_lead": "Onarım artık mümkün değilse ön camınızı komple değiştiriyoruz — uygun cam, profesyonel yapıştırma ve aracınızda ilgili sürücü destek sistemleri varsa gerekli kamera kalibrasyonuyla birlikte.",
       "issues_title": "Değişim ne zaman gerekli?",
@@ -115,8 +118,8 @@
       "cta_secondary_label": "Hakkımızda",
       "benefits.0.title": "Profesyonel yapıştırma",
       "benefits.0.text": "Aracınızın yapısal dayanımı için üretici talimatlarına uygun yapıştırma.",
-      "benefits.1.title": "ADAS kalibrasyonu",
-      "benefits.1.text": "Destek sistemlerinizin yeniden güvenilir çalışması için kamera ve sensör kalibrasyonu.",
+      "benefits.1.title": "Kaliteli Cam",
+      "benefits.1.text": "Orijinal özelliklere uygun, yüksek kaliteli yedek cam kullanıyoruz.",
       "benefits.2.title": "Sigorta işlemleri",
       "benefits.2.text": "Masrafların karşılanmasını doğrudan kasko sigortanızla netleştiriyoruz.",
       "issues.0": "Sürücünün doğrudan görüş alanındaki hasar",
@@ -128,14 +131,15 @@
       "process_steps.0.text": "Araç modelinize uygun doğru camı belirleriz.",
       "process_steps.1.title": "Değişim ve yapıştırma",
       "process_steps.1.text": "Eski cam çıkarılır, yenisi profesyonelce takılıp yapıştırılır.",
-      "process_steps.2.title": "Kalibrasyon ve teslim",
-      "process_steps.2.text": "Gerekirse ADAS kalibrasyonunu yapar, ardından aracınızı kullanıma hazır teslim ederiz."
+      "process_steps.2.title": "Kontrol ve Teslim",
+      "process_steps.2.text": "Son bir kalite kontrolünün ardından aracınızı kullanıma hazır teslim ederiz."
     }
   },
-
   "service_page:seitenscheiben-heckscheibenaustausch": {
     "type": "service_page",
-    "key": { "slug": "seitenscheiben-heckscheibenaustausch" },
+    "key": {
+      "slug": "seitenscheiben-heckscheibenaustausch"
+    },
     "en": {
       "hero_eyebrow": "Replacement",
       "hero_title": "Side & Rear Window Replacement",
@@ -199,10 +203,11 @@
       "process_steps.2.text": "Fitil ve mekanizmaların son fonksiyon kontrolü, ardından aracın teslimi."
     }
   },
-
   "service_page:mobiler-service": {
     "type": "service_page",
-    "key": { "slug": "mobiler-service" },
+    "key": {
+      "slug": "mobiler-service"
+    },
     "en": {
       "hero_eyebrow": "Mobile Service",
       "hero_title": "Mobile service — we come to you",

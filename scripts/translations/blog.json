@@ -1,11 +1,13 @@
 {
   "blog_post:steinschlag-reparatur-oder-austausch": {
     "type": "blog_post",
-    "key": { "slug": "steinschlag-reparatur-oder-austausch" },
+    "key": {
+      "slug": "steinschlag-reparatur-oder-austausch"
+    },
     "en": {
       "title": "Stone chip in the windshield: repair or replace?",
       "excerpt": "Not every stone chip means a new windshield. We explain when a repair is enough and when a replacement becomes necessary.",
-      "content": "<p>A stone chip on the motorway happens quickly — and the question usually follows immediately: is a repair enough, or does the whole windshield have to be replaced?</p><p>As a rule of thumb: if the damage is smaller than a 2-euro coin, lies outside the driver's direct field of vision and is not at the edge of the windshield, it can usually be repaired. The crack is filled with a special resin that cures under UV light, preventing the damage from spreading further.</p><p>If the damage is in the field of vision, larger, or located at the edge of the glass, a complete replacement is usually necessary for safety reasons. On modern vehicles with assistance systems (camera, rain sensor), an ADAS calibration must also be carried out after a replacement.</p><p>Our tip: the sooner you have a stone chip repaired, the greater the chance that a repair will be enough and that your partial coverage insurance will cover the full cost.</p>",
+      "content": "<p>A stone chip on the motorway happens quickly — and the question usually follows immediately: is a repair enough, or does the whole windshield have to be replaced?</p><p>As a rule of thumb: if the damage is smaller than a 2-euro coin, lies outside the driver's direct field of vision and is not at the edge of the windshield, it can usually be repaired. The crack is filled with a special resin that cures under UV light, preventing the damage from spreading further.</p><p>If the damage is in the field of vision, larger, or located at the edge of the glass, a complete replacement is usually necessary for safety reasons.</p><p>Our tip: the sooner you have a stone chip repaired, the greater the chance that a repair will be enough and that your partial coverage insurance will cover the full cost.</p>",
       "category": "Repair",
       "quote": "The sooner a stone chip is repaired, the greater the chance that a repair will be enough.",
       "read_time": "4 min"
@@ -13,37 +15,17 @@
     "tr": {
       "title": "Ön camda taş çarpması: onarım mı, değişim mi?",
       "excerpt": "Her taş çarpması yeni bir cam gerektirmez. Onarımın ne zaman yeterli olduğunu, değişimin ne zaman gerektiğini açıklıyoruz.",
-      "content": "<p>Otoyolda taş çarpması bir anda olur — ve hemen ardından şu soru gelir: onarım yeterli mi, yoksa camın tamamı mı değişmeli?</p><p>Genel kural şudur: hasar 2 Euro madeni parasından küçükse, sürücünün doğrudan görüş alanı dışındaysa ve camın kenarında değilse genellikle onarılabilir. Çatlak, UV ışığında sertleşen özel bir reçineyle doldurulur ve hasarın yayılması önlenir.</p><p>Hasar görüş alanındaysa, daha büyükse veya camın kenarında bulunuyorsa güvenlik nedeniyle genellikle komple değişim gerekir. Sürücü destek sistemleri (kamera, yağmur sensörü) bulunan modern araçlarda değişimden sonra ayrıca ADAS kalibrasyonu yapılmalıdır.</p><p>Tavsiyemiz: taş çarpmasını ne kadar erken onarırsanız, onarımın yeterli olma ve kasko sigortanızın masrafın tamamını karşılama ihtimali o kadar yüksek olur.</p>",
+      "content": "<p>Otoyolda taş çarpması bir anda olur — ve hemen ardından şu soru gelir: onarım yeterli mi, yoksa camın tamamı mı değişmeli?</p><p>Genel kural şudur: hasar 2 Euro madeni parasından küçükse, sürücünün doğrudan görüş alanı dışındaysa ve camın kenarında değilse genellikle onarılabilir. Çatlak, UV ışığında sertleşen özel bir reçineyle doldurulur ve hasarın yayılması önlenir.</p><p>Hasar görüş alanındaysa, daha büyükse veya camın kenarında bulunuyorsa güvenlik nedeniyle genellikle komple değişim gerekir.</p><p>Tavsiyemiz: taş çarpmasını ne kadar erken onarırsanız, onarımın yeterli olma ve kasko sigortanızın masrafın tamamını karşılama ihtimali o kadar yüksek olur.</p>",
       "category": "Onarım",
       "quote": "Taş çarpması ne kadar erken onarılırsa, onarımın yeterli olma ihtimali o kadar yüksektir.",
       "read_time": "4 dk"
     }
   },
-
-  "blog_post:adas-kalibrierung-nach-scheibenwechsel": {
-    "type": "blog_post",
-    "key": { "slug": "adas-kalibrierung-nach-scheibenwechsel" },
-    "en": {
-      "title": "ADAS calibration after a windshield replacement: why it matters",
-      "excerpt": "Modern vehicles have cameras and sensors built into the windshield. After a replacement the calibration has to be right — here's why.",
-      "content": "<p>Many modern vehicles are equipped with driver-assistance systems (ADAS) — such as lane-keeping assist, adaptive cruise control or emergency brake assist. The camera these systems rely on often sits directly behind the windshield.</p><p>When the windshield is replaced, the exact alignment of the camera inevitably changes slightly — even if the difference is invisible to the eye. Without recalibration the assistance systems can react incorrectly or fail completely.</p><p>That's why, after every windshield replacement on a vehicle with the relevant equipment, we carry out the ADAS calibration prescribed by the manufacturer. Only then can you be sure your assistance systems work reliably again.</p>",
-      "category": "Safety",
-      "quote": "Without recalibration, assistance systems can react incorrectly after a windshield replacement.",
-      "read_time": "3 min"
-    },
-    "tr": {
-      "title": "Cam değişimi sonrası ADAS kalibrasyonu: neden önemli?",
-      "excerpt": "Modern araçlarda ön camın içine kamera ve sensörler yerleştirilmiştir. Değişimden sonra kalibrasyonun doğru olması gerekir — nedenini açıklıyoruz.",
-      "content": "<p>Modern araçların çoğu sürücü destek sistemleriyle (ADAS) donatılmıştır — şerit takip asistanı, adaptif hız sabitleyici veya acil fren asistanı gibi. Bu sistemlerin kullandığı kamera çoğu zaman doğrudan ön camın arkasında bulunur.</p><p>Ön cam değiştirildiğinde kameranın tam hizası kaçınılmaz olarak çok az değişir — bu fark gözle görülmese bile. Yeniden kalibrasyon yapılmazsa destek sistemleri yanlış tepki verebilir veya tamamen devre dışı kalabilir.</p><p>Bu nedenle, ilgili donanıma sahip araçlarda her ön cam değişiminden sonra üreticinin öngördüğü ADAS kalibrasyonunu uyguluyoruz. Ancak bundan sonra destek sistemlerinizin yeniden güvenilir çalıştığından emin olabilirsiniz.</p>",
-      "category": "Güvenlik",
-      "quote": "Yeniden kalibrasyon yapılmazsa, cam değişimi sonrası destek sistemleri yanlış tepki verebilir.",
-      "read_time": "3 dk"
-    }
-  },
-
   "blog_post:kaskoversicherung-glasschaden": {
     "type": "blog_post",
-    "key": { "slug": "kaskoversicherung-glasschaden" },
+    "key": {
+      "slug": "kaskoversicherung-glasschaden"
+    },
     "en": {
       "title": "Comprehensive insurance and glass damage: what does the insurer cover?",
       "excerpt": "Who pays for a stone chip or a windshield replacement — you or your insurer? An overview of partial and fully comprehensive cover for glass damage.",
@@ -58,6 +40,28 @@
       "content": "<p>Araçtaki cam hasarlarının çoğu kasko sigortası kapsamındadır — ve değişim yerine onarım mümkünse çoğu zaman muafiyet bile uygulanmaz. Bu nedenle taş çarpmasını hızlıca bildirmek özellikle avantajlıdır.</p><p>Camın komple değişmesi gerekiyorsa genellikle yine kasko devreye girer, ancak poliçenize bağlı olarak muafiyet söz konusu olabilir. Kasko sigortası yoksa masrafı araç sahibi kendisi üstlenir.</p><p>Sigortanızla olan işlemleri doğrudan sizin adınıza yürütüyoruz: formlarla veya geri dönüşlerle kendiniz uğraşmak zorunda kalmazsınız. Randevu alırken sigorta bilgilerinizi yanınızda getirmeniz veya bize iletmeniz yeterli.</p>",
       "category": "Sigorta",
       "quote": "Sigortanızla olan işlemleri doğrudan sizin adınıza yürütüyoruz.",
+      "read_time": "3 dk"
+    }
+  },
+  "blog_post:nach-dem-scheibenwechsel-wartezeit": {
+    "type": "blog_post",
+    "key": {
+      "slug": "nach-dem-scheibenwechsel-wartezeit"
+    },
+    "en": {
+      "title": "After a windshield replacement: how long should you wait before driving?",
+      "excerpt": "Drive off right away or wait? We explain how long the adhesive needs to cure after a windshield replacement and what to watch out for in the first few hours.",
+      "content": "<p>After a windshield replacement, many customers ask the same question: can I drive off right away, or do I need to wait? The answer depends on the curing time of the adhesive that bonds the new windshield to the body of the vehicle.</p><p>Modern adhesives cure at different speeds depending on the product and the weather. As a rule of thumb, you should leave the vehicle parked for at least one hour after the replacement before driving. In cooler weather or high humidity, this time can be longer.</p><p>In the first 24 hours you should also avoid a car wash, strong vibrations and slamming the doors firmly — the pressure change inside the vehicle this creates can affect the fresh bonding. We always tell you the exact waiting time for your vehicle when we hand it back to you.</p><p>Our tip: after a windshield replacement, plan a little extra time before you need to drive again — that way the bonding cures properly and your safety is best protected.</p>",
+      "category": "Service",
+      "quote": "You should leave the vehicle parked for at least one hour after the replacement before driving.",
+      "read_time": "3 min"
+    },
+    "tr": {
+      "title": "Cam değişiminden sonra: Araç ne kadar süre beklemeli?",
+      "excerpt": "Hemen yola mı çıkmalı, yoksa beklemeli mi? Cam değişiminden sonra yapıştırıcının ne kadar sürede sertleştiğini ve ilk saatlerde nelere dikkat etmeniz gerektiğini anlatıyoruz.",
+      "content": "<p>Ön cam değişiminden sonra birçok müşterimiz aynı soruyu soruyor: Hemen yola çıkabilir miyim, yoksa beklemem mi gerekiyor? Cevap, yeni camı karoseriye bağlayan yapıştırıcının sertleşme süresine bağlıdır.</p><p>Modern yapıştırıcılar ürüne ve hava koşullarına göre farklı hızlarda sertleşir. Genel kural olarak, değişimden sonra yola çıkmadan önce aracınızı en az bir saat beklemelisiniz. Soğuk havalarda veya yüksek nemde bu süre uzayabilir.</p><p>İlk 24 saat içinde ayrıca araç yıkamaktan, sert sarsıntılardan ve kapıları sertçe çarpmaktan kaçınmalısınız — bu sırada araç içinde oluşan basınç farkı taze yapıştırmayı olumsuz etkileyebilir. Aracınızı teslim ederken size her zaman tam bekleme süresini bildiriyoruz.</p><p>Tavsiyemiz: cam değişiminden sonra tekrar yola çıkmadan önce biraz zaman ayırın — böylece yapıştırma en iyi şekilde sertleşir ve güvenliğiniz en üst düzeyde sağlanmış olur.</p>",
+      "category": "Servis",
+      "quote": "Değişimden sonra yola çıkmadan önce aracınızı en az bir saat beklemelisiniz.",
       "read_time": "3 dk"
     }
   }

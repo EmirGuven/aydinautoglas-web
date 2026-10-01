@@ -1,6 +1,8 @@
 {
   "site_settings": {
-    "key": { "id": 1 },
+    "key": {
+      "id": 1
+    },
     "en": {
       "logo_tagline": "Chip Repair · Glass Replacement · Mobile Service",
       "footer_tagline": "From a quick chip repair to a complete windshield replacement — your auto glass specialist in Hildrizhausen and the Stuttgart district.",
@@ -50,9 +52,10 @@
       "footer_legal_links.2.label": "Künye"
     }
   },
-
   "homepage": {
-    "key": { "id": 1 },
+    "key": {
+      "id": 1
+    },
     "en": {
       "hero_eyebrow": "Auto Glass Specialist",
       "hero_title": "Your windshield. Repaired quickly and properly.",
@@ -81,7 +84,7 @@
       "cta_primary_label": "Book an appointment",
       "cta_secondary_label": "Mobile Service",
       "accreditations.0.title": "Professional installation",
-      "accreditations.0.description": "Repair and replacement to manufacturer specifications, including ADAS calibration.",
+      "accreditations.0.description": "Repair and replacement to manufacturer specifications.",
       "accreditations.1.title": "Quick appointments",
       "accreditations.1.description": "Short waiting times, often within the same week.",
       "accreditations.2.title": "Insurance handling",
@@ -129,7 +132,7 @@
       "cta_primary_label": "Randevu Al",
       "cta_secondary_label": "Mobil Servis",
       "accreditations.0.title": "Profesyonel montaj",
-      "accreditations.0.description": "Üretici talimatlarına uygun onarım ve değişim, ADAS kalibrasyonu dahil.",
+      "accreditations.0.description": "Üretici talimatlarına uygun onarım ve değişim.",
       "accreditations.1.title": "Hızlı randevu",
       "accreditations.1.description": "Kısa bekleme süreleri, çoğu zaman aynı hafta içinde.",
       "accreditations.2.title": "Sigorta işlemleri",
@@ -150,9 +153,10 @@
       "services_items.3.description": "Evinize, iş yerinize veya otoparka geliyoruz."
     }
   },
-
   "about_page": {
-    "key": { "id": 1 },
+    "key": {
+      "id": 1
+    },
     "en": {
       "hero_eyebrow": "Who we are",
       "hero_title": "Your auto glass specialist in Hildrizhausen",
@@ -184,13 +188,13 @@
       "timeline.0.title": "Family business",
       "timeline.0.desc": "Run by Recep Aydin and Can Aydin — personal, reliable and with short lines of communication.",
       "timeline.1.title": "Specialised in vehicle glazing",
-      "timeline.1.desc": "Chip repair, glass replacement and ADAS calibration from a single source.",
+      "timeline.1.desc": "Chip repair and glass replacement from a single source.",
       "timeline.2.title": "Stuttgart district",
       "timeline.2.desc": "On site in Hildrizhausen and mobile throughout the greater Stuttgart area.",
       "timeline.3.title": "Insurance partner",
       "timeline.3.desc": "Straightforward handling with partial and fully comprehensive cover directly through us.",
       "approach_values.0.title": "Expertise",
-      "approach_values.0.desc": "Repair and replacement to current manufacturer specifications, including ADAS calibration where needed.",
+      "approach_values.0.desc": "Repair and replacement to current manufacturer specifications.",
       "approach_values.1.title": "Transparency",
       "approach_values.1.desc": "You know in advance what will be done, what it costs and what your insurance covers.",
       "approach_values.2.title": "Availability",
@@ -227,22 +231,23 @@
       "timeline.0.title": "Aile işletmesi",
       "timeline.0.desc": "Recep Aydin ve Can Aydin tarafından yönetiliyor — kişisel, güvenilir ve kısa iletişim yolları.",
       "timeline.1.title": "Araç camlarında uzman",
-      "timeline.1.desc": "Taş çarpması onarımı, cam değişimi ve ADAS kalibrasyonu tek elden.",
+      "timeline.1.desc": "Taş çarpması onarımı ve cam değişimi tek elden.",
       "timeline.2.title": "Stuttgart bölgesi",
       "timeline.2.desc": "Hildrizhausen'de yerinde ve tüm Stuttgart çevresinde mobil hizmet.",
       "timeline.3.title": "Sigorta iş ortağı",
       "timeline.3.desc": "Kasko ve tam kasko işlemleri doğrudan bizim üzerimizden kolayca hallediliyor.",
       "approach_values.0.title": "Uzmanlık",
-      "approach_values.0.desc": "Güncel üretici talimatlarına uygun onarım ve değişim, gerektiğinde ADAS kalibrasyonu dahil.",
+      "approach_values.0.desc": "Güncel üretici talimatlarına uygun onarım ve değişim.",
       "approach_values.1.title": "Şeffaflık",
       "approach_values.1.desc": "Ne yapılacağını, ne kadar tutacağını ve sigortanızın neyi karşıladığını önceden bilirsiniz.",
       "approach_values.2.title": "Ulaşılabilirlik",
       "approach_values.2.desc": "Kısa mesafeler, hızlı randevu ve bize gelemiyorsanız mobil servis."
     }
   },
-
   "contact_page": {
-    "key": { "id": 1 },
+    "key": {
+      "id": 1
+    },
     "en": {
       "hero_eyebrow": "Contact",
       "hero_title": "Schedule your appointment",
@@ -270,9 +275,10 @@
       "cta_secondary_label": "Yol Tarifi"
     }
   },
-
   "services_page": {
-    "key": { "id": 1 },
+    "key": {
+      "id": 1
+    },
     "en": {
       "hero_eyebrow": "Services",
       "hero_title": "Our auto glass services",
@@ -292,9 +298,10 @@
       "cta_lead": "Hasarı anlatın, randevu, onarım ve sigorta işlemlerini biz halledelim."
     }
   },
-
   "sss_page": {
-    "key": { "id": 1 },
+    "key": {
+      "id": 1
+    },
     "en": {
       "hero_eyebrow": "Frequently asked questions",
       "hero_title": "Frequently Asked Questions",
@@ -314,18 +321,19 @@
       "cta_secondary_label": "Randevu Talep Et"
     }
   },
-
   "blog_page": {
-    "key": { "id": 1 },
+    "key": {
+      "id": 1
+    },
     "en": {
       "hero_eyebrow": "Auto glass know-how",
       "hero_title": "Blog",
-      "hero_lead": "Practical information about chip repair, glass replacement, ADAS calibration and insurance questions."
+      "hero_lead": "Practical information about chip repair, glass replacement and insurance questions."
     },
     "tr": {
       "hero_eyebrow": "Oto Cam Bilgisi",
       "hero_title": "Blog",
-      "hero_lead": "Taş çarpması onarımı, cam değişimi, ADAS kalibrasyonu ve sigorta konularında pratik bilgiler."
+      "hero_lead": "Taş çarpması onarımı, cam değişimi ve sigorta konularında pratik bilgiler."
     }
   }
 }
