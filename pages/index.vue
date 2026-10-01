@@ -10,7 +10,7 @@ import {
 usePageSeo({
   title: "Steinschlagreparatur & Scheibenaustausch in Hildrizhausen",
   description:
-    "Aydin Autoglas: Steinschlagreparatur, Frontscheibenaustausch, Seiten- und Heckscheiben sowie mobiler Service in Hildrizhausen und dem Landkreis Böblingen.",
+    "Aydin Autoglas: Steinschlagreparatur, Frontscheibenaustausch, Seiten- und Heckscheiben sowie mobiler Service in Hildrizhausen und dem Landkreis Stuttgart.",
   path: "/"
 })
 

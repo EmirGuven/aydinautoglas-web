@@ -113,11 +113,11 @@
     "key": { "question": "Bieten Sie auch mobilen Service an?" },
     "en": {
       "question": "Do you also offer a mobile service?",
-      "answer": "Yes. If needed we come to you at home, at work or in the car park — throughout the Böblingen district and the surrounding area."
+      "answer": "Yes. If needed we come to you at home, at work or in the car park — throughout the Stuttgart district and the surrounding area."
     },
     "tr": {
       "question": "Mobil servis de sunuyor musunuz?",
-      "answer": "Evet. Gerektiğinde evinize, iş yerinize veya otoparka geliyoruz — tüm Böblingen bölgesi ve çevresinde."
+      "answer": "Evet. Gerektiğinde evinize, iş yerinize veya otoparka geliyoruz — tüm Stuttgart bölgesi ve çevresinde."
     }
   },
   "faq_item:9": {
@@ -137,11 +137,11 @@
     "key": { "question": "Wo befindet sich Ihre Werkstatt?" },
     "en": {
       "question": "Where is your workshop located?",
-      "answer": "Our workshop is at Hans Klemm Straße 2, 71157 Hildrizhausen, in the Böblingen district."
+      "answer": "Our workshop is at Hans Klemm Straße 2, 71157 Hildrizhausen, in the Stuttgart district."
     },
     "tr": {
       "question": "Atölyeniz nerede?",
-      "answer": "Atölyemiz Böblingen bölgesindeki Hans Klemm Straße 2, 71157 Hildrizhausen adresinde bulunuyor."
+      "answer": "Atölyemiz Stuttgart bölgesindeki Hans Klemm Straße 2, 71157 Hildrizhausen adresinde bulunuyor."
     }
   },
   "faq_item:11": {
@@ -161,11 +161,11 @@
     "key": { "question": "In welchen Orten sind Sie mobil im Einsatz?" },
     "en": {
       "question": "Which areas does your mobile service cover?",
-      "answer": "Our mobile service covers Hildrizhausen and the surrounding Böblingen district, including Herrenberg, Böblingen, Sindelfingen and the greater Stuttgart area."
+      "answer": "Our mobile service covers Hildrizhausen and the surrounding Stuttgart district, including Herrenberg, Böblingen, Sindelfingen and the greater Stuttgart area."
     },
     "tr": {
       "question": "Mobil olarak hangi bölgelerde hizmet veriyorsunuz?",
-      "answer": "Mobil servisimiz Hildrizhausen ve çevresindeki Böblingen bölgesini kapsıyor; Herrenberg, Böblingen, Sindelfingen ve Stuttgart çevresi dahil."
+      "answer": "Mobil servisimiz Hildrizhausen ve çevresindeki Stuttgart bölgesini kapsıyor; Herrenberg, Böblingen, Sindelfingen ve Stuttgart çevresi dahil."
     }
   }
 }

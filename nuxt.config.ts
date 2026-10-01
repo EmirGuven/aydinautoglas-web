@@ -41,7 +41,7 @@ export default defineNuxtConfig({
   site: {
     url: process.env.NUXT_PUBLIC_SITE_URL || "https://www.aydinautoglas.de",
     name: "Aydin Autoglas",
-    description: "Aydin Autoglas — Steinschlagreparatur, Frontscheibenaustausch, Seiten- und Heckscheiben sowie mobiler Service in Hildrizhausen und dem Landkreis Böblingen.",
+    description: "Aydin Autoglas — Steinschlagreparatur, Frontscheibenaustausch, Seiten- und Heckscheiben sowie mobiler Service in Hildrizhausen und dem Landkreis Stuttgart.",
     defaultLocale: "de"
   },
   robots: {

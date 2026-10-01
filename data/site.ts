@@ -5,7 +5,7 @@ export const siteMeta = {
   name: "Aydin Autoglas",
   titleSuffix: "Aydin Autoglas",
   description:
-    "Aydin Autoglas; Steinschlagreparatur, Frontscheibenaustausch, Seiten- und Heckscheibenaustausch sowie mobilem Service in Hildrizhausen und dem Landkreis Böblingen.",
+    "Aydin Autoglas; Steinschlagreparatur, Frontscheibenaustausch, Seiten- und Heckscheibenaustausch sowie mobilem Service in Hildrizhausen und dem Landkreis Stuttgart.",
   url: "https://www.aydinautoglas.de",
   phone: "",
   phoneDisplay: "",

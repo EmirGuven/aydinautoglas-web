@@ -310,7 +310,7 @@ async function initSchema(db: Db) {
     `).run(
       "Aydin Autoglas",
       "Aydin Autoglas",
-      "Aydin Autoglas; Steinschlagreparatur, Frontscheibenaustausch, Seiten- und Heckscheibenaustausch sowie mobilem Service in Hildrizhausen und dem Landkreis Böblingen.",
+      "Aydin Autoglas; Steinschlagreparatur, Frontscheibenaustausch, Seiten- und Heckscheibenaustausch sowie mobilem Service in Hildrizhausen und dem Landkreis Stuttgart.",
       "Steinschlagreparatur · Scheibenaustausch · Mobiler Service",
       "Von der schnellen Steinschlagreparatur bis zum kompletten Scheibenaustausch — Ihr Fachbetrieb für Autoglas.",
       "",
@@ -386,7 +386,7 @@ async function initSchema(db: Db) {
       JSON.stringify([
         { years: "Familie", title: "Familienbetrieb", desc: "Geführt von Recep Aydin und Can Aydin — persönlich und verlässlich." },
         { years: "Autoglas", title: "Spezialisiert auf Fahrzeugverglasung", desc: "Steinschlagreparatur, Scheibenaustausch und ADAS-Kalibrierung aus einer Hand." },
-        { years: "BB", title: "Landkreis Böblingen", desc: "Vor Ort in Hildrizhausen und mobil im gesamten Großraum Stuttgart unterwegs." },
+        { years: "ST", title: "Landkreis Stuttgart", desc: "Vor Ort in Hildrizhausen und mobil im gesamten Großraum Stuttgart unterwegs." },
         { years: "KFZ", title: "Versicherungspartner", desc: "Unkomplizierte Abwicklung mit Ihrer Kaskoversicherung direkt über uns." }
       ]),
       "So arbeiten wir",
