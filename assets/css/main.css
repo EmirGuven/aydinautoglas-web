@@ -3248,7 +3248,7 @@ h1, h2, h3, h4 {
 }
 .nh__logo-image {
   display: block;
-  max-width: min(300px, 52vw);
+  max-width: min(420px, 52vw);
   max-height: 64px;
   object-fit: contain;
 }
@@ -3515,7 +3515,7 @@ h1, h2, h3, h4 {
 }
 .sf__logo-image {
   display: block;
-  max-width: min(240px, 100%);
+  max-width: min(340px, 100%);
   max-height: 64px;
   object-fit: contain;
 }

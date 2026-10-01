@@ -30,6 +30,7 @@ export default defineEventHandler(async (event) => {
       logo_tagline: row.logo_tagline || "Frigolu · Parsiyel · Kara Taşımacılığı",
       logo_type: row.logo_type || defaultLogoType,
       logo_image: row.logo_image || "",
+      logo_height: row.logo_height || 64,
       header_cta_label: row.header_cta_label || defaultHeaderCtaLabel,
       header_cta_url: row.header_cta_url || defaultHeaderCtaUrl,
       header_menu_items: parseHeaderMenuItems(row.header_menu_items, defaultHeaderMenuItems),
@@ -44,6 +45,7 @@ export default defineEventHandler(async (event) => {
         logo_tagline = ?,
         logo_type = ?,
         logo_image = ?,
+        logo_height = ?,
         header_cta_label = ?,
         header_cta_url = ?,
         header_menu_items = ?
@@ -52,6 +54,7 @@ export default defineEventHandler(async (event) => {
       body.logo_tagline || "Frigolu · Parsiyel · Kara Taşımacılığı",
       body.logo_type === "image" ? "image" : "text",
       body.logo_image || "",
+      Math.min(200, Math.max(24, Number(body.logo_height) || 64)),
       body.header_cta_label || defaultHeaderCtaLabel,
       body.header_cta_url || defaultHeaderCtaUrl,
       serializeHeaderMenuItems(body.header_menu_items),

@@ -139,6 +139,7 @@ async function initSchema(db: Db) {
       favicon TEXT NOT NULL DEFAULT '',
       logo_type TEXT NOT NULL DEFAULT 'text',
       logo_image TEXT NOT NULL DEFAULT '',
+      logo_height INTEGER NOT NULL DEFAULT 64,
       header_cta_label TEXT NOT NULL DEFAULT 'Termin vereinbaren',
       header_cta_url TEXT NOT NULL DEFAULT '/kontakt',
       header_menu_items TEXT NOT NULL DEFAULT '[{"label":"Startseite","to":"/","type":"link"},{"label":"Über uns","to":"/ueber-uns","type":"link"},{"label":"Leistungen","to":"","type":"services"},{"label":"Blog","to":"/blog","type":"link"},{"label":"FAQ","to":"/haeufige-fragen","type":"link"},{"label":"Kontakt","to":"/kontakt","type":"link"}]',
@@ -350,6 +351,7 @@ async function initSchema(db: Db) {
     await db.exec("ALTER TABLE site_settings ADD COLUMN IF NOT EXISTS favicon TEXT NOT NULL DEFAULT ''")
     await db.exec("ALTER TABLE site_settings ADD COLUMN IF NOT EXISTS extra_phones TEXT NOT NULL DEFAULT '[]'")
     await db.exec("ALTER TABLE site_settings ADD COLUMN IF NOT EXISTS extra_emails TEXT NOT NULL DEFAULT '[]'")
+    await db.exec("ALTER TABLE site_settings ADD COLUMN IF NOT EXISTS logo_height INTEGER NOT NULL DEFAULT 64")
   }
 
   // Varsayılan admin kullanıcısı (şifre: admin123 — ilk girişte değiştirilmeli)

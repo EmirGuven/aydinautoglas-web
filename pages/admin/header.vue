@@ -50,6 +50,7 @@
                 :src="form.logo_image"
                 :alt="form.name || 'Logo'"
                 class="admin-logo-preview__image"
+                :style="{ maxHeight: form.logo_height + 'px' }"
               >
               <div v-else class="admin-logo-preview__text">
                 <strong>{{ logoPreviewParts[0] }}</strong>
@@ -62,6 +63,14 @@
             <label>Logo Görseli</label>
             <input v-model="form.logo_image" type="text" placeholder="/uploads/logo.png" />
             <ImageUpload v-model="form.logo_image" @uploaded="(url: string) => form.logo_image = url" />
+          </div>
+          <div class="form-group" style="grid-column:1/-1">
+            <label>Logo Boyutu ({{ form.logo_height }}px)</label>
+            <div class="admin-inline-group">
+              <input v-model.number="form.logo_height" type="range" min="24" max="200" step="2" style="flex:1" />
+              <input v-model.number="form.logo_height" type="number" min="24" max="200" style="width:80px" />
+            </div>
+            <small class="admin-form__hint">Header ve footer'daki logonun yüksekliğini ayarlar (24-200px).</small>
           </div>
         </div>
       </div>
@@ -159,6 +168,7 @@ const form = reactive({
   logo_tagline: "",
   logo_type: "text",
   logo_image: "",
+  logo_height: 64,
   header_cta_label: "",
   header_cta_url: "",
   header_menu_items: [] as HeaderMenuItem[],
@@ -170,6 +180,7 @@ watch(raw, (val) => {
   form.logo_tagline = val.logo_tagline || ""
   form.logo_type = val.logo_type || "text"
   form.logo_image = val.logo_image || ""
+  form.logo_height = val.logo_height || 64
   form.header_cta_label = val.header_cta_label || "Randevu Al"
   form.header_cta_url = val.header_cta_url || "/kontakt"
   form.header_menu_items = Array.isArray(val.header_menu_items) ? val.header_menu_items : []

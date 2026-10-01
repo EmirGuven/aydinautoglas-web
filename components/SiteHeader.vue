@@ -58,6 +58,7 @@ const titleParts = computed(() => {
 const logoType = computed(() => siteSettings.value?.logoType || "text")
 const logoImage = computed(() => siteSettings.value?.logoImage || "")
 const hasImageLogo = computed(() => logoType.value === "image" && !!logoImage.value)
+const logoHeight = computed(() => Number(siteSettings.value?.logoHeight) || 64)
 const phone = computed(() => siteSettings.value?.phone || siteMeta.phone)
 const phoneDisplay = computed(() => siteSettings.value?.phoneDisplay || phone.value)
 const instagram = computed(() => siteSettings.value?.social?.[0] || siteMeta.social[0])
@@ -96,6 +97,7 @@ function truncate(text: string, max = 50): string {
             :src="logoImage"
             :alt="brandName"
             class="nh__logo-image"
+            :style="{ maxHeight: logoHeight + 'px' }"
           >
           <template v-else>
             <div class="nh__logo-icon">

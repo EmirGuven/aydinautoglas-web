@@ -27,6 +27,7 @@ const footerTagline = computed(() => siteSettings.value?.footerTagline || "")
 const logoType = computed(() => siteSettings.value?.logoType || "text")
 const logoImage = computed(() => siteSettings.value?.logoImage || "")
 const hasImageLogo = computed(() => logoType.value === "image" && !!logoImage.value)
+const logoHeight = computed(() => Number(siteSettings.value?.logoHeight) || 64)
 const footerServicesTitle = computed(() => siteSettings.value?.footerServicesTitle || defaultFooterServicesTitle)
 const footerMenuTitle = computed(() => siteSettings.value?.footerMenuTitle || defaultFooterMenuTitle)
 const footerContactTitle = computed(() => siteSettings.value?.footerContactTitle || defaultFooterContactTitle)
@@ -61,6 +62,7 @@ const serviceLinks = computed(() =>
               :src="logoImage"
               :alt="name"
               class="sf__logo-image"
+              :style="{ maxHeight: logoHeight + 'px' }"
             >
             <template v-else>
               <div class="sf__logo-icon">

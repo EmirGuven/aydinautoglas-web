@@ -65,6 +65,7 @@ export default defineEventHandler(async (event) => {
     favicon: row.favicon || "",
     logoType: row.logo_type || defaultLogoType,
     logoImage: row.logo_image || "",
+    logoHeight: row.logo_height || 64,
     headerCtaLabel: row.header_cta_label || defaultHeaderCtaLabel,
     headerCtaUrl: row.header_cta_url || defaultHeaderCtaUrl,
     headerMenuItems: parseHeaderMenuItems(row.header_menu_items, defaultHeaderMenuItems),
